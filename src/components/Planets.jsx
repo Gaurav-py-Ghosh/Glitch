@@ -1,256 +1,3 @@
-// import React, { useEffect, useRef, useState } from "react";
-// import * as THREE from "three";
-// import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
-// import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
-// import getStarfield from "./Starfield";
-
-// const Planets = () => {
-//   const mountRef = useRef(null);
-//   const [hovered, setHovered] = useState(false);
-//   let spaceship = null;
-//   let blackhole = null; // 🕳️ Black Hole Reference
-
-//   useEffect(() => {
-//     const raycaster = new THREE.Raycaster();
-//     const mouse = new THREE.Vector2();
-
-//     function onMouseMove(event) {
-//       mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
-//       mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
-//     }
-//     window.addEventListener("mousemove", onMouseMove);
-
-//     // 🌍 Scene, Camera, Renderer
-//     const w = window.innerWidth;
-//     const h = window.innerHeight;
-//     const scene = new THREE.Scene();
-//     const camera = new THREE.PerspectiveCamera(75, w / h, 0.1, 1000);
-//     camera.position.set(0, -20, 35);
-//     camera.lookAt(0, 0, -40);
-
-//     const renderer = new THREE.WebGLRenderer({ antialias: true });
-//     renderer.setSize(w, h);
-//     renderer.toneMapping = THREE.ACESFilmicToneMapping;
-//     renderer.outputColorSpace = THREE.LinearSRGBColorSpace;
-
-//     if (mountRef.current) {
-//       mountRef.current.appendChild(renderer.domElement);
-//     }
-
-//     const controls = new OrbitControls(camera, renderer.domElement);
-//     controls.enableDamping = true;
-//     controls.enabled = false;
-
-//     // 🌟 Starfield
-//     const stars = getStarfield({ numStars: 4000 });
-//     scene.add(stars);
-
-//     // ☀️ Lighting
-//     const sunLight = new THREE.DirectionalLight(0xffffff, 5);
-//     sunLight.position.set(-5, 5, 5);
-//     scene.add(sunLight);
-
-//     scene.add(new THREE.AmbientLight(0xffffff, 2.5));
-//     const spotLight = new THREE.SpotLight(0xffffff, 2);
-//     spotLight.position.set(0, 50, 50);
-//     scene.add(spotLight);
-
-//     // 🌍 Earth (Big Planet Ground)
-//     const loader = new THREE.TextureLoader();
-//     const earthTexture = loader.load("/textures/earth.jpg");
-
-//     const bigPlanet = new THREE.Mesh(
-//       new THREE.SphereGeometry(40, 64, 64),
-//       new THREE.MeshStandardMaterial({
-//         map: earthTexture,
-//         bumpMap: loader.load("/textures/01_earthbump1k.jpg"),
-//         bumpScale: 0.04,
-//         roughness: 0.4,
-//         metalness: 0.2,
-//         emissive: new THREE.Color(0x222222),
-//         emissiveIntensity: 0.7,
-//       })
-//     );
-//     bigPlanet.position.set(0, -50, 0);
-//     scene.add(bigPlanet);
-    
-
-//     // 🚀 Load Spaceship Model
-//     const gltfLoader = new GLTFLoader();
-//     gltfLoader.load("/models/spaceship.glb", (gltf) => {
-//       spaceship = gltf.scene;
-//       spaceship.scale.set(0.05, 0.05, 0.05);
-//       spaceship.position.set(-80, 30, -58);
-//       spaceship.rotation.set(-1.57, 1.55, 2.54);
-//       scene.add(spaceship);
-      
-//     });
-
-//     // 🕳️ Load Black Hole Model
-//     gltfLoader.load("/models/blackhole1.glb", (gltf) => {
-//       blackhole = gltf.scene;
-//       blackhole.scale.set(20, 20, 20); // Make it huge
-//       blackhole.position.set(160, 110, -58);
-
-//       const fresnelMaterial = new THREE.ShaderMaterial({
-//         uniforms: { glowColor: { value: new THREE.Color(0xffffff) }, fresnelPower: { value: 4.5 } },
-//         vertexShader: `varying vec3 vNormal; varying vec3 vViewPosition; void main() {
-//           vNormal = normalize(normalMatrix * normal);
-//           vec4 mvPosition = modelViewMatrix * vec4(position, 1.0);
-//           vViewPosition = -mvPosition.xyz;
-//           gl_Position = projectionMatrix * mvPosition; }`,
-//         fragmentShader: `varying vec3 vNormal; varying vec3 vViewPosition; uniform vec3 glowColor;
-//           uniform float fresnelPower; void main() {
-//           float fresnel = pow(1.0 - dot(vNormal, normalize(vViewPosition)), fresnelPower);
-//           gl_FragColor = vec4(glowColor * fresnel, 1.0); }`,
-//         side: THREE.FrontSide, blending: THREE.AdditiveBlending, transparent: true,
-//       });
-
-//       blackhole.traverse((child) => {
-//         if (child.isMesh) child.material = fresnelMaterial;
-//       });
-
-//       const glowLight = new THREE.SpotLight(0xffffff, 8, 1000, Math.PI / 3, 1);
-//       glowLight.position.set(0, 220, -780);
-//       scene.add(glowLight);
-//       scene.add(blackhole);
-//     });
-
-
-//     const moonTexture = loader.load("/textures/moonbg.jpeg");
- 
-//     // 🌕 Load Moon Model
-//     gltfLoader.load("/models/moon.glb", (gltf) => {
-//       const moon = gltf.scene;
-//       moon.scale.set(5, 5, 5);
-//       moon.position.set(-160, 100, -35);
-
-//       moon.traverse((child) => {
-//         if (child.isMesh) {
-//           child.material = new THREE.MeshStandardMaterial({ map: moonTexture });
-//         }
-//       });
-
-//       scene.add(moon);
-//     });
-
-//     // 🪐 Load Saturn Model
-//     const saturnTexture = loader.load("/textures/saturnbg.jpeg");
-
-//     gltfLoader.load("/models/saturn.glb", (gltf) => {
-//       const saturn = gltf.scene;
-//       saturn.scale.set(0.1, 0.1, 0.1);
-//       saturn.position.set(50, 50, -60);
-//       saturn.rotation.set(-1.57, 1.55, 2.54);
-
-      
-
-//       saturn.traverse((child) => {
-//         if (child.isMesh) {
-//           child.material = new THREE.MeshStandardMaterial({ map: saturnTexture });
-//         }
-//       });
-
-//       scene.add(saturn);
-//     });
-
-//     // 🔴 Load Mars Model
-//     const marsTexture = loader.load("/textures/marsbg.jpeg");
-
-//     gltfLoader.load("/models/mars.glb", (gltf) => {
-//       const mars = gltf.scene;
-//       mars.scale.set(0.1, 0.1, 0.1);
-//       mars.position.set(160, 35, -65);
-
-//       mars.traverse((child) => {
-//         if (child.isMesh) {
-//           child.material = new THREE.MeshStandardMaterial({ map: marsTexture });
-//         }
-//       });
-
-//       mars.userData.rotationSpeed = 0.0005;
-      
-//       scene.add(mars);
-//     });
-
-//     // 🎬 Animation Loop
-//     function animate() {
-//       requestAnimationFrame(animate);
-
-//       if (spaceship) {
-//         raycaster.setFromCamera(mouse, camera);
-//         const intersects = raycaster.intersectObject(spaceship, true);
-//         setHovered(intersects.length > 0);
-//       }
-
-//       bigPlanet.rotation.y += 0.0004;
-//       stars.rotation.y -= 0.0002;
-
-//       scene.traverse((obj) => {
-//         if (obj.userData.rotationSpeed) obj.rotation.y += obj.userData.rotationSpeed;
-//       });
-
-//       renderer.render(scene, camera);
-//     }
-
-//     animate();
-
-//     return () => {
-//       if (mountRef.current && mountRef.current.contains(renderer.domElement)) {
-//         mountRef.current.removeChild(renderer.domElement);
-//       }
-//       renderer.dispose();
-//     };
-//   }, []);
-
-//   return (
-//     <div ref={mountRef} style={{ width: "100vw", height: "100vh", position: "relative" }}>
-      
-//       {/* 🔝 Top Center Logo */}
-//       <div style={{
-//         position: "absolute",
-//         top: "20px",
-//         left: "50%",
-//         transform: "translateX(-50%)",
-//         zIndex: 10
-//       }}>
-//         <img 
-//           src="/images/logo.png" 
-//           alt="Mission Logo" 
-//           style={{ height: "100px", objectFit: "contain" }} 
-//         />
-//       </div>
-  
-//       {/* 🚀 HUD on hover */}
-//       {hovered && (
-//         <div style={{
-//           position: "absolute",
-//           top: "10%",
-//           left: "50%",
-//           transform: "translate(-50%, -50%)",
-//           color: "#0ff",
-//           background: "rgba(0,0,0,0.7)",
-//           padding: "10px",
-//           borderRadius: "5px",
-//           border: "1px solid cyan",
-//           fontFamily: "monospace",
-//           textAlign: "center"
-//         }}>
-//           🚀 <b>Spaceship HUD</b> <br />
-//           📡 Status: <b>Active</b> <br />
-//           🔋 Power: <b>85%</b> <br />
-//           🛰️ Signal: <b>Strong</b>
-//         </div>
-//       )}
-//     </div>
-//   );
-  
-// };
-
-
-// export default Planets;
-
-
 import React, { useEffect, useRef, useState } from "react";
 import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
@@ -281,23 +28,23 @@ const Planets = () => {
     mars: null,
     earth: null
   });
+  const infoPanelRef = useRef(null);
 
   const handleObjectClick = (objectKey) => {
-    // Prevent multiple clicks by checking both states
     if (isTraveling || focusedObject) return;
     
-    // Set traveling state immediately to block additional clicks
     setIsTraveling(true);
     setFocusedObject(objectKey);
     
-    // Store original positions and rotations of all objects
+    // Store original positions and rotations
     Object.entries(objects.current).forEach(([key, obj]) => {
       if (obj) {
         obj.userData.originalPosition = obj.position.clone();
         obj.userData.originalRotation = obj.rotation.clone();
         obj.userData.originalVisibility = obj.visible;
+        obj.userData.originalScale = obj.scale.clone();
         
-        // Immediately make other objects invisible to prevent visual glitches
+        // Immediately hide other objects
         if (key !== objectKey) {
           obj.visible = false;
         }
@@ -308,7 +55,7 @@ const Planets = () => {
   const handleBackClick = () => {
     window.location.reload();
   };
-  
+
   useEffect(() => {
     // Raycaster setup
     const raycaster = new THREE.Raycaster();
@@ -377,7 +124,6 @@ const Planets = () => {
         const intersects = raycaster.intersectObjects(objectsToCheck, true);
         
         if (intersects.length > 0) {
-          // Prevent multiple click handlers
           event.stopPropagation();
           
           let ancestorObj = intersects[0].object;
@@ -387,10 +133,7 @@ const Planets = () => {
           
           for (const [key, value] of Object.entries(objects.current)) {
             if (value === ancestorObj) {
-              // Only handle the click if we're not already traveling
-              if (!isTraveling) {
-                handleObjectClick(key);
-              }
+              handleObjectClick(key);
               break;
             }
           }
@@ -743,30 +486,49 @@ const Planets = () => {
 
     // Animation loop
     let time = 0;
-    function animate() {
-      requestAnimationFrame(animate);
+    let animationFrameId = null;
+    let cameraTargetPosition = new THREE.Vector3(10, 5, 30);
+    let objectTargetPosition = new THREE.Vector3(-20, 0, 0);
+    
+    const animate = () => {
+      animationFrameId = requestAnimationFrame(animate);
       time += 0.01;
       
-      // Handle travel animation (only forward)
+      // Handle travel animation
       if (isTraveling && focusedObject) {
         const targetObject = objects.current[focusedObject];
-        const targetPosition = new THREE.Vector3(-50, 0, 30);
         
         if (!targetObject.userData.animationProgress) {
           targetObject.userData.animationProgress = 0;
+          
+          // Set target scale based on object type
+          if (focusedObject === 'spaceship') {
+            targetObject.userData.targetScale = new THREE.Vector3(0.03, 0.03, 0.03);
+          } else if (focusedObject === 'blackhole') {
+            targetObject.userData.targetScale = new THREE.Vector3(7, 7, 7);
+          } else if (focusedObject === 'moon') {
+            targetObject.userData.targetScale = new THREE.Vector3(3, 3, 3);
+          } else if (focusedObject === 'saturn' || focusedObject === 'mars') {
+            targetObject.userData.targetScale = new THREE.Vector3(0.07, 0.07, 0.07);
+          }
         }
         
         targetObject.userData.animationProgress += 0.01;
+        const progress = Math.min(targetObject.userData.animationProgress, 1);
         
-        // Animate camera
-        const cameraTarget = new THREE.Vector3().copy(targetPosition).add(new THREE.Vector3(10, 5, 15));
-        camera.current.position.lerp(cameraTarget, 0.05);
-        camera.current.lookAt(targetPosition);
+        // Animate camera to target position
+        camera.current.position.lerp(cameraTargetPosition, 0.05);
+        camera.current.lookAt(objectTargetPosition);
         
-        // Animate object
-        targetObject.position.lerp(targetPosition, 0.05);
+        // Animate object to target position
+        targetObject.position.lerp(objectTargetPosition, 0.05);
         
-        // Hide other objects except the focused one
+        // Animate scale if target scale exists
+        if (targetObject.userData.targetScale) {
+          targetObject.scale.lerp(targetObject.userData.targetScale, 0.05);
+        }
+        
+        // Hide other objects
         Object.entries(objects.current).forEach(([key, obj]) => {
           if (key !== focusedObject && obj) {
             obj.visible = false;
@@ -778,9 +540,35 @@ const Planets = () => {
           objects.current.earth.visible = false;
         }
         
-        // End animation when close enough
-        if (targetObject.userData.animationProgress > 1) {
+        // End animation when complete
+        if (progress >= 1) {
           setIsTraveling(false);
+          // Lock camera position after animation
+          camera.current.position.copy(cameraTargetPosition);
+          camera.current.lookAt(objectTargetPosition);
+        }
+      }
+      
+      // If we're focused but not traveling (animation complete)
+      if (focusedObject && !isTraveling) {
+        const targetObject = objects.current[focusedObject];
+        
+        // Keep camera locked in position
+        camera.current.position.copy(cameraTargetPosition);
+        camera.current.lookAt(objectTargetPosition);
+        
+        // Keep object in position
+        targetObject.position.copy(objectTargetPosition);
+        
+        // Keep other objects hidden
+        Object.entries(objects.current).forEach(([key, obj]) => {
+          if (key !== focusedObject && obj) {
+            obj.visible = false;
+          }
+        });
+        
+        if (objects.current.earth) {
+          objects.current.earth.visible = false;
         }
       }
       
@@ -792,7 +580,7 @@ const Planets = () => {
       });
 
       // Rotate planets
-      if (objects.current.earth) {
+      if (objects.current.earth && !focusedObject) {
         objects.current.earth.rotation.y += 0.0004;
       }
       
@@ -813,7 +601,7 @@ const Planets = () => {
         controls.current.update();
       }
       composer.current.render();
-    }
+    };
 
     animate();
 
@@ -835,6 +623,10 @@ const Planets = () => {
       window.removeEventListener("mousemove", onMouseMove);
       window.removeEventListener("click", onClick);
       window.removeEventListener("resize", onWindowResize);
+      
+      if (animationFrameId) {
+        cancelAnimationFrame(animationFrameId);
+      }
       
       if (mountRef.current && renderer.current.domElement) {
         mountRef.current.removeChild(renderer.current.domElement);
@@ -1182,12 +974,13 @@ const Planets = () => {
             ← BACK TO SYSTEM VIEW
           </div>
           
-          <div style={{
+          <div ref={infoPanelRef} style={{
             position: "absolute",
             right: "20px",
             top: "50%",
             transform: "translateY(-50%)",
             width: "350px",
+            maxHeight: "70vh",
             background: "rgba(0,10,20,0.85)",
             border: "1px solid #00aaff",
             borderRadius: "8px",
@@ -1196,13 +989,19 @@ const Planets = () => {
             fontFamily: "monospace",
             zIndex: 1000,
             backdropFilter: "blur(5px)",
-            boxShadow: "0 0 20px rgba(0,170,255,0.5)"
+            boxShadow: "0 0 20px rgba(0,170,255,0.5)",
+            overflowY: focusedObject === "spaceship" ? "auto" : "visible",
+            overflowX: "hidden"
           }}>
             <h2 style={{ 
               borderBottom: "1px solid #00aaff", 
               paddingBottom: "10px",
               marginTop: 0,
-              fontSize: "24px"
+              fontSize: "24px",
+              position: "sticky",
+              top: 0,
+              background: "rgba(0,10,20,0.85)",
+              zIndex: 1
             }}>
               {objectData[focusedObject].name}
             </h2>
@@ -1213,33 +1012,39 @@ const Planets = () => {
                   color: "#00aaff", 
                   marginBottom: "15px",
                   fontSize: "18px",
-                  fontWeight: "bold"
+                  fontWeight: "bold",
+                  position: "sticky",
+                  top: "60px",
+                  background: "rgba(0,10,20,0.85)",
+                  zIndex: 1
                 }}>
                   EVENT SCHEDULE:
                 </div>
                 
-                {objectData[focusedObject].events.map((event, i) => (
-                  <div key={i} style={{ 
-                    marginBottom: "15px",
-                    borderLeft: `4px solid ${event.color}`,
-                    padding: "10px 15px",
-                    background: "rgba(0,50,80,0.3)",
-                    borderRadius: "0 4px 4px 0"
-                  }}>
-                    <div style={{ 
-                      fontSize: "18px", 
-                      fontWeight: "bold",
-                      color: event.color,
-                      marginBottom: "5px"
+                <div style={{ maxHeight: "50vh", overflowY: "auto", paddingRight: "10px" }}>
+                  {objectData[focusedObject].events.map((event, i) => (
+                    <div key={i} style={{ 
+                      marginBottom: "15px",
+                      borderLeft: `4px solid ${event.color}`,
+                      padding: "10px 15px",
+                      background: "rgba(0,50,80,0.3)",
+                      borderRadius: "0 4px 4px 0"
                     }}>
-                      {event.name}
+                      <div style={{ 
+                        fontSize: "18px", 
+                        fontWeight: "bold",
+                        color: event.color,
+                        marginBottom: "5px"
+                      }}>
+                        {event.name}
+                      </div>
+                      <div style={{ display: "flex", justifyContent: "space-between" }}>
+                        <span>⏱ {event.time}</span>
+                        <span>📍 {event.location}</span>
+                      </div>
                     </div>
-                    <div style={{ display: "flex", justifyContent: "space-between" }}>
-                      <span>⏱ {event.time}</span>
-                      <span>📍 {event.location}</span>
-                    </div>
-                  </div>
-                ))}
+                  ))}
+                </div>
               </div>
             ) : (
               <div style={{ marginTop: "20px" }}>
@@ -1308,98 +1113,78 @@ const Planets = () => {
       )}
       
       <style jsx>{`
+        @keyframes fadeIn {
+          from { opacity: 0; transform: translateY(-50%) translateX(20px); }
+          to { opacity: 1; transform: translateY(-50%) translateX(0); }
+        }
 
-  @keyframes fadeIn {
+        @keyframes slideIn {
+          from { opacity: 0; transform: translateX(20px); }
+          to { opacity: 1; transform: translateX(0); }
+        }
 
-    from { opacity: 0; transform: translateY(-50%) translateX(20px); }
+        @keyframes scanLine {
+          0% { left: -100%; }
+          100% { left: 100%; }
+        }
 
-    to { opacity: 1; transform: translateY(-50%) translateX(0); }
+        @keyframes progress {
+          0% { width: 0%; }
+          50% { width: 70%; }
+          75% { width: 85%; }
+          90% { width: 95%; }
+          100% { width: 100%; }
+        }
 
-  }
+        @keyframes float {
+          0%, 100% { transform: translate(-50%, 50%); }
+          50% { transform: translate(-50%, calc(50% - 5px)); }
+        }
 
-  @keyframes slideIn {
+        @keyframes ping {
+          0% { transform: scale(0.1); opacity: 1; }
+          100% { transform: scale(1); opacity: 0; }
+        }
 
-    from { opacity: 0; transform: translateX(20px); }
+        @keyframes pulse {
+          0%, 100% { opacity: 1; }
+          50% { opacity: 0.7; }
+        }
 
-    to { opacity: 1; transform: translateX(0); }
+        @keyframes shimmer {
+          0% { background-position: 200% 0; }
+          100% { background-position: -200% 0; }
+        }
 
-  }
+        /* Custom scrollbar for info panel */
+        ::-webkit-scrollbar {
+          width: 8px;
+        }
 
-  @keyframes scanLine {
+        ::-webkit-scrollbar-track {
+          background: rgba(0, 20, 40, 0.5);
+          border-radius: 4px;
+        }
 
-    0% { left: -100%; }
+        ::-webkit-scrollbar-thumb {
+          background: #00aaff;
+          border-radius: 4px;
+        }
 
-    100% { left: 100%; }
+        ::-webkit-scrollbar-thumb:hover {
+          background: #00ffff;
+        }
 
-  }
-
-  @keyframes progress {
-
-    0% { width: 0%; }
-
-    50% { width: 70%; }
-
-    75% { width: 85%; }
-
-    90% { width: 95%; }
-
-    100% { width: 100%; }
-
-  }
-
-  @keyframes float {
-
-    0%, 100% { transform: translate(-50%, 50%); }
-
-    50% { transform: translate(-50%, calc(50% - 5px)); }
-
-  }
-
-  @keyframes ping {
-
-    0% { transform: scale(0.1); opacity: 1; }
-
-    100% { transform: scale(1); opacity: 0; }
-
-  }
-
-  @keyframes pulse {
-
-    0%, 100% { opacity: 1; }
-
-    50% { opacity: 0.7; }
-
-  }
-
-  @keyframes shimmer {
-
-    0% { background-position: 200% 0; }
-
-    100% { background-position: -200% 0; }
-
-  }
-
-  
-
-  /* Add hover effects for the control panel buttons */
-
-  .glow-effect-0:hover, 
-
-  .glow-effect-1:hover, 
-
-  .glow-effect-2:hover, 
-
-  .glow-effect-3:hover,
-
-  .glow-effect-4:hover,
-
-  .glow-effect-5:hover {
-
-    opacity: 1;
-
-  }
-
-`}</style>
+        /* Add hover effects for the control panel buttons */
+        .glow-effect-0:hover, 
+        .glow-effect-1:hover, 
+        .glow-effect-2:hover, 
+        .glow-effect-3:hover,
+        .glow-effect-4:hover,
+        .glow-effect-5:hover {
+          opacity: 1;
+        }
+      `}</style>
     </div>
   );
 };
