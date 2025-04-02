@@ -7,6 +7,7 @@ import { RenderPass } from "three/examples/jsm/postprocessing/RenderPass.js";
 import { OutlinePass } from "three/examples/jsm/postprocessing/OutlinePass.js";
 import { UnrealBloomPass } from "three/examples/jsm/postprocessing/UnrealBloomPass.js";
 import getStarfield from "./Starfield";
+import { BsGithub, BsLinkedin } from "react-icons/bs";
 
 const Planets = () => {
   const mountRef = useRef(null);
@@ -36,7 +37,6 @@ const Planets = () => {
     setIsTraveling(true);
     setFocusedObject(objectKey);
     
-    // Store original positions and rotations
     Object.entries(objects.current).forEach(([key, obj]) => {
       if (obj) {
         obj.userData.originalPosition = obj.position.clone();
@@ -44,7 +44,6 @@ const Planets = () => {
         obj.userData.originalVisibility = obj.visible;
         obj.userData.originalScale = obj.scale.clone();
         
-        // Immediately hide other objects
         if (key !== objectKey) {
           obj.visible = false;
         }
@@ -57,7 +56,6 @@ const Planets = () => {
   };
 
   useEffect(() => {
-    // Raycaster setup
     const raycaster = new THREE.Raycaster();
     const mouse = new THREE.Vector2();
 
@@ -144,7 +142,6 @@ const Planets = () => {
     window.addEventListener("mousemove", onMouseMove);
     window.addEventListener("click", onClick);
 
-    // Scene setup
     const w = window.innerWidth;
     const h = window.innerHeight;
     scene.current = new THREE.Scene();
@@ -165,7 +162,6 @@ const Planets = () => {
       mountRef.current.appendChild(renderer.current.domElement);
     }
 
-    // Post-processing
     composer.current = new EffectComposer(renderer.current);
     const renderPass = new RenderPass(scene.current, camera.current);
     composer.current.addPass(renderPass);
@@ -198,11 +194,9 @@ const Planets = () => {
     controls.current.maxDistance = 80;
     controls.current.minDistance = 20;
 
-    // Starfield
     const stars = getStarfield({ numStars: 4000 });
     scene.current.add(stars);
 
-    // Lighting
     const sunLight = new THREE.DirectionalLight(0xffffff, 5);
     sunLight.position.set(-5, 5, 5);
     scene.current.add(sunLight);
@@ -217,7 +211,6 @@ const Planets = () => {
     scannerLight.position.set(0, 10, 0);
     scene.current.add(scannerLight);
 
-    // Earth
     const loader = new THREE.TextureLoader();
     const earthTexture = loader.load("/textures/earth.jpg");
 
@@ -237,65 +230,35 @@ const Planets = () => {
     scene.current.add(bigPlanet);
     objects.current.earth = bigPlanet;
 
-    // Object data
     setObjectData({
       spaceship: {
         name: "TECH FEST CONTROL CENTER",
         events: [
-          { 
-            name: "HACKATHON", 
-            time: "10:00 - 18:00", 
-            location: "MAIN HALL",
-            color: "#00ff44"
-          },
-          { 
-            name: "WORKSHOPS", 
-            time: "11:00 - 15:00", 
-            location: "ROOM A & B",
-            color: "#00aaff"
-          },
-          { 
-            name: "GUEST TALK", 
-            time: "14:00 - 15:30", 
-            location: "AUDITORIUM",
-            color: "#ffaa00"
-          },
-          { 
-            name: "EXHIBITION", 
-            time: "09:00 - 17:00", 
-            location: "EXHIBITION HALL",
-            color: "#ff00aa"
-          },
-          { 
-            name: "PRIZE CEREMONY", 
-            time: "18:30 - 19:30", 
-            location: "MAIN STAGE",
-            color: "#aa00ff"
-          }
+          { name: "HACKATHON", time: "10:00 - 18:00", location: "MAIN HALL", color: "#00ff44" },
+          { name: "WORKSHOPS", time: "11:00 - 15:00", location: "ROOM A & B", color: "#00aaff" },
+          { name: "GUEST TALK", time: "14:00 - 15:30", location: "AUDITORIUM", color: "#ffaa00" },
+          { name: "EXHIBITION", time: "09:00 - 17:00", location: "EXHIBITION HALL", color: "#ff00aa" },
+          { name: "PRIZE CEREMONY", time: "18:30 - 19:30", location: "MAIN STAGE", color: "#aa00ff" }
         ],
-        description: "Central control hub for all Tech Fest activities and events. Monitor schedules, locations, and participant data."
+        description: "Central control hub for all Tech Fest activities and events."
       },
       blackhole: {
-        name: "ANOMALY XJ-112",
-        stats: [
-          { label: "Gravitational Force", value: "EXTREME", color: "#ff0044" },
-          { label: "Event Horizon", value: "UNSTABLE", color: "#ff00aa" },
-          { label: "Hawking Radiation", value: "7.2 PHz", color: "#aa00ff" },
-          { label: "Temporal Distortion", value: "HIGH", color: "#ff44ff" },
-          { label: "Approach Warning", value: "DANGER", color: "#ff0000" }
+        name: "MEET THE TEAM",
+        team: [
+          { name: "John Doe", role: "Lead Developer", linkedin: "johndoe", github: "johndoe", img: "/team/john.jpg" },
+          { name: "Jane Smith", role: "UI/UX Designer", linkedin: "janesmith", github: "janesmith", img: "/team/jane.jpg" },
+          { name: "Mike Wilson", role: "Project Manager", linkedin: "mikewilson", github: "mikewilson", img: "/team/mike.jpg" }
         ],
-        description: "Classified as a Kerr-type singularity, this black hole exhibits unusual quantum fluctuations at its event horizon."
+        description: "Our talented team behind the tech fest, bringing innovation to life."
       },
       moon: {
-        name: "LUNA PRIME",
-        stats: [
-          { label: "Surface Temp", value: "-23°C", color: "#44aaff" },
-          { label: "Gravity", value: "1.62 m/s²", color: "#aaccff" },
-          { label: "Atmosphere", value: "MINIMAL", color: "#ffffff" },
-          { label: "Colony Status", value: "ACTIVE", color: "#00ff44" },
-          { label: "Resources", value: "ABUNDANT", color: "#44ffaa" }
+        name: "CONTACT US",
+        contacts: [
+          { type: "Email", value: "contact@techfest.com", color: "#00aaff" },
+          { type: "Phone", value: "+1-555-0123", color: "#00ff44" },
+          { type: "Address", value: "123 Tech Street", color: "#ffaa00" }
         ],
-        description: "Earth's largest moon, now home to several research colonies and mining operations extracting rare lunar minerals."
+        description: "Reach out to us for any inquiries or support."
       },
       saturn: {
         name: "RINGED GIANT",
@@ -306,7 +269,7 @@ const Planets = () => {
           { label: "Core Temp", value: "11,700°C", color: "#ffaa00" },
           { label: "Moons Detected", value: "83", color: "#ffffff" }
         ],
-        description: "The gas giant Saturn, known for its spectacular ring system composed of ice and rock particles."
+        description: "The gas giant Saturn, known for its spectacular ring system."
       },
       mars: {
         name: "RED FRONTIER",
@@ -317,18 +280,16 @@ const Planets = () => {
           { label: "Resources", value: "MINING ACTIVE", color: "#ffaa00" },
           { label: "Water Reserves", value: "INCREASING", color: "#00aaff" }
         ],
-        description: "Humanity's first extraterrestrial colony, currently undergoing terraforming to create a habitable environment."
+        description: "Humanity's first extraterrestrial colony."
       }
     });
 
-    // Spaceship
     const gltfLoader = new GLTFLoader();
     gltfLoader.load("/models/spaceship.glb", (gltf) => {
       const spaceship = gltf.scene;
       spaceship.scale.set(0.05, 0.05, 0.05);
       spaceship.position.set(-80, 30, -58);
       spaceship.rotation.set(-1.57, 1.55, 2.54);
-      
       spaceship.userData.clickable = true;
       
       spaceship.traverse((child) => {
@@ -354,12 +315,10 @@ const Planets = () => {
       objects.current.spaceship = spaceship;
     });
 
-    // Black Hole
     gltfLoader.load("/models/blackhole1.glb", (gltf) => {
       const blackhole = gltf.scene;
       blackhole.scale.set(10, 10, 10);
       blackhole.position.set(160, 110, -58);
-      
       blackhole.userData.clickable = true;
       
       const coreGeometry = new THREE.SphereGeometry(3, 32, 32);
@@ -407,13 +366,11 @@ const Planets = () => {
       objects.current.blackhole = blackhole;
     });
 
-    // Moon
     const moonTexture = loader.load("/textures/moonbg.jpeg");
     gltfLoader.load("/models/moon.glb", (gltf) => {
       const moon = gltf.scene;
       moon.scale.set(5, 5, 5);
       moon.position.set(-160, 100, -35);
-      
       moon.userData.clickable = true;
 
       moon.traverse((child) => {
@@ -431,14 +388,12 @@ const Planets = () => {
       objects.current.moon = moon;
     });
 
-    // Saturn
     const saturnTexture = loader.load("/textures/saturnbg.jpeg");
     gltfLoader.load("/models/saturn.glb", (gltf) => {
       const saturn = gltf.scene;
       saturn.scale.set(0.1, 0.1, 0.1);
       saturn.position.set(50, 50, -60);
       saturn.rotation.set(-1.57, 1.55, 2.54);
-      
       saturn.userData.clickable = true;
 
       saturn.traverse((child) => {
@@ -460,13 +415,11 @@ const Planets = () => {
       objects.current.saturn = saturn;
     });
 
-    // Mars
     const marsTexture = loader.load("/textures/marsbg.jpeg");
     gltfLoader.load("/models/mars.glb", (gltf) => {
       const mars = gltf.scene;
       mars.scale.set(0.1, 0.1, 0.1);
       mars.position.set(160, 35, -65);
-      
       mars.userData.clickable = true;
 
       mars.traverse((child) => {
@@ -484,7 +437,6 @@ const Planets = () => {
       objects.current.mars = mars;
     });
 
-    // Animation loop
     let time = 0;
     let animationFrameId = null;
     let cameraTargetPosition = new THREE.Vector3(10, 5, 30);
@@ -494,14 +446,12 @@ const Planets = () => {
       animationFrameId = requestAnimationFrame(animate);
       time += 0.01;
       
-      // Handle travel animation
       if (isTraveling && focusedObject) {
         const targetObject = objects.current[focusedObject];
         
         if (!targetObject.userData.animationProgress) {
           targetObject.userData.animationProgress = 0;
           
-          // Set target scale based on object type
           if (focusedObject === 'spaceship') {
             targetObject.userData.targetScale = new THREE.Vector3(0.03, 0.03, 0.03);
           } else if (focusedObject === 'blackhole') {
@@ -516,51 +466,38 @@ const Planets = () => {
         targetObject.userData.animationProgress += 0.01;
         const progress = Math.min(targetObject.userData.animationProgress, 1);
         
-        // Animate camera to target position
         camera.current.position.lerp(cameraTargetPosition, 0.05);
         camera.current.lookAt(objectTargetPosition);
         
-        // Animate object to target position
         targetObject.position.lerp(objectTargetPosition, 0.05);
         
-        // Animate scale if target scale exists
         if (targetObject.userData.targetScale) {
           targetObject.scale.lerp(targetObject.userData.targetScale, 0.05);
         }
         
-        // Hide other objects
         Object.entries(objects.current).forEach(([key, obj]) => {
           if (key !== focusedObject && obj) {
             obj.visible = false;
           }
         });
         
-        // Hide earth
         if (objects.current.earth) {
           objects.current.earth.visible = false;
         }
         
-        // End animation when complete
         if (progress >= 1) {
           setIsTraveling(false);
-          // Lock camera position after animation
           camera.current.position.copy(cameraTargetPosition);
           camera.current.lookAt(objectTargetPosition);
         }
       }
       
-      // If we're focused but not traveling (animation complete)
       if (focusedObject && !isTraveling) {
         const targetObject = objects.current[focusedObject];
-        
-        // Keep camera locked in position
         camera.current.position.copy(cameraTargetPosition);
         camera.current.lookAt(objectTargetPosition);
-        
-        // Keep object in position
         targetObject.position.copy(objectTargetPosition);
         
-        // Keep other objects hidden
         Object.entries(objects.current).forEach(([key, obj]) => {
           if (key !== focusedObject && obj) {
             obj.visible = false;
@@ -572,25 +509,21 @@ const Planets = () => {
         }
       }
       
-      // Update shader uniforms
       scene.current.traverse((object) => {
         if (object.material && object.material.uniforms && object.material.uniforms.time) {
           object.material.uniforms.time.value = time;
         }
       });
 
-      // Rotate planets
       if (objects.current.earth && !focusedObject) {
         objects.current.earth.rotation.y += 0.0004;
       }
       
-      // Rotate starfield
       const stars = scene.current.children.find(c => c.name === "starfield");
       if (stars) {
         stars.rotation.y -= 0.0002;
       }
 
-      // Update object rotations
       scene.current.traverse((obj) => {
         if (obj.userData.rotationSpeed) {
           obj.rotation.y += obj.userData.rotationSpeed;
@@ -605,14 +538,11 @@ const Planets = () => {
 
     animate();
 
-    // Handle window resize
     function onWindowResize() {
       const w = window.innerWidth;
       const h = window.innerHeight;
-      
       camera.current.aspect = w / h;
       camera.current.updateProjectionMatrix();
-      
       renderer.current.setSize(w, h);
       composer.current.setSize(w, h);
     }
@@ -648,7 +578,6 @@ const Planets = () => {
 
   return (
     <div ref={mountRef} style={{ width: "100vw", height: "100vh", position: "relative" }}>
-      {/* Main Interface */}
       {!focusedObject && (
         <div style={{
           position: "absolute",
@@ -678,12 +607,11 @@ const Planets = () => {
             backdropFilter: "blur(4px)",
             boxShadow: "0 0 10px rgba(0,170,255,0.5)"
           }}>
-            STELLAR CARTOGRAPHY · ACTIVE SCAN · SECTOR 7G
+            ANNUAL TECH CELEBRATION · GLITCH · ACM BMU
           </div>
         </div>
       )}
       
-      {/* Corners */}
       {!focusedObject && (
         <>
           <div className="corner top-left" style={{
@@ -798,7 +726,6 @@ const Planets = () => {
                     background: "#00ffff",
                     position: "absolute"
                   }}></div>
-                  
                   <div style={{ 
                     width: "100%", 
                     height: "100%", 
@@ -845,10 +772,146 @@ const Planets = () => {
               </div>
             </div>
           </div>
+          
+          <a href="https://www.bmu.edu.in" target="_blank" rel="noopener noreferrer" style={{
+            position: "absolute",
+            bottom: "100px",
+            left: "1100px",
+            transform: "translateX(-50%)",
+            zIndex: 10,
+            textDecoration: "none"
+          }}>
+            <div style={{
+              color: "#00ffff",
+              background: "rgba(0,20,40,0.7)",
+              border: "2px solid #00aaff",
+              padding: "15px 30px",
+              borderRadius: "8px",
+              fontFamily: "monospace",
+              fontSize: "18px",
+              boxShadow: "0 0 30px rgba(0,170,255,0.7)",
+              cursor: "pointer",
+              textAlign: "center",
+              width: "280px",
+              backdropFilter: "blur(5px)",
+              position: "relative",
+              overflow: "hidden",
+              animation: "pulseGlow 2s infinite alternate",
+              transformStyle: "preserve-3d",
+              perspective: "1000px"
+            }}>
+              <div style={{
+                position: "absolute",
+                top: 0,
+                left: 0,
+                right: 0,
+                height: "100%",
+                background: "linear-gradient(135deg, rgba(0,255,255,0.1) 0%, rgba(0,170,255,0.3) 50%, rgba(0,255,255,0.1) 100%)",
+                animation: "hologramScan 4s linear infinite"
+              }}></div>
+              <div style={{
+                position: "absolute",
+                top: 0,
+                left: 0,
+                right: 0,
+                height: "2px",
+                background: "linear-gradient(90deg, transparent, #00ffff, transparent)",
+                animation: "hologramLine 3s linear infinite",
+                boxShadow: "0 0 10px #00ffff"
+              }}></div>
+              
+              <div style={{ 
+                position: "relative",
+                zIndex: 2,
+                textShadow: "0 0 10px #00aaff"
+              }}>
+                <div style={{ 
+                  fontWeight: "bold", 
+                  color: "#00ffaa",
+                  fontSize: "22px",
+                  marginBottom: "5px",
+                  letterSpacing: "1px"
+                }}>
+                  REGISTER NOW
+                </div>
+                <div style={{ 
+                  fontSize: "14px", 
+                  marginTop: "5px",
+                  color: "#ffffff"
+                }}>
+                  GLITCH 2025 · APRIL 18-20
+                </div>
+                <div style={{ 
+                  fontSize: "12px", 
+                  marginTop: "8px",
+                  color: "#00ffff",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  gap: "5px"
+                }}>
+                  <span style={{ animation: "blink 1.5s infinite" }}>▼</span>
+                  CLICK TO BEGIN JOURNEY
+                  <span style={{ animation: "blink 1.5s infinite", animationDelay: "0.5s" }}>▼</span>
+                </div>
+              </div>
+              
+              <div style={{
+                position: "absolute",
+                top: "5px",
+                left: "5px",
+                width: "15px",
+                height: "15px",
+                borderLeft: "2px solid #00ffff",
+                borderTop: "2px solid #00ffff",
+                opacity: 0.8
+              }}></div>
+              <div style={{
+                position: "absolute",
+                top: "5px",
+                right: "5px",
+                width: "15px",
+                height: "15px",
+                borderRight: "2px solid #00ffff",
+                borderTop: "2px solid #00ffff",
+                opacity: 0.8
+              }}></div>
+              <div style={{
+                position: "absolute",
+                bottom: "5px",
+                left: "5px",
+                width: "15px",
+                height: "15px",
+                borderLeft: "2px solid #00ffff",
+                borderBottom: "2px solid #00ffff",
+                opacity: 0.8
+              }}></div>
+              <div style={{
+                position: "absolute",
+                bottom: "5px",
+                right: "5px",
+                width: "15px",
+                height: "15px",
+                borderRight: "2px solid #00ffff",
+                borderBottom: "2px solid #00ffff",
+                opacity: 0.8
+              }}></div>
+            </div>
+            
+            <div style={{
+              position: "absolute",
+              bottom: "-40px",
+              left: "50%",
+              width: "1px",
+              height: "40px",
+              background: "linear-gradient(to bottom, #00ffff, transparent)",
+              transform: "translateX(-50%)",
+              animation: "beamPulse 2s infinite"
+            }}></div>
+          </a>
         </>
       )}
       
-      {/* Hover Info */}
       {hovered && !focusedObject && objectData[hovered] && (
         <div style={{
           position: "absolute",
@@ -877,7 +940,7 @@ const Planets = () => {
             alignItems: "center",
             justifyContent: "space-between"
           }}>
-            <span>{hovered === "spaceship" ? "TECH FEST CONTROL CENTER" : objectData[hovered].name}</span>
+            <span>{objectData[hovered].name}</span>
             <span style={{ 
               background: "#00aaff", 
               color: "#000", 
@@ -889,7 +952,7 @@ const Planets = () => {
             </span>
           </div>
           
-          {hovered === "spaceship" ? (
+          {hovered === "spaceship" && (
             <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
               {objectData[hovered].events.slice(0, 3).map((event, index) => (
                 <div key={index} style={{ 
@@ -902,7 +965,9 @@ const Planets = () => {
                 </div>
               ))}
             </div>
-          ) : (
+          )}
+          
+          {(hovered === "saturn" || hovered === "mars") && (
             <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
               {objectData[hovered].stats.map((stat, index) => (
                 <div key={index} style={{ 
@@ -953,7 +1018,6 @@ const Planets = () => {
         </div>
       )}
       
-      {/* Focused View */}
       {focusedObject && objectData[focusedObject] && (
         <>
           <div style={{
@@ -990,7 +1054,7 @@ const Planets = () => {
             zIndex: 1000,
             backdropFilter: "blur(5px)",
             boxShadow: "0 0 20px rgba(0,170,255,0.5)",
-            overflowY: focusedObject === "spaceship" ? "auto" : "visible",
+            overflowY: "auto",
             overflowX: "hidden"
           }}>
             <h2 style={{ 
@@ -1006,7 +1070,7 @@ const Planets = () => {
               {objectData[focusedObject].name}
             </h2>
             
-            {focusedObject === "spaceship" ? (
+            {focusedObject === "spaceship" && (
               <div style={{ marginTop: "20px" }}>
                 <div style={{ 
                   color: "#00aaff", 
@@ -1046,7 +1110,101 @@ const Planets = () => {
                   ))}
                 </div>
               </div>
-            ) : (
+            )}
+            
+            {focusedObject === "blackhole" && (
+              <div style={{ marginTop: "20px" }}>
+                <div style={{ 
+                  color: "#00aaff", 
+                  marginBottom: "15px",
+                  fontSize: "18px",
+                  fontWeight: "bold",
+                  position: "sticky",
+                  top: "60px",
+                  background: "rgba(0,10,20,0.85)",
+                  zIndex: 1
+                }}>
+                  TEAM MEMBERS:
+                </div>
+                
+                <div style={{ maxHeight: "50vh", overflowY: "auto", paddingRight: "10px" }}>
+                  {objectData[focusedObject].team.map((member, i) => (
+                    <div key={i} style={{
+                      marginBottom: "15px",
+                      padding: "10px",
+                      background: "rgba(0,50,80,0.3)",
+                      borderRadius: "4px",
+                      border: "1px solid #0088aa"
+                    }}>
+                      <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+                        <img 
+                          src={member.img} 
+                          alt={member.name}
+                          style={{
+                            width: "60px",
+                            height: "60px",
+                            borderRadius: "50%",
+                            border: "2px solid #00aaff",
+                            objectFit: "cover"
+                          }}
+                        />
+                        <div>
+                          <div style={{ fontSize: "16px", fontWeight: "bold", color: "#00ffff" }}>
+                            {member.name}
+                          </div>
+                          <div style={{ fontSize: "14px", color: "#00aaff" }}>
+                            {member.role}
+                          </div>
+                          <div style={{ display: "flex", gap: "10px", marginTop: "5px" }}>
+                            <a href={`https://github.com/${member.github}`} target="_blank" rel="noopener noreferrer">
+                              <BsGithub style={{ color: "#00ffff", fontSize: "20px" }} />
+                            </a>
+                            <a href={`https://linkedin.com/in/${member.linkedin}`} target="_blank" rel="noopener noreferrer">
+                              <BsLinkedin style={{ color: "#00aaff", fontSize: "20px" }} />
+                            </a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+            
+            {focusedObject === "moon" && (
+              <div style={{ marginTop: "20px" }}>
+                <div style={{ 
+                  color: "#00aaff", 
+                  marginBottom: "15px",
+                  fontSize: "18px",
+                  fontWeight: "bold",
+                  position: "sticky",
+                  top: "60px",
+                  background: "rgba(0,10,20,0.85)",
+                  zIndex: 1
+                }}>
+                  CONTACT DETAILS:
+                </div>
+                
+                <div style={{ paddingRight: "10px" }}>
+                  {objectData[focusedObject].contacts.map((contact, i) => (
+                    <div key={i} style={{
+                      marginBottom: "15px",
+                      padding: "10px 15px",
+                      borderLeft: `4px solid ${contact.color}`,
+                      background: "rgba(0,50,80,0.3)",
+                      borderRadius: "0 4px 4px 0"
+                    }}>
+                      <div style={{ fontSize: "16px", color: contact.color }}>
+                        {contact.type}: {contact.value}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+            
+            {(focusedObject === "saturn" || focusedObject === "mars") && (
               <div style={{ marginTop: "20px" }}>
                 {objectData[focusedObject].stats.map((stat, i) => (
                   <div key={i} style={{ 
@@ -1077,7 +1235,10 @@ const Planets = () => {
                 fontSize: "18px",
                 fontWeight: "bold"
               }}>
-                {focusedObject === "spaceship" ? "CONTROL CENTER STATUS:" : "SCIENTIFIC ANALYSIS:"}
+                {focusedObject === "spaceship" ? "CONTROL CENTER STATUS:" : 
+                 focusedObject === "blackhole" ? "TEAM OVERVIEW:" : 
+                 focusedObject === "moon" ? "GET IN TOUCH:" : 
+                 "SCIENTIFIC ANALYSIS:"}
               </div>
               <div style={{ lineHeight: "1.5" }}>
                 {objectData[focusedObject].description}
@@ -1087,7 +1248,6 @@ const Planets = () => {
         </>
       )}
       
-      {/* Interactive tooltip */}
       {!focusedObject && (
         <div style={{
           position: "absolute",
@@ -1147,49 +1307,63 @@ const Planets = () => {
         }
 
         @keyframes pulse {
-          0%, 100% { opacity: 1; }
-          50% { opacity: 0.7; }
+          0%, 100% { opacity: 1; transform: scale(1); }
+          50% { opacity: 0.9; transform: scale(1.05); }
         }
 
-        @keyframes shimmer {
-          0% { background-position: 200% 0; }
-          100% { background-position: -200% 0; }
+        @keyframes pulseGlow {
+          0% { 
+            box-shadow: 0 0 20px rgba(0,170,255,0.7);
+            transform: translateX(-50%) translateY(0) scale(1);
+          }
+          100% { 
+            box-shadow: 0 0 40px rgba(0,255,255,0.9);
+            transform: translateX(-50%) translateY(-5px) scale(1.02);
+          }
+        }
+        
+        @keyframes hologramScan {
+          0% { transform: translateY(-100%); }
+          100% { transform: translateY(100%); }
+        }
+        
+        @keyframes hologramLine {
+          0% { transform: translateY(-100%); }
+          100% { transform: translateY(100%); }
+        }
+        
+        @keyframes beamPulse {
+          0%, 100% { opacity: 0.5; height: 40px; }
+          50% { opacity: 1; height: 50px; }
         }
 
-        /* Custom scrollbar for info panel */
+        @keyframes blink {
+          0%, 49% { opacity: 1; }
+          50%, 100% { opacity: 0.5; }
+        }
+
         ::-webkit-scrollbar {
           width: 8px;
         }
 
         ::-webkit-scrollbar-track {
           background: rgba(0, 20, 40, 0.5);
-          border-radius: 4px;
+          borderRadius: 4px;
         }
 
         ::-webkit-scrollbar-thumb {
           background: #00aaff;
-          border-radius: 4px;
+          borderRadius: 4px;
         }
 
         ::-webkit-scrollbar-thumb:hover {
           background: #00ffff;
-        }
-
-        /* Add hover effects for the control panel buttons */
-        .glow-effect-0:hover, 
-        .glow-effect-1:hover, 
-        .glow-effect-2:hover, 
-        .glow-effect-3:hover,
-        .glow-effect-4:hover,
-        .glow-effect-5:hover {
-          opacity: 1;
         }
       `}</style>
     </div>
   );
 };
 
-// Clock component
 const Clock = () => {
   const [time, setTime] = useState(new Date());
   
