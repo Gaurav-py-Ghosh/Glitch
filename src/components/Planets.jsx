@@ -8,6 +8,7 @@ import { OutlinePass } from "three/examples/jsm/postprocessing/OutlinePass.js";
 import { UnrealBloomPass } from "three/examples/jsm/postprocessing/UnrealBloomPass.js";
 import getStarfield from "./Starfield";
 import { BsGithub, BsLinkedin } from "react-icons/bs";
+import Navbar from "./Navbar";
 
 const Planets = () => {
   const mountRef = useRef(null);
@@ -609,9 +610,17 @@ const Planets = () => {
           }}>
             ANNUAL TECH CELEBRATION · GLITCH · ACM BMU
           </div>
+          
         </div>
       )}
-      
+    
+{!focusedObject && (
+  <Navbar 
+    focused={!!focusedObject}
+    handleObjectClick={handleObjectClick}
+  />
+)}
+       
       {!focusedObject && (
         <>
           <div className="corner top-left" style={{
