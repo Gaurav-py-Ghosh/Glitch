@@ -7,15 +7,184 @@ import { RenderPass } from "three/examples/jsm/postprocessing/RenderPass.js";
 import { OutlinePass } from "three/examples/jsm/postprocessing/OutlinePass.js";
 import { UnrealBloomPass } from "three/examples/jsm/postprocessing/UnrealBloomPass.js";
 import getStarfield from "./Starfield";
-import { BsGithub, BsLinkedin } from "react-icons/bs";
 import Navbar from "./Navbar";
+import BlackHoleOverlay from './BlackHoleOverlay';
+
+// ErrorBoundary Component
+class ErrorBoundary extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { hasError: false };
+  }
+
+  static getDerivedStateFromError(error) {
+    return { hasError: true };
+  }
+
+  componentDidCatch(error, errorInfo) {
+    console.error("Error caught by ErrorBoundary:", error, errorInfo);
+  }
+
+  render() {
+    if (this.state.hasError) {
+      return (
+        <div style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          width: '100%',
+          height: '100%',
+          background: 'black',
+          color: 'red',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          zIndex: 9999
+        }}>
+          <h1>Something went wrong. Please refresh the page.</h1>
+        </div>
+      );
+    }
+
+    return this.props.children;
+  }
+}
 
 const Planets = () => {
   const mountRef = useRef(null);
   const [hovered, setHovered] = useState(null);
   const [focusedObject, setFocusedObject] = useState(null);
   const [isTraveling, setIsTraveling] = useState(false);
-  const [objectData, setObjectData] = useState({});
+  const [objectData, setObjectData] = useState({
+    spaceship: {
+      name: "Events",
+      events: [
+        { name: "HACKATHON", time: "10:00 - 18:00", location: "MAIN HALL", color: "#00ff44", description: "A coding marathon to solve real-world problems." },
+        { name: "WORKSHOPS", time: "11:00 - 15:00", location: "ROOM A & B", color: "#00aaff", description: "Interactive sessions to learn new skills." },
+        { name: "GUEST TALK", time: "14:00 - 15:30", location: "AUDITORIUM", color: "#ffaa00", description: "Insights from industry leaders." },
+        { name: "EXHIBITION", time: "09:00 - 17:00", location: "EXHIBITION HALL", color: "#ff00aa", description: "Showcasing innovative projects." },
+        { name: "PRIZE CEREMONY", time: "18:30 - 19:30", location: "MAIN STAGE", color: "#aa00ff", description: "Celebrating the winners." },
+        { name: "TECH QUIZ", time: "12:00 - 13:00", location: "QUIZ ROOM", color: "#ff8800", description: "Test your tech knowledge." },
+        { name: "ROBOTICS", time: "16:00 - 17:00", location: "LAB 3", color: "#00ffaa", description: "Robotics showcase and competition." },
+        { name: "AI DEMO", time: "15:00 - 16:00", location: "AI LAB", color: "#ff4444", description: "Demonstration of AI capabilities." },
+        { name: "CYBERSECURITY", time: "13:00 - 14:00", location: "ROOM C", color: "#4444ff", description: "Learn about cybersecurity trends." },
+        { name: "NETWORKING", time: "17:00 - 18:00", location: "LOUNGE", color: "#88ff88", description: "Connect with peers and experts." }
+      ],
+      description: "Central control hub for all Tech Fest activities and events."
+    },
+    blackhole: {
+      name: "MEET THE TEAM",
+      teams: [
+        {
+          name: "ORGANIZING TEAM",
+          members: [
+            { name: "John Doe", role: "Lead Developer", linkedin: "johndoe", github: "johndoe", img: "/team/john.jpg" },
+            { name: "Jane Smith", role: "UI/UX Designer", linkedin: "janesmith", github: "janesmith", img: "/team/jane.jpg" },
+            { name: "Mike Wilson", role: "Project Manager", linkedin: "mikewilson", github: "mikewilson", img: "/team/mike.jpg" },
+            { name: "Sarah Johnson", role: "Event Coordinator", linkedin: "sarahj", github: "sarahj", img: "/team/sarah.jpg" }
+          ]
+        },
+        {
+          name: "TECH TEAM",
+          members: [
+            { name: "Alex Chen", role: "Frontend Lead", linkedin: "alexchen", github: "alexchen", img: "/team/alex.jpg" },
+            { name: "David Kim", role: "Backend Lead", linkedin: "davidkim", github: "davidkim", img: "/team/david.jpg" },
+            { name: "Emma Wilson", role: "3D Artist", linkedin: "emmaw", github: "emmaw", img: "/team/emma.jpg" },
+            { name: "Ryan Park", role: "DevOps", linkedin: "ryanp", github: "ryanp", img: "/team/ryan.jpg" }
+          ]
+        },
+        {
+          name: "DESIGN TEAM",
+          members: [
+            { name: "Lisa Wong", role: "Creative Director", linkedin: "lisaw", github: "lisaw", img: "/team/lisa.jpg" },
+            { name: "Tom Lee", role: "UI Designer", linkedin: "tomlee", github: "tomlee", img: "/team/tom.jpg" },
+            { name: "Olivia Brown", role: "Graphic Designer", linkedin: "oliviab", github: "oliviab", img: "/team/olivia.jpg" },
+            { name: "James Wilson", role: "UX Researcher", linkedin: "jamesw", github: "jamesw", img: "/team/james.jpg" }
+          ]
+        },
+        {
+          name: "MARKETING TEAM",
+          members: [
+            { name: "Sophia Garcia", role: "Marketing Head", linkedin: "sophiag", github: "sophiag", img: "/team/sophia.jpg" },
+            { name: "Daniel Martinez", role: "Social Media", linkedin: "danielm", github: "danielm", img: "/team/daniel.jpg" },
+            { name: "Ava Robinson", role: "Content Writer", linkedin: "avar", github: "avar", img: "/team/ava.jpg" },
+            { name: "Noah Clark", role: "PR Manager", linkedin: "noahc", github: "noahc", img: "/team/noah.jpg" }
+          ]
+        },
+        {
+          name: "LOGISTICS TEAM",
+          members: [
+            { name: "Mia Hernandez", role: "Operations Head", linkedin: "miah", github: "miah", img: "/team/mia.jpg" },
+            { name: "Lucas White", role: "Venue Coordinator", linkedin: "lucasw", github: "lucasw", img: "/team/lucas.jpg" },
+            { name: "Isabella Young", role: "Volunteer Manager", linkedin: "isabellay", github: "isabellay", img: "/team/isabella.jpg" },
+            { name: "Ethan King", role: "Equipment Manager", linkedin: "ethank", github: "ethank", img: "/team/ethan.jpg" }
+          ]
+        }
+      ],
+      description: "Our talented team behind the tech fest, bringing innovation to life."
+    },
+    moon: {
+      name: "CONTACT US",
+      contacts: [
+        { type: "Email", value: "contact@techfest.com", color: "#00aaff" },
+        { type: "Phone", value: "+1-555-0123", color: "#00ff44" },
+        { type: "Address", value: "123 Tech Street", color: "#ffaa00" }
+      ],
+      description: "Reach out to us for any inquiries or support."
+    },
+    saturn: {
+      name: "SPONSORS",
+      sponsors: [
+        {
+          name: "Spheron",
+          logo: "/sponsors/spheron.png",
+          description: "Decentralized cloud hosting for modern web apps.",
+          tier: "PLATINUM",
+          color: "#00ffff"
+        },
+        {
+          name: "Balsamiq",
+          logo: "/sponsors/balsamiq.png",
+          description: "Wireframing tool that helps teams plan user interfaces quickly.",
+          tier: "GOLD",
+          color: "#ffaa00"
+        },
+        {
+          name: "1Password",
+          logo: "/sponsors/1password.png",
+          description: "A secure password manager to protect your online accounts.",
+          tier: "GOLD",
+          color: "#ffaa00"
+        },
+        {
+          name: "MLH",
+          logo: "/sponsors/mlh.png",
+          description: "Official student hackathon league supporting innovation and learning.",
+          tier: "SILVER",
+          color: "#cccccc"
+        },
+        {
+          name: "Axure",
+          logo: "/sponsors/axure.png",
+          description: "UX prototyping and wireframing software for teams.",
+          tier: "SILVER",
+          color: "#cccccc"
+        }
+      ],
+      description: "Our amazing sponsors who make this event possible."
+    },
+    mars: {
+      name: "RED FRONTIER",
+      stats: [
+        { label: "Colony Status", value: "EXPANDING", color: "#00ff44" },
+        { label: "Atmosphere", value: "TERRAFORMING", color: "#aaddff" },
+        { label: "Surface Temp", value: "-60°C", color: "#ff8888" },
+        { label: "Resources", value: "MINING ACTIVE", color: "#ffaa00" },
+        { label: "Water Reserves", value: "INCREASING", color: "#00aaff" }
+      ],
+      description: "Humanity's first extraterrestrial colony."
+    }
+  });
   const composer = useRef(null);
   const outlinePass = useRef(null);
   const scene = useRef(null);
@@ -31,6 +200,8 @@ const Planets = () => {
     earth: null
   });
   const infoPanelRef = useRef(null);
+  const [selectedTeam, setSelectedTeam] = useState(0); // Default to the first team
+  const [selectedEvent, setSelectedEvent] = useState(null);
 
   const handleObjectClick = (objectKey) => {
     if (isTraveling || focusedObject) return;
@@ -53,7 +224,8 @@ const Planets = () => {
   };
 
   const handleBackClick = () => {
-    window.location.reload();
+    setFocusedObject(null);
+    setSelectedTeam(null);
   };
 
   useEffect(() => {
@@ -212,8 +384,32 @@ const Planets = () => {
     scannerLight.position.set(0, 10, 0);
     scene.current.add(scannerLight);
 
+    // Texture loader with error handling
     const loader = new THREE.TextureLoader();
-    const earthTexture = loader.load("/textures/earth.jpg");
+    const earthTexture = loader.load(
+      "/textures/earth.jpg",
+      undefined,
+      undefined,
+      (error) => console.error("Error loading earth texture:", error)
+    );
+    const moonTexture = loader.load(
+      "/textures/moonbg.jpeg",
+      undefined,
+      undefined,
+      (error) => console.error("Error loading moon texture:", error)
+    );
+    const saturnTexture = loader.load(
+      "/textures/saturnbg.jpeg",
+      undefined,
+      undefined,
+      (error) => console.error("Error loading saturn texture:", error)
+    );
+    const marsTexture = loader.load(
+      "/textures/marsbg.jpeg",
+      undefined,
+      undefined,
+      (error) => console.error("Error loading mars texture:", error)
+    );
 
     const bigPlanet = new THREE.Mesh(
       new THREE.SphereGeometry(40, 64, 64),
@@ -230,60 +426,6 @@ const Planets = () => {
     bigPlanet.position.set(0, -50, 0);
     scene.current.add(bigPlanet);
     objects.current.earth = bigPlanet;
-
-    setObjectData({
-      spaceship: {
-        name: "Events",
-        events: [
-          { name: "HACKATHON", time: "10:00 - 18:00", location: "MAIN HALL", color: "#00ff44" },
-          { name: "WORKSHOPS", time: "11:00 - 15:00", location: "ROOM A & B", color: "#00aaff" },
-          { name: "GUEST TALK", time: "14:00 - 15:30", location: "AUDITORIUM", color: "#ffaa00" },
-          { name: "EXHIBITION", time: "09:00 - 17:00", location: "EXHIBITION HALL", color: "#ff00aa" },
-          { name: "PRIZE CEREMONY", time: "18:30 - 19:30", location: "MAIN STAGE", color: "#aa00ff" }
-        ],
-        description: "Central control hub for all Tech Fest activities and events."
-      },
-      blackhole: {
-        name: "MEET THE TEAM",
-        team: [
-          { name: "John Doe", role: "Lead Developer", linkedin: "johndoe", github: "johndoe", img: "/team/john.jpg" },
-          { name: "Jane Smith", role: "UI/UX Designer", linkedin: "janesmith", github: "janesmith", img: "/team/jane.jpg" },
-          { name: "Mike Wilson", role: "Project Manager", linkedin: "mikewilson", github: "mikewilson", img: "/team/mike.jpg" }
-        ],
-        description: "Our talented team behind the tech fest, bringing innovation to life."
-      },
-      moon: {
-        name: "CONTACT US",
-        contacts: [
-          { type: "Email", value: "contact@techfest.com", color: "#00aaff" },
-          { type: "Phone", value: "+1-555-0123", color: "#00ff44" },
-          { type: "Address", value: "123 Tech Street", color: "#ffaa00" }
-        ],
-        description: "Reach out to us for any inquiries or support."
-      },
-      saturn: {
-        name: "RINGED GIANT",
-        stats: [
-          { label: "Ring Composition", value: "ICE/ROCK", color: "#aaffff" },
-          { label: "Atmosphere", value: "H₂/He", color: "#ffffaa" },
-          { label: "Wind Speed", value: "1,800 KM/H", color: "#ffaaaa" },
-          { label: "Core Temp", value: "11,700°C", color: "#ffaa00" },
-          { label: "Moons Detected", value: "83", color: "#ffffff" }
-        ],
-        description: "The gas giant Saturn, known for its spectacular ring system."
-      },
-      mars: {
-        name: "RED FRONTIER",
-        stats: [
-          { label: "Colony Status", value: "EXPANDING", color: "#00ff44" },
-          { label: "Atmosphere", value: "TERRAFORMING", color: "#aaddff" },
-          { label: "Surface Temp", value: "-60°C", color: "#ff8888" },
-          { label: "Resources", value: "MINING ACTIVE", color: "#ffaa00" },
-          { label: "Water Reserves", value: "INCREASING", color: "#00aaff" }
-        ],
-        description: "Humanity's first extraterrestrial colony."
-      }
-    });
 
     const gltfLoader = new GLTFLoader();
     gltfLoader.load("/models/spaceship.glb", (gltf) => {
@@ -367,7 +509,6 @@ const Planets = () => {
       objects.current.blackhole = blackhole;
     });
 
-    const moonTexture = loader.load("/textures/moonbg.jpeg");
     gltfLoader.load("/models/moon.glb", (gltf) => {
       const moon = gltf.scene;
       moon.scale.set(5, 5, 5);
@@ -389,7 +530,6 @@ const Planets = () => {
       objects.current.moon = moon;
     });
 
-    const saturnTexture = loader.load("/textures/saturnbg.jpeg");
     gltfLoader.load("/models/saturn.glb", (gltf) => {
       const saturn = gltf.scene;
       saturn.scale.set(0.1, 0.1, 0.1);
@@ -416,7 +556,6 @@ const Planets = () => {
       objects.current.saturn = saturn;
     });
 
-    const marsTexture = loader.load("/textures/marsbg.jpeg");
     gltfLoader.load("/models/mars.glb", (gltf) => {
       const mars = gltf.scene;
       mars.scale.set(0.1, 0.1, 0.1);
@@ -563,6 +702,11 @@ const Planets = () => {
         mountRef.current.removeChild(renderer.current.domElement);
       }
       
+      // Dispose of textures
+      [earthTexture, moonTexture, saturnTexture, marsTexture].forEach(texture => {
+        if (texture) texture.dispose();
+      });
+
       renderer.current.dispose();
       scene.current.traverse((object) => {
         if (object.geometry) object.geometry.dispose();
@@ -637,13 +781,12 @@ const Planets = () => {
           />
           <div style={{
             color: "#ffffff",
-            fontFamily: "monospace",
-            
-          
+            fontFamily: "Orbitron",
             padding: "5px 10px",
             textAlign: "center",
-            fontSize: "18px",
+            fontSize: "48px",
             backdropFilter: "blur(4px)",
+            fontWeight: "bold",
             // boxShadow: "0 0 10px rgb(255, 255, 255)",
             opacity: 0.8 // Reduced opacity
           }}>
@@ -1046,39 +1189,35 @@ const Planets = () => {
             </div>
           )}
           
-          {(hovered === "saturn" || hovered === "mars") && (
-            <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
-              {objectData[hovered].stats.map((stat, index) => (
-                <div key={index} style={{ 
-                  display: "flex", 
-                  justifyContent: "space-between",
-                  alignItems: "center",
-                  animation: `slideIn 0.5s ${index * 0.1}s both`
-                }}>
-                  <span>{stat.label}:</span>
-                  <span style={{ 
-                    color: stat.color,
-                    fontWeight: "bold",
-                    display: "inline-block",
-                    width: "100px", 
-                    position: "relative",
-                    textAlign: "right"
-                  }}>
-                    {stat.value}
-                    <span style={{ 
-                      position: "absolute",
-                      top: 0,
-                      left: 0,
-                      height: "100%",
-                      width: "100%",
-                      background: `linear-gradient(90deg, transparent 0%, ${stat.color}33 100%)`,
-                      animation: "scanLine 2s infinite"
-                    }}></span>
-                  </span>
-                </div>
-              ))}
+          {(objectData[hovered]?.stats || []).map((stat, index) => (
+            <div key={index} style={{ 
+              display: "flex", 
+              justifyContent: "space-between",
+              alignItems: "center",
+              animation: `slideIn 0.5s ${index * 0.1}s both`
+            }}>
+              <span>{stat.label}:</span>
+              <span style={{ 
+                color: stat.color,
+                fontWeight: "bold",
+                display: "inline-block",
+                width: "100px", 
+                position: "relative",
+                textAlign: "right"
+              }}>
+                {stat.value}
+                <span style={{ 
+                  position: "absolute",
+                  top: 0,
+                  left: 0,
+                  height: "100%",
+                  width: "100%",
+                  background: `linear-gradient(90deg, transparent 0%, ${stat.color}33 100%)`,
+                  animation: "scanLine 2s infinite"
+                }}></span>
+              </span>
             </div>
-          )}
+          ))}
           
           <div style={{ 
             marginTop: "15px", 
@@ -1099,234 +1238,716 @@ const Planets = () => {
       
       {focusedObject && objectData[focusedObject] && (
         <>
-          <div style={{
-            position: "absolute",
-            top: "20px",
-            left: "20px",
-            zIndex: 1000,
-            color: "#00ffff",
-            background: "rgba(0,10,20,0.7)",
-            border: "1px solid #00aaff",
-            padding: "10px 15px",
-            borderRadius: "4px",
-            cursor: "pointer",
-            fontFamily: "monospace",
-            backdropFilter: "blur(4px)",
-            boxShadow: "0 0 10px rgba(0,170,255,0.5)"
-          }} onClick={handleBackClick}>
-            ← BACK TO SYSTEM VIEW
-          </div>
-          
-          <div ref={infoPanelRef} style={{
-            position: "absolute",
-            right: "20px",
-            top: "50%",
-            transform: "translateY(-50%)",
-            width: "350px",
-            maxHeight: "70vh",
-            background: "rgba(0,10,20,0.85)",
-            border: "1px solid #00aaff",
-            borderRadius: "8px",
-            padding: "20px",
-            color: "#00ffff",
-            fontFamily: "monospace",
-            zIndex: 1000,
-            backdropFilter: "blur(5px)",
-            boxShadow: "0 0 20px rgba(0,170,255,0.5)",
-            overflowY: "auto",
-            overflowX: "hidden"
-          }}>
-            <h2 style={{ 
-              borderBottom: "1px solid #00aaff", 
-              paddingBottom: "10px",
-              marginTop: 0,
-              fontSize: "24px",
-              position: "sticky",
-              top: 0,
-              background: "rgba(0,10,20,0.85)",
-              zIndex: 1
-            }}>
-              {objectData[focusedObject].name}
-            </h2>
-            
-            {focusedObject === "spaceship" && (
-              <div style={{ marginTop: "20px" }}>
-                <div style={{ 
-                  color: "#00aaff", 
-                  marginBottom: "15px",
-                  fontSize: "18px",
-                  fontWeight: "bold",
-                  position: "sticky",
-                  top: "60px",
-                  background: "rgba(0,10,20,0.85)",
-                  zIndex: 1
-                }}>
-                  EVENT SCHEDULE:
-                </div>
-                
-                <div style={{ maxHeight: "50vh", overflowY: "auto", paddingRight: "10px" }}>
-                  {objectData[focusedObject].events.map((event, i) => (
-                    <div key={i} style={{ 
-                      marginBottom: "15px",
-                      borderLeft: `4px solid ${event.color}`,
-                      padding: "10px 15px",
-                      background: "rgba(0,50,80,0.3)",
-                      borderRadius: "0 4px 4px 0"
-                    }}>
-                      <div style={{ 
-                        fontSize: "18px", 
-                        fontWeight: "bold",
-                        color: event.color,
-                        marginBottom: "5px"
-                      }}>
-                        {event.name}
-                      </div>
-                      <div style={{ display: "flex", justifyContent: "space-between" }}>
-                        <span>⏱ {event.time}</span>
-                        <span>📍 {event.location}</span>
-                      </div>
-                    </div>
-                  ))}
-                </div>
+          {focusedObject === "spaceship" && !selectedEvent && (
+            <>
+              <div
+                style={{
+                  position: "absolute",
+                  top: "20px",
+                  left: "20px",
+                  zIndex: 1000,
+                  color: "#00ffff",
+                  background: "rgba(0,10,20,0.7)",
+                  border: "1px solid #00aaff",
+                  padding: "10px 15px",
+                  borderRadius: "4px",
+                  cursor: "pointer",
+                  fontFamily: "monospace",
+                  backdropFilter: "blur(4px)",
+                  boxShadow: "0 0 10px rgba(0,170,255,0.5)"
+                }}
+                onClick={handleBackClick}
+              >
+                ← BACK TO SYSTEM VIEW
               </div>
-            )}
-            
-            {focusedObject === "blackhole" && (
-              <div style={{ marginTop: "20px" }}>
-                <div style={{ 
-                  color: "#00aaff", 
-                  marginBottom: "15px",
-                  fontSize: "18px",
-                  fontWeight: "bold",
-                  position: "sticky",
-                  top: "60px",
-                  background: "rgba(0,10,20,0.85)",
-                  zIndex: 1
-                }}>
-                  TEAM MEMBERS:
-                </div>
-                
-                <div style={{ maxHeight: "50vh", overflowY: "auto", paddingRight: "10px" }}>
-                  {objectData[focusedObject].team.map((member, i) => (
-                    <div key={i} style={{
-                      marginBottom: "15px",
-                      padding: "10px",
-                      background: "rgba(0,50,80,0.3)",
-                      borderRadius: "4px",
-                      border: "1px solid #0088aa"
-                    }}>
-                      <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-                        <img 
-                          src={member.img} 
-                          alt={member.name}
-                          style={{
-                            width: "60px",
-                            height: "60px",
-                            borderRadius: "50%",
-                            border: "2px solid #00aaff",
-                            objectFit: "cover"
-                          }}
-                        />
-                        <div>
-                          <div style={{ fontSize: "16px", fontWeight: "bold", color: "#00ffff" }}>
-                            {member.name}
-                          </div>
-                          <div style={{ fontSize: "14px", color: "#00aaff" }}>
-                            {member.role}
-                          </div>
-                          <div style={{ display: "flex", gap: "10px", marginTop: "5px" }}>
-                            <a href={`https://github.com/${member.github}`} target="_blank" rel="noopener noreferrer">
-                              <BsGithub style={{ color: "#00ffff", fontSize: "20px" }} />
-                            </a>
-                            <a href={`https://linkedin.com/in/${member.linkedin}`} target="_blank" rel="noopener noreferrer">
-                              <BsLinkedin style={{ color: "#00aaff", fontSize: "20px" }} />
-                            </a>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            )}
-            
-            {focusedObject === "moon" && (
-              <div style={{ marginTop: "20px" }}>
-                <div style={{ 
-                  color: "#00aaff", 
-                  marginBottom: "15px",
-                  fontSize: "18px",
-                  fontWeight: "bold",
-                  position: "sticky",
-                  top: "60px",
-                  background: "rgba(0,10,20,0.85)",
-                  zIndex: 1
-                }}>
-                  CONTACT DETAILS:
-                </div>
-                
-                <div style={{ paddingRight: "10px" }}>
-                  {objectData[focusedObject].contacts.map((contact, i) => (
-                    <div key={i} style={{
-                      marginBottom: "15px",
-                      padding: "10px 15px",
-                      borderLeft: `4px solid ${contact.color}`,
-                      background: "rgba(0,50,80,0.3)",
-                      borderRadius: "0 4px 4px 0"
-                    }}>
-                      <div style={{ fontSize: "16px", color: contact.color }}>
-                        {contact.type}: {contact.value}
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            )}
-            
-            {(focusedObject === "saturn" || focusedObject === "mars") && (
-              <div style={{ marginTop: "20px" }}>
-                {objectData[focusedObject].stats.map((stat, i) => (
-                  <div key={i} style={{ 
-                    display: "flex", 
-                    justifyContent: "space-between",
-                    marginBottom: "8px",
-                    fontSize: "18px"
-                  }}>
-                    <span>{stat.label}:</span>
-                    <span style={{ color: stat.color, fontWeight: "bold" }}>
-                      {stat.value}
-                    </span>
+
+              {/* 10-Grid Layout */}
+              <div
+                style={{
+                  position: "absolute",
+                  top: "50%",
+                  left: "50%",
+                  transform: "translate(-50%, -50%)",
+                  display: "grid",
+                  gridTemplateColumns: "repeat(5, 1fr)",
+                  gridTemplateRows: "repeat(2, 1fr)",
+                  gap: "20px",
+                  width: "70%",
+                  height: "50%",
+                  zIndex: 999
+                }}
+              >
+                {objectData.spaceship.events.map((event, index) => (
+                  <div
+                    key={index}
+                    style={{
+                      border: `2px solid ${event.color}`,
+                      borderRadius: "8px",
+                      background: "rgba(0,20,40,0.7)",
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      cursor: "pointer",
+                      transition: "transform 0.3s",
+                      boxShadow: `0 0 10px ${event.color}`,
+                      color: "#ffffff",
+                      fontFamily: "Orbitron",
+                      fontSize: "18px",
+                      textAlign: "center"
+                    }}
+                    onClick={() => setSelectedEvent(event)}
+                  >
+                    {event.name}
                   </div>
                 ))}
               </div>
-            )}
-            
-            <div style={{ 
-              marginTop: "30px",
-              padding: "15px",
-              background: "rgba(0,50,80,0.3)",
-              borderRadius: "6px",
-              border: "1px solid #0088aa"
-            }}>
-              <div style={{ 
-                color: "#00aaff", 
-                marginBottom: "10px",
-                fontSize: "18px",
-                fontWeight: "bold"
-              }}>
-                {focusedObject === "spaceship" ? "CONTROL CENTER STATUS:" : 
-                 focusedObject === "blackhole" ? "TEAM OVERVIEW:" : 
-                 focusedObject === "moon" ? "GET IN TOUCH:" : 
-                 "SCIENTIFIC ANALYSIS:"}
+            </>
+          )}
+
+          {selectedEvent && (
+            <>
+              <div
+                style={{
+                  position: "absolute",
+                  top: "20px",
+                  left: "20px",
+                  zIndex: 1000,
+                  color: "#00ffff",
+                  background: "rgba(0,10,20,0.7)",
+                  border: "1px solid #00aaff",
+                  padding: "10px 15px",
+                  borderRadius: "4px",
+                  cursor: "pointer",
+                  fontFamily: "monospace",
+                  backdropFilter: "blur(4px)",
+                  boxShadow: "0 0 10px rgba(0,170,255,0.5)"
+                }}
+                onClick={() => setSelectedEvent(null)}
+              >
+                ← BACK TO EVENTS
               </div>
-              <div style={{ lineHeight: "1.5" }}>
-                {objectData[focusedObject].description}
+
+              {/* Event Details */}
+              <div
+                style={{
+                  position: "absolute",
+                  top: "50%",
+                  left: "50%",
+                  transform: "translate(-50%, -50%)",
+                  width: "50%",
+                  background: "rgba(0,10,20,0.85)",
+                  border: `2px solid ${selectedEvent.color}`,
+                  borderRadius: "8px",
+                  padding: "20px",
+                  color: "#ffffff",
+                  fontFamily: "Orbitron",
+                  textAlign: "center",
+                  boxShadow: `0 0 20px ${selectedEvent.color}`,
+                  zIndex: 1000
+                }}
+              >
+                <h2 style={{ color: selectedEvent.color, marginBottom: "20px" }}>{selectedEvent.name}</h2>
+                <p style={{ marginBottom: "10px" }}>⏱ {selectedEvent.time}</p>
+                <p style={{ marginBottom: "10px" }}>📍 {selectedEvent.location}</p>
+                <p>{selectedEvent.description}</p>
+              </div>
+            </>
+          )}
+        </>
+      )}
+
+      {focusedObject === "blackhole" && (
+        <>
+          <div
+            style={{
+              position: "absolute",
+              top: "20px",
+              left: "20px",
+              zIndex: 1000,
+              color: "#00ffff",
+              background: "rgba(0,10,20,0.7)",
+              border: "1px solid #00aaff",
+              padding: "10px 15px",
+              borderRadius: "4px",
+              cursor: "pointer",
+              fontFamily: "monospace",
+              backdropFilter: "blur(4px)",
+              boxShadow: "0 0 10px rgba(0,170,255,0.5)"
+            }}
+            onClick={handleBackClick}
+          >
+            ← BACK TO SYSTEM VIEW
+          </div>
+
+          {/* Overlay */}
+          <div style={{
+            position: "absolute",
+            top: 0,
+            left: 0,
+            width: "100%",
+            height: "100%",
+            background: "rgba(0,0,0,0.7)",
+            backdropFilter: "blur(5px)",
+            zIndex: 998
+          }}></div>
+
+          {/* Team Navigation */}
+          <div style={{
+            position: "absolute",
+            top: "20px",
+            left: "50%",
+            transform: "translateX(-50%)",
+            display: "flex",
+            gap: "10px",
+            zIndex: 1000
+          }}>
+            {objectData.blackhole.teams.map((team, index) => (
+              <div
+                key={index}
+                style={{
+                  padding: "10px 15px",
+                  background: selectedTeam === index ? "rgba(0,170,255,0.3)" : "rgba(0,50,80,0.3)",
+                  border: `1px solid ${selectedTeam === index ? "#00ffff" : "#00aaff"}`,
+                  borderRadius: "4px",
+                  cursor: "pointer",
+                  color: selectedTeam === index ? "#00ffff" : "#ffffff",
+                  fontFamily: "monospace",
+                  transition: "all 0.3s",
+                  backdropFilter: "blur(4px)"
+                }}
+                onClick={() => setSelectedTeam(index)}
+              >
+                {team.name}
+              </div>
+            ))}
+          </div>
+
+          {/* Team Display */}
+          <div style={{
+            position: "absolute",
+            top: "50%",
+            left: "56%", // Adjusted to shift slightly to the right
+            transform: "translate(-50%, -50%)",
+            width: "80%",
+            maxHeight: "70vh",
+            overflowY: "auto",
+            padding: "20px",
+            zIndex: 999,
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fill, minmax(250px, 1fr))",
+            gap: "20px"
+          }}>
+            {selectedTeam !== null ? (
+              <>
+                <h2 style={{
+                  gridColumn: "1 / -1",
+                  color: "#00ffff",
+                  textAlign: "center", // Center the heading
+                  marginBottom: "20px",
+                  fontFamily: "Orbitron",
+                  transform: "translateX(-10%)"
+                  
+                }}>
+                  {objectData.blackhole.teams[selectedTeam].name}
+                </h2>
+
+                {objectData.blackhole.teams[selectedTeam].members.map((member, index) => (
+                  <div key={index} style={{
+                    background: "rgba(0,20,40,0.7)",
+                    border: "1px solid #00aaff",
+                    borderRadius: "8px",
+                    padding: "15px",
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                    gap: "10px",
+                    boxShadow: "0 0 10px rgba(0,170,255,0.3)"
+                  }}>
+                    <div style={{
+                      width: "100px",
+                      height: "100px",
+                      borderRadius: "50%",
+                      background: `url(${member.img}) center/cover`,
+                      border: "2px solid #00ffff",
+                      boxShadow: "0 0 20px rgba(0,255,255,0.5)"
+                    }}></div>
+
+                    <h3 style={{
+                      color: "#00ffff",
+                      margin: "5px 0",
+                      textAlign: "center",
+                      fontFamily: "Orbitron"
+                    }}>{member.name}</h3>
+
+                    <p style={{
+                      color: "#ffffff",
+                      margin: "5px 0",
+                      textAlign: "center",
+                      fontSize: "14px"
+                    }}>{member.role}</p>
+
+                    <div style={{
+                      display: "flex",
+                      gap: "15px",
+                      marginTop: "10px"
+                    }}>
+                      <a href={`https://linkedin.com/in/${member.linkedin}`} target="_blank" rel="noopener noreferrer" style={{
+                        color: "#00aaff",
+                        textDecoration: "none",
+                        display: "flex",
+                        alignItems: "center",
+                        gap: "5px"
+                      }}>
+                        <span style={{ fontSize: "20px" }}>🔗</span> LinkedIn
+                      </a>
+                      <a href={`https://github.com/${member.github}`} target="_blank" rel="noopener noreferrer" style={{
+                        color: "#ffffff",
+                        textDecoration: "none",
+                        display: "flex",
+                        alignItems: "center",
+                        gap: "5px"
+                      }}>
+                        <span style={{ fontSize: "20px" }}>🔗</span> GitHub
+                      </a>
+                    </div>
+                  </div>
+                ))}
+              </>
+            ) : (
+              <div style={{
+                gridColumn: "1 / -1",
+                textAlign: "center",
+                color: "#00ffff",
+                fontFamily: "Orbitron"
+              }}>
+                SELECT A TEAM TO VIEW MEMBERS
+              </div>
+            )}
+          </div>
+        </>
+      )}
+
+      {focusedObject === "saturn" && objectData.saturn && objectData.saturn.sponsors && (
+        <>
+          <div
+            style={{
+              position: "absolute",
+              top: "20px",
+              left: "20px",
+              zIndex: 1000,
+              color: "#00ffff",
+              background: "rgba(0,10,20,0.7)",
+              border: "1px solid #00aaff",
+              padding: "10px 15px",
+              borderRadius: "4px",
+              cursor: "pointer",
+              fontFamily: "monospace",
+              backdropFilter: "blur(4px)",
+              boxShadow: "0 0 10px rgba(0,170,255,0.5)"
+            }}
+            onClick={handleBackClick}
+          >
+            ← BACK TO SYSTEM VIEW
+          </div>
+
+          {/* Overlay */}
+          <div style={{
+            position: "absolute",
+            top: 0,
+            left: 0,
+            width: "100%",
+            height: "100%",
+            background: "rgba(0,0,0,0.7)",
+            backdropFilter: "blur(5px)",
+            zIndex: 998
+          }}></div>
+
+          {/* Sponsors Title */}
+          <div style={{
+            position: "absolute",
+            top: "80px",
+            left: "50%",
+            transform: "translateX(-50%)",
+            color: "#00ffff",
+            fontFamily: "Orbitron",
+            fontSize: "2.5rem",
+            textAlign: "center",
+            zIndex: 1000,
+            textShadow: "0 0 15px rgba(0,255,255,0.5)",
+            letterSpacing: "2px"
+          }}>
+            OUR SPONSORS
+            <div style={{
+              width: "100px",
+              height: "3px",
+              background: "linear-gradient(90deg, #00aaff, #00ffaa)",
+              margin: "10px auto",
+              boxShadow: "0 0 10px #00ffff"
+            }}></div>
+          </div>
+
+          {/* Sponsors Grid */}
+          <div style={{
+            position: "absolute",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+            width: "80%",
+            maxHeight: "70vh",
+            overflowY: "auto",
+            padding: "20px",
+            zIndex: 999,
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
+            gap: "30px"
+          }}>
+            {objectData.saturn.sponsors.map((sponsor, index) => (
+              <div key={index} style={{
+                background: "rgba(0,20,40,0.7)",
+                border: `2px solid ${sponsor.color}`,
+                borderRadius: "8px",
+                padding: "25px",
+                textAlign: "center",
+                boxShadow: `0 0 20px ${sponsor.color}80`,
+                transition: "all 0.3s ease",
+                position: "relative",
+                overflow: "hidden"
+              }}>
+                {/* Sponsor Tier */}
+                <div style={{
+                  position: "absolute",
+                  top: "10px",
+                  right: "10px",
+                  background: sponsor.color,
+                  color: "#000",
+                  padding: "3px 8px",
+                  borderRadius: "4px",
+                  fontSize: "12px",
+                  fontWeight: "bold",
+                  fontFamily: "monospace"
+                }}>
+                  {sponsor.tier}
+                </div>
+
+                {/* Sponsor Logo */}
+                <div style={{
+                  height: "80px",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  marginBottom: "20px"
+                }}>
+                  <img 
+                    src={sponsor.logo} 
+                    alt={sponsor.name}
+                    style={{
+                      maxHeight: "100%",
+                      maxWidth: "100%",
+                      filter: "drop-shadow(0 0 10px rgba(255,255,255,0.3))"
+                    }}
+                  />
+                </div>
+
+                {/* Sponsor Name */}
+                <h3 style={{
+                  color: "#00ffff",
+                  margin: "10px 0",
+                  fontFamily: "Orbitron",
+                  fontSize: "1.5rem",
+                  textShadow: "0 0 10px rgba(0,255,255,0.5)"
+                }}>
+                  {sponsor.name}
+                </h3>
+
+                {/* Sponsor Description */}
+                <p style={{
+                  color: "#ffffff",
+                  fontSize: "14px",
+                  lineHeight: "1.5",
+                  opacity: 0.8,
+                  marginBottom: "0"
+                }}>
+                  {sponsor.description}
+                </p>
+
+                {/* Glow effect on hover */}
+                <div style={{
+                  position: "absolute",
+                  top: 0,
+                  left: 0,
+                  width: "100%",
+                  height: "100%",
+                  background: `linear-gradient(45deg, transparent, ${sponsor.color}20, transparent)`,
+                  opacity: 0,
+                  transition: "opacity 0.3s ease"
+                }}></div>
+              </div>
+            ))}
+          </div>
+        </>
+      )}
+
+      {focusedObject === "moon" && (
+        <>
+          <div
+            style={{
+              position: "absolute",
+              top: "20px",
+              left: "20px",
+              zIndex: 1000,
+              color: "#00ffff",
+              background: "rgba(0,10,20,0.7)",
+              border: "1px solid #00aaff",
+              padding: "10px 15px",
+              borderRadius: "4px",
+              cursor: "pointer",
+              fontFamily: "monospace",
+              backdropFilter: "blur(4px)",
+              boxShadow: "0 0 10px rgba(0,170,255,0.5)"
+            }}
+            onClick={handleBackClick}
+          >
+            ← BACK TO SYSTEM VIEW
+          </div>
+
+          {/* Overlay */}
+          <div style={{
+            position: "absolute",
+            top: 0,
+            left: 0,
+            width: "100%",
+            height: "100%",
+            background: "rgba(0,0,0,0.7)",
+            backdropFilter: "blur(5px)",
+            zIndex: 998
+          }}></div>
+
+          {/* Contact Title */}
+          <div style={{
+            position: "absolute",
+            top: "80px",
+            left: "50%",
+            transform: "translateX(-50%)",
+            color: "#00ffff",
+            fontFamily: "Orbitron",
+            fontSize: "2.5rem",
+            textAlign: "center",
+            zIndex: 1000,
+            textShadow: "0 0 15px rgba(0,255,255,0.5)",
+            letterSpacing: "2px"
+          }}>
+            CONTACT US
+            <div style={{
+              width: "100px",
+              height: "3px",
+              background: "linear-gradient(90deg, #00aaff, #00ffaa)",
+              margin: "10px auto",
+              boxShadow: "0 0 10px #00ffff"
+            }}></div>
+          </div>
+
+          {/* Contact Cards */}
+          <div style={{
+            position: "absolute",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+            display: "flex",
+            justifyContent: "center",
+            gap: "40px",
+            zIndex: 999,
+            width: "80%",
+            maxWidth: "1000px"
+          }}>
+            {/* Aditya Rastogi Card */}
+            <div style={{
+              background: "rgba(0,20,40,0.7)",
+              border: "1px solid #00aaff",
+              borderRadius: "8px",
+              padding: "25px",
+              width: "300px",
+              boxShadow: "0 0 20px rgba(0,170,255,0.3)",
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              backdropFilter: "blur(5px)",
+              position: "relative",
+              overflow: "hidden"
+            }}>
+              <div style={{
+                width: "120px",
+                height: "120px",
+                borderRadius: "50%",
+                border: "2px solid #00ffff",
+                background: "url('/team/aditya.jpg') center/cover",
+                marginBottom: "20px",
+                boxShadow: "0 0 20px rgba(0,255,255,0.5)"
+              }}></div>
+              
+              <h3 style={{
+                color: "#00ffff",
+                margin: "0 0 10px 0",
+                fontFamily: "Orbitron",
+                fontSize: "1.5rem"
+              }}>Aditya Rastogi</h3>
+              
+              <div style={{
+                width: "100%",
+                margin: "15px 0",
+                borderTop: "1px solid #00aaff"
+              }}></div>
+              
+              <div style={{
+                width: "100%",
+                display: "flex",
+                flexDirection: "column",
+                gap: "10px"
+              }}>
+                <div style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "10px"
+                }}>
+                  <span style={{ color: "#00aaff", fontSize: "20px" }}>✉️</span>
+                  <span style={{ color: "#ffffff" }}>aditya@techfest.com</span>
+                </div>
+                
+                <div style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "10px"
+                }}>
+                  <span style={{ color: "#00aaff", fontSize: "20px" }}>📱</span>
+                  <span style={{ color: "#ffffff" }}>+91 98765 43210</span>
+                </div>
+              </div>
+              
+              {/* Glow effect */}
+              <div style={{
+                position: "absolute",
+                top: 0,
+                left: 0,
+                width: "100%",
+                height: "100%",
+                background: "linear-gradient(45deg, transparent, rgba(0,170,255,0.1), transparent)",
+                pointerEvents: "none",
+                opacity: 0.5
+              }}></div>
+            </div>
+
+            {/* Shrey Jaiswal Card */}
+            <div style={{
+              background: "rgba(0,20,40,0.7)",
+              border: "1px solid #00aaff",
+              borderRadius: "8px",
+              padding: "25px",
+              width: "300px",
+              boxShadow: "0 0 20px rgba(0,170,255,0.3)",
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              backdropFilter: "blur(5px)",
+              position: "relative",
+              overflow: "hidden"
+            }}>
+              <div style={{
+                width: "120px",
+                height: "120px",
+                borderRadius: "50%",
+                border: "2px solid #00ffff",
+                background: "url('/team/shrey.jpg') center/cover",
+                marginBottom: "20px",
+                boxShadow: "0 0 20px rgba(0,255,255,0.5)"
+              }}></div>
+              
+              <h3 style={{
+                color: "#00ffff",
+                margin: "0 0 10px 0",
+                fontFamily: "Orbitron",
+                fontSize: "1.5rem"
+              }}>Shrey Jaiswal</h3>
+              
+              <div style={{
+                width: "100%",
+                margin: "15px 0",
+                borderTop: "1px solid #00aaff"
+              }}></div>
+              
+              <div style={{
+                width: "100%",
+                display: "flex",
+                flexDirection: "column",
+                gap: "10px"
+              }}>
+                <div style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "10px"
+                }}>
+                  <span style={{ color: "#00aaff", fontSize: "20px" }}>✉️</span>
+                  <span style={{ color: "#ffffff" }}>shrey@techfest.com</span>
+                </div>
+                
+                <div style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "10px"
+                }}>
+                  <span style={{ color: "#00aaff", fontSize: "20px" }}>📱</span>
+                  <span style={{ color: "#ffffff" }}>+91 98765 43211</span>
+                </div>
+              </div>
+              
+              {/* Glow effect */}
+              <div style={{
+                position: "absolute",
+                top: 0,
+                left: 0,
+                width: "100%",
+                height: "100%",
+                background: "linear-gradient(45deg, transparent, rgba(0,170,255,0.1), transparent)",
+                pointerEvents: "none",
+                opacity: 0.5
+              }}></div>
+            </div>
+          </div>
+
+          {/* General Contact Info */}
+          <div style={{
+            position: "absolute",
+            bottom: "50px",
+            left: "50%",
+            transform: "translateX(-50%)",
+            color: "#ffffff",
+            background: "rgba(0,10,20,0.7)",
+            border: "1px solid #00aaff",
+            padding: "15px 25px",
+            borderRadius: "8px",
+            fontFamily: "monospace",
+            textAlign: "center",
+            zIndex: 999,
+            backdropFilter: "blur(5px)",
+            boxShadow: "0 0 15px rgba(0,170,255,0.3)"
+          }}>
+            <h4 style={{ 
+              color: "#00ffff",
+              margin: "0 0 10px 0",
+              fontFamily: "Orbitron"
+            }}>GENERAL INQUIRIES</h4>
+            <div style={{ display: "flex", gap: "20px", justifyContent: "center" }}>
+              <div style={{ display: "flex", alignItems: "center", gap: "5px" }}>
+                <span>✉️</span>
+                <span>contact@techfest.com</span>
+              </div>
+              <div style={{ display: "flex", alignItems: "center", gap: "5px" }}>
+                <span>📱</span>
+                <span>+1-555-0123</span>
               </div>
             </div>
           </div>
         </>
       )}
-      
+     
       {!focusedObject && (
         <div style={{
           position: "absolute",
@@ -1349,6 +1970,228 @@ const Planets = () => {
         }}>
           CLICK ON OBJECTS TO EXAMINE THEM
         </div>
+      )}
+      
+      {focusedObject === "mars" && (
+        <>
+          <div
+            style={{
+              position: "absolute",
+              top: "20px",
+              left: "20px",
+              zIndex: 1000,
+              color: "#00ffff",
+              background: "rgba(0,10,20,0.7)",
+              border: "1px solid #00aaff",
+              padding: "10px 15px",
+              borderRadius: "4px",
+              cursor: "pointer",
+              fontFamily: "monospace",
+              backdropFilter: "blur(4px)",
+              boxShadow: "0 0 10px rgba(0,170,255,0.5)"
+            }}
+            onClick={handleBackClick}
+          >
+            ← BACK TO SYSTEM VIEW
+          </div>
+
+          {/* Overlay */}
+          <div style={{
+            position: "absolute",
+            top: 0,
+            left: 0,
+            width: "100%",
+            height: "100%",
+            background: "rgba(0,0,0,0.7)",
+            backdropFilter: "blur(5px)",
+            zIndex: 998
+          }}></div>
+
+          {/* About Title */}
+          <div style={{
+            position: "absolute",
+            top: "80px",
+            left: "50%",
+            transform: "translateX(-50%)",
+            color: "#00ffff",
+            fontFamily: "Orbitron",
+            fontSize: "2.5rem",
+            textAlign: "center",
+            zIndex: 1000,
+            textShadow: "0 0 15px rgba(0,255,255,0.5)",
+            letterSpacing: "2px"
+          }}>
+            ABOUT GLITCH
+            <div style={{
+              width: "100px",
+              height: "3px",
+              background: "linear-gradient(90deg, #00aaff, #00ffff)",
+              margin: "10px auto",
+              boxShadow: "0 0 10px #00ffff"
+            }}></div>
+          </div>
+
+          {/* About Content */}
+          <div style={{
+            position: "absolute",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+            width: "70%",
+            maxWidth: "800px",
+            background: "rgba(0,20,40,0.7)",
+            border: "1px solid #00aaff",
+            borderRadius: "8px",
+            padding: "30px",
+            color: "#ffffff",
+            fontFamily: "monospace",
+            zIndex: 999,
+            backdropFilter: "blur(5px)",
+            boxShadow: "0 0 20px rgba(0,170,255,0.3)",
+            maxHeight: "70vh",
+            overflowY: "auto"
+          }}>
+            <div style={{
+              textAlign: "center",
+              marginBottom: "30px"
+            }}>
+              <h2 style={{
+                color: "#00ffff",
+                fontFamily: "Orbitron",
+                fontSize: "1.8rem",
+                marginBottom: "15px",
+                textShadow: "0 0 10px rgba(0,255,255,0.5)"
+              }}>
+                <span style={{ color: "#00aaff" }}>GLITCH 2025</span> is an annual technical celebration
+              </h2>
+              <p style={{
+                fontSize: "1.1rem",
+                lineHeight: "1.6",
+                marginBottom: "20px"
+              }}>
+                Organized by the BML Munjal University ACM Student Chapter in collaboration with regional ACM student chapters across India.
+              </p>
+            </div>
+
+            <div style={{
+              borderTop: "1px solid #00aaff",
+              borderBottom: "1px solid #00aaff",
+              padding: "20px 0",
+              margin: "20px 0"
+            }}>
+              <p style={{
+                fontSize: "1rem",
+                lineHeight: "1.6",
+                marginBottom: "20px"
+              }}>
+                Join us for three days of cutting-edge technology, thrilling competitions, hands-on workshops, and immersive entertainment as we bring together tech enthusiasts, coders, innovators, and creators from across the nation.
+              </p>
+            </div>
+
+            <div style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: "15px",
+              marginBottom: "20px",
+              color: "#00ffff"
+            }}>
+              <div style={{ fontSize: "24px" }}>🗓️</div>
+              <div style={{ fontSize: "1.2rem" }}>April 18-20, 2025</div>
+            </div>
+
+            <div style={{
+              display: "flex",
+              justifyContent: "center",
+              marginTop: "30px"
+            }}>
+              <a
+                href="https://unstop.com/college-fests/glitch-by-acm-bmu-student-chapter-bml-munjal-university-bmu-gurgaon-355060"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  textDecoration: "none"
+                }}
+              >
+                <div style={{
+                  padding: "12px 30px",
+                  background: "linear-gradient(90deg, #00aaff, #00ffff)",
+                  color: "#000",
+                  borderRadius: "4px",
+                  fontFamily: "Orbitron",
+                  fontWeight: "bold",
+                  fontSize: "1rem",
+                  cursor: "pointer",
+                  transition: "all 0.3s",
+                  boxShadow: "0 0 15px rgba(0,170,255,0.5)",
+                  position: "relative",
+                  overflow: "hidden"
+                }}>
+                  REGISTER NOW
+                  <div style={{
+                    position: "absolute",
+                    top: 0,
+                    left: 0,
+                    width: "100%",
+                    height: "100%",
+                    background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent)",
+                    transform: "translateX(-100%)",
+                    transition: "transform 0.3s"
+                  }}></div>
+                </div>
+              </a>
+            </div>
+
+            {/* Stats Section */}
+            <div style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(2, 1fr)",
+              gap: "20px",
+              marginTop: "40px"
+            }}>
+              <div style={{
+                background: "rgba(0,50,80,0.5)",
+                border: "1px solid #00aaff",
+                borderRadius: "8px",
+                padding: "15px",
+                textAlign: "center"
+              }}>
+                <div style={{ fontSize: "2rem", color: "#00ffff", marginBottom: "10px" }}>50+</div>
+                <div style={{ fontSize: "0.9rem" }}>EVENTS & WORKSHOPS</div>
+              </div>
+              <div style={{
+                background: "rgba(0,50,80,0.5)",
+                border: "1px solid #00aaff",
+                borderRadius: "8px",
+                padding: "15px",
+                textAlign: "center"
+              }}>
+                <div style={{ fontSize: "2rem", color: "#00ffff", marginBottom: "10px" }}>1000+</div>
+                <div style={{ fontSize: "0.9rem" }}>PARTICIPANTS</div>
+              </div>
+              <div style={{
+                background: "rgba(0,50,80,0.5)",
+                border: "1px solid #00aaff",
+                borderRadius: "8px",
+                padding: "15px",
+                textAlign: "center"
+              }}>
+                <div style={{ fontSize: "2rem", color: "#00ffff", marginBottom: "10px" }}>20+</div>
+                <div style={{ fontSize: "0.9rem" }}>SPEAKERS</div>
+              </div>
+              <div style={{
+                background: "rgba(0,50,80,0.5)",
+                border: "1px solid #00aaff",
+                borderRadius: "8px",
+                padding: "15px",
+                textAlign: "center"
+              }}>
+                <div style={{ fontSize: "2rem", color: "#00ffff", marginBottom: "10px" }}>3</div>
+                <div style={{ fontSize: "0.9rem" }}>DAYS OF INNOVATION</div>
+              </div>
+            </div>
+          </div>
+        </>
       )}
       
       <style jsx>{`
@@ -1499,4 +2342,12 @@ const Clock = () => {
   );
 };
 
-export default Planets;
+// Wrap Planets with ErrorBoundary
+export default function App() {
+  return (
+    <ErrorBoundary>
+      <Planets />
+    </ErrorBoundary>
+  );
+}
+
