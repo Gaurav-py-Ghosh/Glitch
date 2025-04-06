@@ -233,7 +233,7 @@ const Planets = () => {
 
     setObjectData({
       spaceship: {
-        name: "TECH FEST CONTROL CENTER",
+        name: "Events",
         events: [
           { name: "HACKATHON", time: "10:00 - 18:00", location: "MAIN HALL", color: "#00ff44" },
           { name: "WORKSHOPS", time: "11:00 - 15:00", location: "ROOM A & B", color: "#00aaff" },
@@ -577,50 +577,120 @@ const Planets = () => {
     };
   }, [focusedObject, isTraveling]);
 
+  useEffect(() => {
+    const updateObjectScreenPositions = () => {
+      if (!camera.current || !renderer.current) return;
+  
+      Object.entries(objects.current).forEach(([key, obj]) => {
+        if (obj) {
+          const vector = new THREE.Vector3();
+          obj.getWorldPosition(vector);
+          vector.project(camera.current);
+  
+          const x = (vector.x * 0.5 + 0.5) * window.innerWidth;
+          const y = (-vector.y * 0.5 + 0.5) * window.innerHeight;
+  
+          obj.userData.screenPosition = { x, y };
+        }
+      });
+    };
+  
+    // Update positions on resize
+    window.addEventListener("resize", updateObjectScreenPositions);
+  
+    // Define the animate function in the same scope
+    const animateWithPositionUpdate = () => {
+      updateObjectScreenPositions();
+      requestAnimationFrame(animateWithPositionUpdate);
+      composer.current.render();
+    };
+  
+    animateWithPositionUpdate();
+  
+    return () => {
+      window.removeEventListener("resize", updateObjectScreenPositions);
+    };
+  }, []);
+
   return (
     <div ref={mountRef} style={{ width: "100vw", height: "100vh", position: "relative" }}>
       {!focusedObject && (
         <div style={{
           position: "absolute",
-          top: "20px",
+          top: "200px",
           left: "50%",
           transform: "translateX(-50%)",
           zIndex: 10,
           display: "flex",
           flexDirection: "column",
-          alignItems: "center"
+          alignItems: "center",
+          width: "100%"
         }}>
           <img 
             src="/images/logo.png" 
             alt="Mission Logo" 
-            style={{ height: "80px", objectFit: "contain" }} 
+            style={{ 
+              height: "120px", // Increased from "80px" to "120px"
+              objectFit: "contain",
+              marginBottom: "10px"
+            }} 
           />
           <div style={{
-            color: "#00ffff",
+            color: "#ffffff",
             fontFamily: "monospace",
-            background: "rgba(0,10,20,0.7)",
-            border: "1px solid #00aaff",
-            borderRadius: "4px",
-            padding: "5px 10px",
-            marginTop: "5px",
-            textAlign: "center",
-            fontSize: "12px",
-            backdropFilter: "blur(4px)",
-            boxShadow: "0 0 10px rgba(0,170,255,0.5)"
-          }}>
-            ANNUAL TECH CELEBRATION · GLITCH · ACM BMU
-          </div>
+            
           
+            padding: "5px 10px",
+            textAlign: "center",
+            fontSize: "18px",
+            backdropFilter: "blur(4px)",
+            // boxShadow: "0 0 10px rgb(255, 255, 255)",
+            opacity: 0.8 // Reduced opacity
+          }}>
+           GLITCH 
+          </div>
         </div>
       )}
+
+      {!focusedObject && (
+        <>
+          {Object.entries(objects.current).map(([key, obj]) => {
+            if (key === "earth" || !obj) return null;
+
+            // Calculate the object's position dynamically
+            const objectScreenPosition = obj.userData?.screenPosition || { x: 0, y: 0 };
+
+            return (
+              <div 
+                key={key}
+                style={{
+                  position: "absolute",
+                  top: `${objectScreenPosition.y}px`,
+                  left: `${objectScreenPosition.x}px`,
+                  transform: "translate(-50%, -50%)",
+                  color: "#00ffff",
+                  fontFamily: "monospace",
+                  fontSize: "18px",
+                  textAlign: "center",
+                  textShadow: "0 0 5px #000",
+                  zIndex: 10,
+                  pointerEvents: "none",
+                  opacity: hovered === key ? 1 : 0.7,
+                  transition: "opacity 0.3s"
+                }}
+              >
+                {objectData[key]?.name}
+              </div>
+            );
+          })}
+        </>
+      )}
+
+      <Navbar 
+        focused={!!focusedObject}
+        handleObjectClick={handleObjectClick}
+      />
     
-{!focusedObject && (
-  <Navbar 
-    focused={!!focusedObject}
-    handleObjectClick={handleObjectClick}
-  />
-)}
-       
       {!focusedObject && (
         <>
           <div className="corner top-left" style={{
@@ -782,7 +852,7 @@ const Planets = () => {
             </div>
           </div>
           
-          <a href="https://www.bmu.edu.in" target="_blank" rel="noopener noreferrer" style={{
+          <a href="https://unstop.com/college-fests/glitch-by-acm-bmu-student-chapter-bml-munjal-university-bmu-gurgaon-355060" target="_blank" rel="noopener noreferrer" style={{
             position: "absolute",
             bottom: "100px",
             left: "1100px",
@@ -1220,7 +1290,7 @@ const Planets = () => {
                     display: "flex", 
                     justifyContent: "space-between",
                     marginBottom: "8px",
-                    fontSize: "16px"
+                    fontSize: "18px"
                   }}>
                     <span>{stat.label}:</span>
                     <span style={{ color: stat.color, fontWeight: "bold" }}>
@@ -1260,7 +1330,7 @@ const Planets = () => {
       {!focusedObject && (
         <div style={{
           position: "absolute",
-          bottom: "50%",
+          bottom: "40%",
           left: "50%",
           transform: "translate(-50%, 50%)",
           color: "#ffffff",
@@ -1270,7 +1340,7 @@ const Planets = () => {
           borderRadius: "30px",
           border: "1px solid #00aaff",
           fontFamily: "monospace",
-          fontSize: "14px",
+          fontSize: "16px",
           boxShadow: "0 0 20px rgba(0,170,255,0.5)",
           zIndex: 5,
           opacity: 0.8,
