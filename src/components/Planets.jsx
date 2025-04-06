@@ -8,7 +8,7 @@ import { OutlinePass } from "three/examples/jsm/postprocessing/OutlinePass.js";
 import { UnrealBloomPass } from "three/examples/jsm/postprocessing/UnrealBloomPass.js";
 import getStarfield from "./Starfield";
 import Navbar from "./Navbar";
-import BlackHoleOverlay from './BlackHoleOverlay';
+import BlackHoleOverlay from "./BlackHoleOverlay";
 
 // ErrorBoundary Component
 class ErrorBoundary extends React.Component {
@@ -28,19 +28,21 @@ class ErrorBoundary extends React.Component {
   render() {
     if (this.state.hasError) {
       return (
-        <div style={{
-          position: 'fixed',
-          top: 0,
-          left: 0,
-          width: '100%',
-          height: '100%',
-          background: 'black',
-          color: 'red',
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          zIndex: 9999
-        }}>
+        <div
+          style={{
+            position: "fixed",
+            top: 0,
+            left: 0,
+            width: "100%",
+            height: "100%",
+            background: "black",
+            color: "red",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            zIndex: 9999,
+          }}
+        >
           <h1>Something went wrong. Please refresh the page.</h1>
         </div>
       );
@@ -59,18 +61,79 @@ const Planets = () => {
     spaceship: {
       name: "Events",
       events: [
-        { name: "HACKATHON", time: "10:00 - 18:00", location: "MAIN HALL", color: "#00ff44", description: "A coding marathon to solve real-world problems." },
-        { name: "WORKSHOPS", time: "11:00 - 15:00", location: "ROOM A & B", color: "#00aaff", description: "Interactive sessions to learn new skills." },
-        { name: "GUEST TALK", time: "14:00 - 15:30", location: "AUDITORIUM", color: "#ffaa00", description: "Insights from industry leaders." },
-        { name: "EXHIBITION", time: "09:00 - 17:00", location: "EXHIBITION HALL", color: "#ff00aa", description: "Showcasing innovative projects." },
-        { name: "PRIZE CEREMONY", time: "18:30 - 19:30", location: "MAIN STAGE", color: "#aa00ff", description: "Celebrating the winners." },
-        { name: "TECH QUIZ", time: "12:00 - 13:00", location: "QUIZ ROOM", color: "#ff8800", description: "Test your tech knowledge." },
-        { name: "ROBOTICS", time: "16:00 - 17:00", location: "LAB 3", color: "#00ffaa", description: "Robotics showcase and competition." },
-        { name: "AI DEMO", time: "15:00 - 16:00", location: "AI LAB", color: "#ff4444", description: "Demonstration of AI capabilities." },
-        { name: "CYBERSECURITY", time: "13:00 - 14:00", location: "ROOM C", color: "#4444ff", description: "Learn about cybersecurity trends." },
-        { name: "NETWORKING", time: "17:00 - 18:00", location: "LOUNGE", color: "#88ff88", description: "Connect with peers and experts." }
+        {
+          name: "HACKATHON",
+          time: "10:00 - 18:00",
+          location: "MAIN HALL",
+          color: "#00ff44",
+          description: "A coding marathon to solve real-world problems.",
+        },
+        {
+          name: "WORKSHOPS",
+          time: "11:00 - 15:00",
+          location: "ROOM A & B",
+          color: "#00aaff",
+          description: "Interactive sessions to learn new skills.",
+        },
+        {
+          name: "GUEST TALK",
+          time: "14:00 - 15:30",
+          location: "AUDITORIUM",
+          color: "#ffaa00",
+          description: "Insights from industry leaders.",
+        },
+        {
+          name: "EXHIBITION",
+          time: "09:00 - 17:00",
+          location: "EXHIBITION HALL",
+          color: "#ff00aa",
+          description: "Showcasing innovative projects.",
+        },
+        {
+          name: "PRIZE CEREMONY",
+          time: "18:30 - 19:30",
+          location: "MAIN STAGE",
+          color: "#aa00ff",
+          description: "Celebrating the winners.",
+        },
+        {
+          name: "TECH QUIZ",
+          time: "12:00 - 13:00",
+          location: "QUIZ ROOM",
+          color: "#ff8800",
+          description: "Test your tech knowledge.",
+        },
+        {
+          name: "ROBOTICS",
+          time: "16:00 - 17:00",
+          location: "LAB 3",
+          color: "#00ffaa",
+          description: "Robotics showcase and competition.",
+        },
+        {
+          name: "AI DEMO",
+          time: "15:00 - 16:00",
+          location: "AI LAB",
+          color: "#ff4444",
+          description: "Demonstration of AI capabilities.",
+        },
+        {
+          name: "CYBERSECURITY",
+          time: "13:00 - 14:00",
+          location: "ROOM C",
+          color: "#4444ff",
+          description: "Learn about cybersecurity trends.",
+        },
+        {
+          name: "NETWORKING",
+          time: "17:00 - 18:00",
+          location: "LOUNGE",
+          color: "#88ff88",
+          description: "Connect with peers and experts.",
+        },
       ],
-      description: "Central control hub for all Tech Fest activities and events."
+      description:
+        "Central control hub for all Tech Fest activities and events.",
     },
     blackhole: {
       name: "MEET THE TEAM",
@@ -78,59 +141,180 @@ const Planets = () => {
         {
           name: "ORGANIZING TEAM",
           members: [
-            { name: "John Doe", role: "Lead Developer", linkedin: "johndoe", github: "johndoe", img: "/team/john.jpg" },
-            { name: "Jane Smith", role: "UI/UX Designer", linkedin: "janesmith", github: "janesmith", img: "/team/jane.jpg" },
-            { name: "Mike Wilson", role: "Project Manager", linkedin: "mikewilson", github: "mikewilson", img: "/team/mike.jpg" },
-            { name: "Sarah Johnson", role: "Event Coordinator", linkedin: "sarahj", github: "sarahj", img: "/team/sarah.jpg" }
-          ]
+            {
+              name: "John Doe",
+              role: "Lead Developer",
+              linkedin: "johndoe",
+              github: "johndoe",
+              img: "/team/john.jpg",
+            },
+            {
+              name: "Jane Smith",
+              role: "UI/UX Designer",
+              linkedin: "janesmith",
+              github: "janesmith",
+              img: "/team/jane.jpg",
+            },
+            {
+              name: "Mike Wilson",
+              role: "Project Manager",
+              linkedin: "mikewilson",
+              github: "mikewilson",
+              img: "/team/mike.jpg",
+            },
+            {
+              name: "Sarah Johnson",
+              role: "Event Coordinator",
+              linkedin: "sarahj",
+              github: "sarahj",
+              img: "/team/sarah.jpg",
+            },
+          ],
         },
         {
           name: "TECH TEAM",
           members: [
-            { name: "Alex Chen", role: "Frontend Lead", linkedin: "alexchen", github: "alexchen", img: "/team/alex.jpg" },
-            { name: "David Kim", role: "Backend Lead", linkedin: "davidkim", github: "davidkim", img: "/team/david.jpg" },
-            { name: "Emma Wilson", role: "3D Artist", linkedin: "emmaw", github: "emmaw", img: "/team/emma.jpg" },
-            { name: "Ryan Park", role: "DevOps", linkedin: "ryanp", github: "ryanp", img: "/team/ryan.jpg" }
-          ]
+            {
+              name: "Alex Chen",
+              role: "Frontend Lead",
+              linkedin: "alexchen",
+              github: "alexchen",
+              img: "/team/alex.jpg",
+            },
+            {
+              name: "David Kim",
+              role: "Backend Lead",
+              linkedin: "davidkim",
+              github: "davidkim",
+              img: "/team/david.jpg",
+            },
+            {
+              name: "Emma Wilson",
+              role: "3D Artist",
+              linkedin: "emmaw",
+              github: "emmaw",
+              img: "/team/emma.jpg",
+            },
+            {
+              name: "Ryan Park",
+              role: "DevOps",
+              linkedin: "ryanp",
+              github: "ryanp",
+              img: "/team/ryan.jpg",
+            },
+          ],
         },
         {
           name: "DESIGN TEAM",
           members: [
-            { name: "Lisa Wong", role: "Creative Director", linkedin: "lisaw", github: "lisaw", img: "/team/lisa.jpg" },
-            { name: "Tom Lee", role: "UI Designer", linkedin: "tomlee", github: "tomlee", img: "/team/tom.jpg" },
-            { name: "Olivia Brown", role: "Graphic Designer", linkedin: "oliviab", github: "oliviab", img: "/team/olivia.jpg" },
-            { name: "James Wilson", role: "UX Researcher", linkedin: "jamesw", github: "jamesw", img: "/team/james.jpg" }
-          ]
+            {
+              name: "Lisa Wong",
+              role: "Creative Director",
+              linkedin: "lisaw",
+              github: "lisaw",
+              img: "/team/lisa.jpg",
+            },
+            {
+              name: "Tom Lee",
+              role: "UI Designer",
+              linkedin: "tomlee",
+              github: "tomlee",
+              img: "/team/tom.jpg",
+            },
+            {
+              name: "Olivia Brown",
+              role: "Graphic Designer",
+              linkedin: "oliviab",
+              github: "oliviab",
+              img: "/team/olivia.jpg",
+            },
+            {
+              name: "James Wilson",
+              role: "UX Researcher",
+              linkedin: "jamesw",
+              github: "jamesw",
+              img: "/team/james.jpg",
+            },
+          ],
         },
         {
           name: "MARKETING TEAM",
           members: [
-            { name: "Sophia Garcia", role: "Marketing Head", linkedin: "sophiag", github: "sophiag", img: "/team/sophia.jpg" },
-            { name: "Daniel Martinez", role: "Social Media", linkedin: "danielm", github: "danielm", img: "/team/daniel.jpg" },
-            { name: "Ava Robinson", role: "Content Writer", linkedin: "avar", github: "avar", img: "/team/ava.jpg" },
-            { name: "Noah Clark", role: "PR Manager", linkedin: "noahc", github: "noahc", img: "/team/noah.jpg" }
-          ]
+            {
+              name: "Sophia Garcia",
+              role: "Marketing Head",
+              linkedin: "sophiag",
+              github: "sophiag",
+              img: "/team/sophia.jpg",
+            },
+            {
+              name: "Daniel Martinez",
+              role: "Social Media",
+              linkedin: "danielm",
+              github: "danielm",
+              img: "/team/daniel.jpg",
+            },
+            {
+              name: "Ava Robinson",
+              role: "Content Writer",
+              linkedin: "avar",
+              github: "avar",
+              img: "/team/ava.jpg",
+            },
+            {
+              name: "Noah Clark",
+              role: "PR Manager",
+              linkedin: "noahc",
+              github: "noahc",
+              img: "/team/noah.jpg",
+            },
+          ],
         },
         {
           name: "LOGISTICS TEAM",
           members: [
-            { name: "Mia Hernandez", role: "Operations Head", linkedin: "miah", github: "miah", img: "/team/mia.jpg" },
-            { name: "Lucas White", role: "Venue Coordinator", linkedin: "lucasw", github: "lucasw", img: "/team/lucas.jpg" },
-            { name: "Isabella Young", role: "Volunteer Manager", linkedin: "isabellay", github: "isabellay", img: "/team/isabella.jpg" },
-            { name: "Ethan King", role: "Equipment Manager", linkedin: "ethank", github: "ethank", img: "/team/ethan.jpg" }
-          ]
-        }
+            {
+              name: "Mia Hernandez",
+              role: "Operations Head",
+              linkedin: "miah",
+              github: "miah",
+              img: "/team/mia.jpg",
+            },
+            {
+              name: "Lucas White",
+              role: "Venue Coordinator",
+              linkedin: "lucasw",
+              github: "lucasw",
+              img: "/team/lucas.jpg",
+            },
+            {
+              name: "Isabella Young",
+              role: "Volunteer Manager",
+              linkedin: "isabellay",
+              github: "isabellay",
+              img: "/team/isabella.jpg",
+            },
+            {
+              name: "Ethan King",
+              role: "Equipment Manager",
+              linkedin: "ethank",
+              github: "ethank",
+              img: "/team/ethan.jpg",
+            },
+          ],
+        },
       ],
-      description: "Our talented team behind the tech fest, bringing innovation to life."
+      description:
+        "Our talented team behind the tech fest, bringing innovation to life.",
     },
     moon: {
       name: "CONTACT US",
       contacts: [
         { type: "Email", value: "contact@techfest.com", color: "#00aaff" },
         { type: "Phone", value: "+1-555-0123", color: "#00ff44" },
-        { type: "Address", value: "123 Tech Street", color: "#ffaa00" }
+        { type: "Address", value: "123 Tech Street", color: "#ffaa00" },
       ],
-      description: "Reach out to us for any inquiries or support."
+      description: "Reach out to us for any inquiries or support.",
     },
     saturn: {
       name: "SPONSORS",
@@ -140,38 +324,41 @@ const Planets = () => {
           logo: "/sponsors/spheron.png",
           description: "Decentralized cloud hosting for modern web apps.",
           tier: "PLATINUM",
-          color: "#00ffff"
+          color: "#00ffff",
         },
         {
           name: "Balsamiq",
           logo: "/sponsors/balsamiq.png",
-          description: "Wireframing tool that helps teams plan user interfaces quickly.",
+          description:
+            "Wireframing tool that helps teams plan user interfaces quickly.",
           tier: "GOLD",
-          color: "#ffaa00"
+          color: "#ffaa00",
         },
         {
           name: "1Password",
           logo: "/sponsors/1password.png",
-          description: "A secure password manager to protect your online accounts.",
+          description:
+            "A secure password manager to protect your online accounts.",
           tier: "GOLD",
-          color: "#ffaa00"
+          color: "#ffaa00",
         },
         {
           name: "MLH",
           logo: "/sponsors/mlh.png",
-          description: "Official student hackathon league supporting innovation and learning.",
+          description:
+            "Official student hackathon league supporting innovation and learning.",
           tier: "SILVER",
-          color: "#cccccc"
+          color: "#cccccc",
         },
         {
           name: "Axure",
           logo: "/sponsors/axure.png",
           description: "UX prototyping and wireframing software for teams.",
           tier: "SILVER",
-          color: "#cccccc"
-        }
+          color: "#cccccc",
+        },
       ],
-      description: "Our amazing sponsors who make this event possible."
+      description: "Our amazing sponsors who make this event possible.",
     },
     mars: {
       name: "RED FRONTIER",
@@ -180,10 +367,10 @@ const Planets = () => {
         { label: "Atmosphere", value: "TERRAFORMING", color: "#aaddff" },
         { label: "Surface Temp", value: "-60°C", color: "#ff8888" },
         { label: "Resources", value: "MINING ACTIVE", color: "#ffaa00" },
-        { label: "Water Reserves", value: "INCREASING", color: "#00aaff" }
+        { label: "Water Reserves", value: "INCREASING", color: "#00aaff" },
       ],
-      description: "Humanity's first extraterrestrial colony."
-    }
+      description: "Humanity's first extraterrestrial colony.",
+    },
   });
   const composer = useRef(null);
   const outlinePass = useRef(null);
@@ -197,25 +384,28 @@ const Planets = () => {
     moon: null,
     saturn: null,
     mars: null,
-    earth: null
+    earth: null,
   });
   const infoPanelRef = useRef(null);
   const [selectedTeam, setSelectedTeam] = useState(0); // Default to the first team
   const [selectedEvent, setSelectedEvent] = useState(null);
+  const [showOrientationPrompt, setShowOrientationPrompt] = useState(false);
+
+  const isMobile = window.innerWidth <= 768; // Adjust the width threshold as needed
 
   const handleObjectClick = (objectKey) => {
     if (isTraveling || focusedObject) return;
-    
+
     setIsTraveling(true);
     setFocusedObject(objectKey);
-    
+
     Object.entries(objects.current).forEach(([key, obj]) => {
       if (obj) {
         obj.userData.originalPosition = obj.position.clone();
         obj.userData.originalRotation = obj.rotation.clone();
         obj.userData.originalVisibility = obj.visible;
         obj.userData.originalScale = obj.scale.clone();
-        
+
         if (key !== objectKey) {
           obj.visible = false;
         }
@@ -238,26 +428,26 @@ const Planets = () => {
 
       if (camera.current && scene.current) {
         raycaster.setFromCamera(mouse, camera.current);
-        
+
         const objectsToCheck = [];
         for (const key in objects.current) {
           if (objects.current[key] && key !== "earth" && !focusedObject) {
             objectsToCheck.push(objects.current[key]);
           }
         }
-        
+
         const intersects = raycaster.intersectObjects(objectsToCheck, true);
-        
+
         if (intersects.length > 0) {
           let ancestorObj = intersects[0].object;
           while (ancestorObj.parent && ancestorObj.parent !== scene.current) {
             ancestorObj = ancestorObj.parent;
           }
-          
+
           if (outlinePass.current) {
             outlinePass.current.selectedObjects = [ancestorObj];
           }
-          
+
           let hoveredType = null;
           for (const [key, value] of Object.entries(objects.current)) {
             if (value === ancestorObj) {
@@ -265,7 +455,7 @@ const Planets = () => {
               break;
             }
           }
-          
+
           setHovered(hoveredType);
         } else {
           if (outlinePass.current) {
@@ -275,33 +465,33 @@ const Planets = () => {
         }
       }
     }
-    
+
     function onClick(event) {
       if (focusedObject || isTraveling) return;
-      
+
       mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
       mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
-      
+
       if (camera.current && scene.current) {
         raycaster.setFromCamera(mouse, camera.current);
-        
+
         const objectsToCheck = [];
         for (const key in objects.current) {
           if (objects.current[key] && key !== "earth") {
             objectsToCheck.push(objects.current[key]);
           }
         }
-        
+
         const intersects = raycaster.intersectObjects(objectsToCheck, true);
-        
+
         if (intersects.length > 0) {
           event.stopPropagation();
-          
+
           let ancestorObj = intersects[0].object;
           while (ancestorObj.parent && ancestorObj.parent !== scene.current) {
             ancestorObj = ancestorObj.parent;
           }
-          
+
           for (const [key, value] of Object.entries(objects.current)) {
             if (value === ancestorObj) {
               handleObjectClick(key);
@@ -311,7 +501,7 @@ const Planets = () => {
         }
       }
     }
-    
+
     window.addEventListener("mousemove", onMouseMove);
     window.addEventListener("click", onClick);
 
@@ -322,9 +512,9 @@ const Planets = () => {
     camera.current.position.set(0, -20, 35);
     camera.current.lookAt(new THREE.Vector3(0, 0, -40));
 
-    renderer.current = new THREE.WebGLRenderer({ 
+    renderer.current = new THREE.WebGLRenderer({
       antialias: true,
-      alpha: true 
+      alpha: true,
     });
     renderer.current.setSize(w, h);
     renderer.current.setPixelRatio(window.devicePixelRatio);
@@ -360,7 +550,10 @@ const Planets = () => {
     );
     composer.current.addPass(bloomPass);
 
-    controls.current = new OrbitControls(camera.current, renderer.current.domElement);
+    controls.current = new OrbitControls(
+      camera.current,
+      renderer.current.domElement
+    );
     controls.current.enableDamping = true;
     controls.current.dampingFactor = 0.05;
     controls.current.enabled = !focusedObject;
@@ -375,7 +568,7 @@ const Planets = () => {
     scene.current.add(sunLight);
 
     scene.current.add(new THREE.AmbientLight(0xffffff, 2.5));
-    
+
     const spotLight = new THREE.SpotLight(0xffffff, 2);
     spotLight.position.set(0, 50, 50);
     scene.current.add(spotLight);
@@ -434,7 +627,7 @@ const Planets = () => {
       spaceship.position.set(-80, 30, -58);
       spaceship.rotation.set(-1.57, 1.55, 2.54);
       spaceship.userData.clickable = true;
-      
+
       spaceship.traverse((child) => {
         if (child.isMesh) {
           const originalMaterial = child.material;
@@ -444,16 +637,19 @@ const Planets = () => {
             roughness: 0.3,
             metalness: 0.8,
             emissive: new THREE.Color(0x00ffff),
-            emissiveIntensity: 0.2
+            emissiveIntensity: 0.2,
           });
-          
-          if (child.name.includes("engine") || child.name.includes("thruster")) {
+
+          if (
+            child.name.includes("engine") ||
+            child.name.includes("thruster")
+          ) {
             child.material.emissive = new THREE.Color(0x00aaff);
             child.material.emissiveIntensity = 2;
           }
         }
       });
-      
+
       scene.current.add(spaceship);
       objects.current.spaceship = spaceship;
     });
@@ -463,21 +659,21 @@ const Planets = () => {
       blackhole.scale.set(10, 10, 10);
       blackhole.position.set(160, 110, -58);
       blackhole.userData.clickable = true;
-      
+
       const coreGeometry = new THREE.SphereGeometry(3, 32, 32);
-      const coreMaterial = new THREE.MeshBasicMaterial({ 
+      const coreMaterial = new THREE.MeshBasicMaterial({
         color: 0x000000,
         transparent: true,
-        opacity: 0.9
+        opacity: 0.9,
       });
       const core = new THREE.Mesh(coreGeometry, coreMaterial);
       blackhole.add(core);
-      
+
       const glowGeometry = new THREE.SphereGeometry(3.5, 32, 32);
       const glowMaterial = new THREE.ShaderMaterial({
         uniforms: {
           time: { value: 0 },
-          color: { value: new THREE.Color(0x00ffff) }
+          color: { value: new THREE.Color(0x00ffff) },
         },
         vertexShader: `
           varying vec3 vNormal;
@@ -499,12 +695,12 @@ const Planets = () => {
         `,
         side: THREE.BackSide,
         blending: THREE.AdditiveBlending,
-        transparent: true
+        transparent: true,
       });
-      
+
       const glow = new THREE.Mesh(glowGeometry, glowMaterial);
       blackhole.add(glow);
-      
+
       scene.current.add(blackhole);
       objects.current.blackhole = blackhole;
     });
@@ -517,11 +713,11 @@ const Planets = () => {
 
       moon.traverse((child) => {
         if (child.isMesh) {
-          child.material = new THREE.MeshStandardMaterial({ 
+          child.material = new THREE.MeshStandardMaterial({
             map: moonTexture,
             emissive: new THREE.Color(0x555555),
             emissiveIntensity: 0.2,
-            roughness: 0.8
+            roughness: 0.8,
           });
         }
       });
@@ -539,13 +735,16 @@ const Planets = () => {
 
       saturn.traverse((child) => {
         if (child.isMesh) {
-          child.material = new THREE.MeshStandardMaterial({ 
+          child.material = new THREE.MeshStandardMaterial({
             map: saturnTexture,
             emissive: new THREE.Color(0x886644),
-            emissiveIntensity: 0.3
+            emissiveIntensity: 0.3,
           });
-          
-          if (child.name.includes("ring") || child.geometry.type === "RingGeometry") {
+
+          if (
+            child.name.includes("ring") ||
+            child.geometry.type === "RingGeometry"
+          ) {
             child.material.emissive = new THREE.Color(0xffaa00);
             child.material.emissiveIntensity = 0.5;
           }
@@ -564,11 +763,11 @@ const Planets = () => {
 
       mars.traverse((child) => {
         if (child.isMesh) {
-          child.material = new THREE.MeshStandardMaterial({ 
+          child.material = new THREE.MeshStandardMaterial({
             map: marsTexture,
             emissive: new THREE.Color(0xff4400),
             emissiveIntensity: 0.3,
-            roughness: 0.7
+            roughness: 0.7,
           });
         }
       });
@@ -581,76 +780,88 @@ const Planets = () => {
     let animationFrameId = null;
     let cameraTargetPosition = new THREE.Vector3(10, 5, 30);
     let objectTargetPosition = new THREE.Vector3(-20, 0, 0);
-    
+
     const animate = () => {
       animationFrameId = requestAnimationFrame(animate);
       time += 0.01;
-      
+
       if (isTraveling && focusedObject) {
         const targetObject = objects.current[focusedObject];
-        
+
         if (!targetObject.userData.animationProgress) {
           targetObject.userData.animationProgress = 0;
-          
-          if (focusedObject === 'spaceship') {
-            targetObject.userData.targetScale = new THREE.Vector3(0.03, 0.03, 0.03);
-          } else if (focusedObject === 'blackhole') {
+
+          if (focusedObject === "spaceship") {
+            targetObject.userData.targetScale = new THREE.Vector3(
+              0.03,
+              0.03,
+              0.03
+            );
+          } else if (focusedObject === "blackhole") {
             targetObject.userData.targetScale = new THREE.Vector3(7, 7, 7);
-          } else if (focusedObject === 'moon') {
+          } else if (focusedObject === "moon") {
             targetObject.userData.targetScale = new THREE.Vector3(3, 3, 3);
-          } else if (focusedObject === 'saturn' || focusedObject === 'mars') {
-            targetObject.userData.targetScale = new THREE.Vector3(0.07, 0.07, 0.07);
+          } else if (focusedObject === "saturn" || focusedObject === "mars") {
+            targetObject.userData.targetScale = new THREE.Vector3(
+              0.07,
+              0.07,
+              0.07
+            );
           }
         }
-        
+
         targetObject.userData.animationProgress += 0.01;
         const progress = Math.min(targetObject.userData.animationProgress, 1);
-        
+
         camera.current.position.lerp(cameraTargetPosition, 0.05);
         camera.current.lookAt(objectTargetPosition);
-        
+
         targetObject.position.lerp(objectTargetPosition, 0.05);
-        
+
         if (targetObject.userData.targetScale) {
           targetObject.scale.lerp(targetObject.userData.targetScale, 0.05);
         }
-        
+
         Object.entries(objects.current).forEach(([key, obj]) => {
           if (key !== focusedObject && obj) {
             obj.visible = false;
           }
         });
-        
+
         if (objects.current.earth) {
           objects.current.earth.visible = false;
         }
-        
+
         if (progress >= 1) {
           setIsTraveling(false);
           camera.current.position.copy(cameraTargetPosition);
           camera.current.lookAt(objectTargetPosition);
         }
       }
-      
+
       if (focusedObject && !isTraveling) {
         const targetObject = objects.current[focusedObject];
         camera.current.position.copy(cameraTargetPosition);
         camera.current.lookAt(objectTargetPosition);
         targetObject.position.copy(objectTargetPosition);
-        
+
         Object.entries(objects.current).forEach(([key, obj]) => {
           if (key !== focusedObject && obj) {
             obj.visible = false;
           }
         });
-        
+
         if (objects.current.earth) {
           objects.current.earth.visible = false;
         }
       }
-      
+
       scene.current.traverse((object) => {
-        if (object.material && object.material.uniforms && object.material.uniforms.time) {
+        if (
+          object.material &&
+          object.material.uniforms &&
+          object.material.uniforms.time
+        ) {
           object.material.uniforms.time.value = time;
         }
       });
@@ -658,8 +869,8 @@ const Planets = () => {
       if (objects.current.earth && !focusedObject) {
         objects.current.earth.rotation.y += 0.0004;
       }
-      
-      const stars = scene.current.children.find(c => c.name === "starfield");
+
+      const stars = scene.current.children.find((c) => c.name === "starfield");
       if (stars) {
         stars.rotation.y -= 0.0002;
       }
@@ -686,33 +897,35 @@ const Planets = () => {
       renderer.current.setSize(w, h);
       composer.current.setSize(w, h);
     }
-    
+
     window.addEventListener("resize", onWindowResize);
 
     return () => {
       window.removeEventListener("mousemove", onMouseMove);
       window.removeEventListener("click", onClick);
       window.removeEventListener("resize", onWindowResize);
-      
+
       if (animationFrameId) {
         cancelAnimationFrame(animationFrameId);
       }
-      
+
       if (mountRef.current && renderer.current.domElement) {
         mountRef.current.removeChild(renderer.current.domElement);
       }
-      
+
       // Dispose of textures
-      [earthTexture, moonTexture, saturnTexture, marsTexture].forEach(texture => {
-        if (texture) texture.dispose();
-      });
+      [earthTexture, moonTexture, saturnTexture, marsTexture].forEach(
+        (texture) => {
+          if (texture) texture.dispose();
+        }
+      );
 
       renderer.current.dispose();
       scene.current.traverse((object) => {
         if (object.geometry) object.geometry.dispose();
         if (object.material) {
           if (Array.isArray(object.material)) {
-            object.material.forEach(material => material.dispose());
+            object.material.forEach((material) => material.dispose());
           } else {
             object.material.dispose();
           }
@@ -724,73 +937,98 @@ const Planets = () => {
   useEffect(() => {
     const updateObjectScreenPositions = () => {
       if (!camera.current || !renderer.current) return;
-  
+
       Object.entries(objects.current).forEach(([key, obj]) => {
         if (obj) {
           const vector = new THREE.Vector3();
           obj.getWorldPosition(vector);
           vector.project(camera.current);
-  
+
           const x = (vector.x * 0.5 + 0.5) * window.innerWidth;
           const y = (-vector.y * 0.5 + 0.5) * window.innerHeight;
-  
+
           obj.userData.screenPosition = { x, y };
         }
       });
     };
-  
+
     // Update positions on resize
     window.addEventListener("resize", updateObjectScreenPositions);
-  
+
     // Define the animate function in the same scope
     const animateWithPositionUpdate = () => {
       updateObjectScreenPositions();
       requestAnimationFrame(animateWithPositionUpdate);
       composer.current.render();
     };
-  
+
     animateWithPositionUpdate();
-  
+
     return () => {
       window.removeEventListener("resize", updateObjectScreenPositions);
     };
   }, []);
 
+  useEffect(() => {
+    const checkOrientation = () => {
+      const isLandscapeMode = window.matchMedia(
+        "(orientation: landscape)"
+      ).matches;
+      setShowOrientationPrompt(!isLandscapeMode);
+    };
+
+    checkOrientation();
+    window.addEventListener("resize", checkOrientation);
+    window.addEventListener("orientationchange", checkOrientation);
+
+    return () => {
+      window.removeEventListener("resize", checkOrientation);
+      window.removeEventListener("orientationchange", checkOrientation);
+    };
+  }, []);
+
   return (
-    <div ref={mountRef} style={{ width: "100vw", height: "100vh", position: "relative" }}>
+    <div
+      ref={mountRef}
+      style={{ width: "100vw", height: "100vh", position: "relative" }}
+    >
       {!focusedObject && (
-        <div style={{
-          position: "absolute",
-          top: "200px",
-          left: "50%",
-          transform: "translateX(-50%)",
-          zIndex: 10,
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          width: "100%"
-        }}>
-          <img 
-            src="/images/logo.png" 
-            alt="Mission Logo" 
-            style={{ 
+        <div
+          style={{
+            position: "absolute",
+            top: "200px",
+            left: "50%",
+            transform: "translateX(-50%)",
+            zIndex: 10,
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            width: "100%",
+          }}
+        >
+          <img
+            src="/images/logo.png"
+            alt="Mission Logo"
+            style={{
               height: "120px", // Increased from "80px" to "120px"
               objectFit: "contain",
-              marginBottom: "10px"
-            }} 
+              marginBottom: "10px",
+            }}
           />
-          <div style={{
-            color: "#ffffff",
-            fontFamily: "Orbitron",
-            padding: "5px 10px",
-            textAlign: "center",
-            fontSize: "48px",
-            backdropFilter: "blur(4px)",
-            fontWeight: "bold",
-            // boxShadow: "0 0 10px rgb(255, 255, 255)",
-            opacity: 0.8 // Reduced opacity
-          }}>
-           GLITCH 
+          <div
+            style={{
+              color: "#ffffff",
+              fontFamily: "Orbitron",
+              padding: "5px 10px",
+              textAlign: "center",
+              fontSize: "48px",
+              backdropFilter: "blur(4px)",
+              fontWeight: "bold",
+              // boxShadow: "0 0 10px rgb(255, 255, 255)",
+              opacity: 0.8, // Reduced opacity
+            }}
+          >
+            GLITCH
           </div>
         </div>
       )}
@@ -801,10 +1039,13 @@ const Planets = () => {
             if (key === "earth" || !obj) return null;
 
             // Calculate the object's position dynamically
-            const objectScreenPosition = obj.userData?.screenPosition || { x: 0, y: 0 };
+            const objectScreenPosition = obj.userData?.screenPosition || {
+              x: 0,
+              y: 0,
+            };
 
             return (
-              <div 
+              <div
                 key={key}
                 style={{
                   position: "absolute",
@@ -819,7 +1060,7 @@ const Planets = () => {
                   zIndex: 10,
                   pointerEvents: "none",
                   opacity: hovered === key ? 1 : 0.7,
-                  transition: "opacity 0.3s"
+                  transition: "opacity 0.3s",
                 }}
               >
                 {objectData[key]?.name}
@@ -829,134 +1070,196 @@ const Planets = () => {
         </>
       )}
 
-      <Navbar 
-        focused={!!focusedObject}
-        handleObjectClick={handleObjectClick}
-      />
-    
+      <Navbar focused={!!focusedObject} handleObjectClick={handleObjectClick} />
+
       {!focusedObject && (
         <>
-          <div className="corner top-left" style={{
-            position: "absolute",
-            top: "20px",
-            left: "20px",
-            color: "#00ffff",
-            fontFamily: "monospace",
-            zIndex: 10
-          }}>
-            <div style={{
-              border: "1px solid #00aaff",
-              borderRadius: "4px",
-              padding: "10px",
-              background: "rgba(0,10,20,0.7)",
-              backdropFilter: "blur(4px)",
-              boxShadow: "0 0 10px rgba(0,170,255,0.3)"
-            }}>
-              <div style={{ fontSize: "14px", marginBottom: "8px", color: "#00ffff" }}>MISSION TIME</div>
+          <div
+            className="corner top-left"
+            style={{
+              position: "absolute",
+              top: "20px",
+              left: "20px",
+              color: "#00ffff",
+              fontFamily: "monospace",
+              zIndex: 10,
+            }}
+          >
+            <div
+              style={{
+                border: "1px solid #00aaff",
+                borderRadius: "4px",
+                padding: "10px",
+                background: "rgba(0,10,20,0.7)",
+                backdropFilter: "blur(4px)",
+                boxShadow: "0 0 10px rgba(0,170,255,0.3)",
+              }}
+            >
+              <div
+                style={{
+                  fontSize: "14px",
+                  marginBottom: "8px",
+                  color: "#00ffff",
+                }}
+              >
+                MISSION TIME
+              </div>
               <Clock />
             </div>
           </div>
-          
-          <div className="corner top-right" style={{
-            position: "absolute",
-            top: "20px",
-            right: "20px",
-            color: "#00ffff",
-            fontFamily: "monospace",
-            zIndex: 10
-          }}>
-            <div style={{
-              border: "1px solid #00aaff",
-              borderRadius: "4px",
-              padding: "10px",
-              background: "rgba(0,10,20,0.7)",
-              backdropFilter: "blur(4px)",
-              boxShadow: "0 0 10px rgba(0,170,255,0.3)",
-              display: "flex",
-              flexDirection: "column",
-              gap: "5px"
-            }}>
-              <div style={{ fontSize: "14px", color: "#00ffff" }}>SYSTEM STATUS</div>
-              <div style={{ display: "flex", justifyContent: "space-between", gap: "10px" }}>
+
+          <div
+            className="corner top-right"
+            style={{
+              position: "absolute",
+              top: "20px",
+              right: "20px",
+              color: "#00ffff",
+              fontFamily: "monospace",
+              zIndex: 10,
+            }}
+          >
+            <div
+              style={{
+                border: "1px solid #00aaff",
+                borderRadius: "4px",
+                padding: "10px",
+                background: "rgba(0,10,20,0.7)",
+                backdropFilter: "blur(4px)",
+                boxShadow: "0 0 10px rgba(0,170,255,0.3)",
+                display: "flex",
+                flexDirection: "column",
+                gap: "5px",
+              }}
+            >
+              <div style={{ fontSize: "14px", color: "#00ffff" }}>
+                SYSTEM STATUS
+              </div>
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  gap: "10px",
+                }}
+              >
                 <span>Navigation</span>
                 <span style={{ color: "#00ff44" }}>ONLINE</span>
               </div>
-              <div style={{ display: "flex", justifyContent: "space-between", gap: "10px" }}>
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  gap: "10px",
+                }}
+              >
                 <span>Comms</span>
                 <span style={{ color: "#00ff44" }}>ONLINE</span>
               </div>
-              <div style={{ display: "flex", justifyContent: "space-between", gap: "10px" }}>
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  gap: "10px",
+                }}
+              >
                 <span>Shields</span>
                 <span style={{ color: "#ffaa00" }}>85%</span>
               </div>
             </div>
           </div>
-          
-          <div className="corner bottom-left" style={{
-            position: "absolute",
-            bottom: "20px",
-            left: "20px",
-            color: "#00ffff",
-            fontFamily: "monospace",
-            zIndex: 10
-          }}>
-            <div style={{
-              border: "1px solid #00aaff",
-              borderRadius: "4px",
-              padding: "10px",
-              background: "rgba(0,10,20,0.7)",
-              backdropFilter: "blur(4px)",
-              boxShadow: "0 0 10px rgba(0,170,255,0.3)"
-            }}>
-              <div style={{ fontSize: "14px", marginBottom: "5px", color: "#00ffff" }}>NAVIGATION</div>
-              <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-                <div style={{ 
-                  width: "100px", 
-                  height: "100px", 
-                  border: "1px solid #00aaff",
-                  borderRadius: "50%",
-                  position: "relative",
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center"
-                }}>
-                  <div style={{ 
-                    width: "80%", 
-                    height: "80%", 
-                    borderRadius: "50%", 
-                    border: "1px solid #0088aa",
-                    position: "absolute"
-                  }}></div>
-                  <div style={{ 
-                    width: "60%", 
-                    height: "60%", 
-                    borderRadius: "50%", 
-                    border: "1px solid #0088aa",
-                    position: "absolute"
-                  }}></div>
-                  <div style={{ 
-                    width: "40%", 
-                    height: "40%",
-                    borderRadius: "50%", 
-                    border: "1px solid #0088aa",
-                    position: "absolute"
-                  }}></div>
-                  <div style={{ 
-                    width: "20%", 
-                    height: "20%", 
-                    borderRadius: "50%", 
-                    background: "#00ffff",
-                    position: "absolute"
-                  }}></div>
-                  <div style={{ 
-                    width: "100%", 
-                    height: "100%", 
-                    borderRadius: "50%", 
-                    border: "1px solid #00ffff",
-                    position: "absolute",
-                    animation: "ping 3s infinite",
-                    opacity: 0
-                  }}></div>
+
+          <div
+            className="corner bottom-left"
+            style={{
+              position: "absolute",
+              bottom: "20px",
+              left: "20px",
+              color: "#00ffff",
+              fontFamily: "monospace",
+              zIndex: 10,
+            }}
+          >
+            <div
+              style={{
+                border: "1px solid #00aaff",
+                borderRadius: "4px",
+                padding: "10px",
+                background: "rgba(0,10,20,0.7)",
+                backdropFilter: "blur(4px)",
+                boxShadow: "0 0 10px rgba(0,170,255,0.3)",
+              }}
+            >
+              <div
+                style={{
+                  fontSize: "14px",
+                  marginBottom: "5px",
+                  color: "#00ffff",
+                }}
+              >
+                NAVIGATION
+              </div>
+              <div
+                style={{ display: "flex", alignItems: "center", gap: "8px" }}
+              >
+                <div
+                  style={{
+                    width: "100px",
+                    height: "100px",
+                    border: "1px solid #00aaff",
+                    borderRadius: "50%",
+                    position: "relative",
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
+                >
+                  <div
+                    style={{
+                      width: "80%",
+                      height: "80%",
+                      borderRadius: "50%",
+                      border: "1px solid #0088aa",
+                      position: "absolute",
+                    }}
+                  ></div>
+                  <div
+                    style={{
+                      width: "60%",
+                      height: "60%",
+                      borderRadius: "50%",
+                      border: "1px solid #0088aa",
+                      position: "absolute",
+                    }}
+                  ></div>
+                  <div
+                    style={{
+                      width: "40%",
+                      height: "40%",
+                      borderRadius: "50%",
+                      border: "1px solid #0088aa",
+                      position: "absolute",
+                    }}
+                  ></div>
+                  <div
+                    style={{
+                      width: "20%",
+                      height: "20%",
+                      borderRadius: "50%",
+                      background: "#00ffff",
+                      position: "absolute",
+                    }}
+                  ></div>
+                  <div
+                    style={{
+                      width: "100%",
+                      height: "100%",
+                      borderRadius: "50%",
+                      border: "1px solid #00ffff",
+                      position: "absolute",
+                      animation: "ping 3s infinite",
+                      opacity: 0,
+                    }}
+                  ></div>
                 </div>
                 <div>
                   <div>LOC: G754.223</div>
@@ -966,276 +1269,290 @@ const Planets = () => {
               </div>
             </div>
           </div>
-          
-          <div className="corner bottom-right" style={{
-            position: "absolute",
-            bottom: "20px",
-            right: "20px",
-            color: "#00ffff",
-            fontFamily: "monospace",
-            zIndex: 10
-          }}>
-            <div style={{
-              border: "1px solid #00aaff",
-              borderRadius: "4px",
-              padding: "10px",
-              background: "rgba(0,10,20,0.7)",
-              backdropFilter: "blur(4px)",
-              boxShadow: "0 0 10px rgba(0,170,255,0.3)"
-            }}>
-              <div style={{ fontSize: "14px", marginBottom: "5px", color: "#00ffff" }}>SCAN RESULTS</div>
+
+          <div
+            className="corner bottom-right"
+            style={{
+              position: "absolute",
+              bottom: "20px",
+              right: "20px",
+              color: "#00ffff",
+              fontFamily: "monospace",
+              zIndex: 10,
+            }}
+          >
+            <div
+              style={{
+                border: "1px solid #00aaff",
+                borderRadius: "4px",
+                padding: "10px",
+                background: "rgba(0,10,20,0.7)",
+                backdropFilter: "blur(4px)",
+                boxShadow: "0 0 10px rgba(0,170,255,0.3)",
+              }}
+            >
+              <div
+                style={{
+                  fontSize: "14px",
+                  marginBottom: "5px",
+                  color: "#00ffff",
+                }}
+              >
+                SCAN RESULTS
+              </div>
               <div style={{ fontSize: "12px" }}>
                 <div>Objects: 5</div>
                 <div>Lifeforms: 4.3B</div>
                 <div>Anomalies: 1</div>
                 <div>
-                  <span style={{ color: "#ffaa00" }}>⚠ WARNING:</span> Gravitational distortion detected
+                  <span style={{ color: "#ffaa00" }}>⚠ WARNING:</span>{" "}
+                  Gravitational distortion detected
                 </div>
               </div>
             </div>
           </div>
-          
-          <a href="https://unstop.com/college-fests/glitch-by-acm-bmu-student-chapter-bml-munjal-university-bmu-gurgaon-355060" target="_blank" rel="noopener noreferrer" style={{
-            position: "absolute",
-            bottom: "100px",
-            left: "1100px",
-            transform: "translateX(-50%)",
-            zIndex: 10,
-            textDecoration: "none"
-          }}>
-            <div style={{
-              color: "#00ffff",
-              background: "rgba(0,20,40,0.7)",
-              border: "2px solid #00aaff",
-              padding: "15px 30px",
-              borderRadius: "8px",
-              fontFamily: "monospace",
-              fontSize: "18px",
-              boxShadow: "0 0 30px rgba(0,170,255,0.7)",
-              cursor: "pointer",
-              textAlign: "center",
-              width: "280px",
-              backdropFilter: "blur(5px)",
-              position: "relative",
-              overflow: "hidden",
-              animation: "pulseGlow 2s infinite alternate",
-              transformStyle: "preserve-3d",
-              perspective: "1000px"
-            }}>
-              <div style={{
-                position: "absolute",
-                top: 0,
-                left: 0,
-                right: 0,
-                height: "100%",
-                background: "linear-gradient(135deg, rgba(0,255,255,0.1) 0%, rgba(0,170,255,0.3) 50%, rgba(0,255,255,0.1) 100%)",
-                animation: "hologramScan 4s linear infinite"
-              }}></div>
-              <div style={{
-                position: "absolute",
-                top: 0,
-                left: 0,
-                right: 0,
-                height: "2px",
-                background: "linear-gradient(90deg, transparent, #00ffff, transparent)",
-                animation: "hologramLine 3s linear infinite",
-                boxShadow: "0 0 10px #00ffff"
-              }}></div>
-              
-              <div style={{ 
+
+          <a
+            href="https://unstop.com/college-fests/glitch-by-acm-bmu-student-chapter-bml-munjal-university-bmu-gurgaon-355060"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              position: "absolute",
+              bottom: isMobile ? "50px" : "100px",
+              left: isMobile ? "50%" : "50%",
+              transform: isMobile ? "translateX(-50%)" : "none",
+              zIndex: 10,
+              textDecoration: "none",
+            }}
+          >
+            <div
+              style={{
+                color: "#00ffff",
+                background: "rgba(0,20,40,0.7)",
+                border: "2px solid #00aaff",
+                padding: isMobile ? "10px 20px" : "15px 30px",
+                borderRadius: "8px",
+                fontFamily: "monospace",
+                fontSize: isMobile ? "16px" : "18px",
+                boxShadow: "0 0 30px rgba(0,170,255,0.7)",
+                cursor: "pointer",
+                textAlign: "center",
+                width: isMobile ? "240px" : "280px",
+                backdropFilter: "blur(5px)",
                 position: "relative",
-                zIndex: 2,
-                textShadow: "0 0 10px #00aaff"
-              }}>
-                <div style={{ 
-                  fontWeight: "bold", 
-                  color: "#00ffaa",
-                  fontSize: "22px",
-                  marginBottom: "5px",
-                  letterSpacing: "1px"
-                }}>
+                overflow: "hidden",
+                animation: "pulseGlow 2s infinite alternate",
+                transformStyle: "preserve-3d",
+                perspective: "1000px",
+              }}
+            >
+              <div
+                style={{
+                  position: "absolute",
+                  top: 0,
+                  left: 0,
+                  right: 0,
+                  height: "100%",
+                  background:
+                    "linear-gradient(135deg, rgba(0,255,255,0.1) 0%, rgba(0,170,255,0.3) 50%, rgba(0,255,255,0.1) 100%)",
+                  animation: "hologramScan 4s linear infinite",
+                }}
+              ></div>
+              <div
+                style={{
+                  position: "absolute",
+                  top: 0,
+                  left: 0,
+                  right: 0,
+                  height: "2px",
+                  background:
+                    "linear-gradient(90deg, transparent, #00ffff, transparent)",
+                  animation: "hologramLine 3s linear infinite",
+                  boxShadow: "0 0 10px #00ffff",
+                }}
+              ></div>
+
+              <div
+                style={{
+                  position: "relative",
+                  zIndex: 2,
+                  textShadow: "0 0 10px #00aaff",
+                }}
+              >
+                <div
+                  style={{
+                    fontWeight: "bold",
+                    color: "#00ffaa",
+                    fontSize: isMobile ? "20px" : "22px",
+                    marginBottom: "5px",
+                    letterSpacing: "1px",
+                  }}
+                >
                   REGISTER NOW
                 </div>
-                <div style={{ 
-                  fontSize: "14px", 
-                  marginTop: "5px",
-                  color: "#ffffff"
-                }}>
+                <div
+                  style={{
+                    fontSize: isMobile ? "12px" : "14px",
+                    marginTop: "5px",
+                    color: "#ffffff",
+                  }}
+                >
                   GLITCH 2025 · APRIL 18-20
                 </div>
-                <div style={{ 
-                  fontSize: "12px", 
-                  marginTop: "8px",
-                  color: "#00ffff",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  gap: "5px"
-                }}>
+                <div
+                  style={{
+                    fontSize: isMobile ? "10px" : "12px",
+                    marginTop: "8px",
+                    color: "#00ffff",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    gap: "5px",
+                  }}
+                >
                   <span style={{ animation: "blink 1.5s infinite" }}>▼</span>
                   CLICK TO BEGIN JOURNEY
-                  <span style={{ animation: "blink 1.5s infinite", animationDelay: "0.5s" }}>▼</span>
+                  <span
+                    style={{
+                      animation: "blink 1.5s infinite",
+                      animationDelay: "0.5s",
+                    }}
+                  >
+                    ▼
+                  </span>
                 </div>
               </div>
-              
-              <div style={{
-                position: "absolute",
-                top: "5px",
-                left: "5px",
-                width: "15px",
-                height: "15px",
-                borderLeft: "2px solid #00ffff",
-                borderTop: "2px solid #00ffff",
-                opacity: 0.8
-              }}></div>
-              <div style={{
-                position: "absolute",
-                top: "5px",
-                right: "5px",
-                width: "15px",
-                height: "15px",
-                borderRight: "2px solid #00ffff",
-                borderTop: "2px solid #00ffff",
-                opacity: 0.8
-              }}></div>
-              <div style={{
-                position: "absolute",
-                bottom: "5px",
-                left: "5px",
-                width: "15px",
-                height: "15px",
-                borderLeft: "2px solid #00ffff",
-                borderBottom: "2px solid #00ffff",
-                opacity: 0.8
-              }}></div>
-              <div style={{
-                position: "absolute",
-                bottom: "5px",
-                right: "5px",
-                width: "15px",
-                height: "15px",
-                borderRight: "2px solid #00ffff",
-                borderBottom: "2px solid #00ffff",
-                opacity: 0.8
-              }}></div>
             </div>
-            
-            <div style={{
-              position: "absolute",
-              bottom: "-40px",
-              left: "50%",
-              width: "1px",
-              height: "40px",
-              background: "linear-gradient(to bottom, #00ffff, transparent)",
-              transform: "translateX(-50%)",
-              animation: "beamPulse 2s infinite"
-            }}></div>
           </a>
         </>
       )}
-      
+
       {hovered && !focusedObject && objectData[hovered] && (
-        <div style={{
-          position: "absolute",
-          top: "50%",
-          right: "20px",
-          transform: "translateY(-50%)",
-          color: "#00ffff",
-          background: "rgba(0,10,20,0.85)",
-          backdropFilter: "blur(5px)",
-          padding: "15px",
-          borderRadius: "4px",
-          border: "1px solid #00aaff",
-          fontFamily: "monospace",
-          width: "300px",
-          boxShadow: "0 0 20px rgba(0,170,255,0.5)",
-          zIndex: 100,
-          animation: "fadeIn 0.3s"
-        }}>
-          <div style={{ 
-            borderBottom: "1px solid #00aaff", 
-            paddingBottom: "10px", 
-            marginBottom: "10px",
-            fontSize: "18px",
-            fontWeight: "bold",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between"
-          }}>
+        <div
+          style={{
+            position: "absolute",
+            top: "50%",
+            right: "20px",
+            transform: "translateY(-50%)",
+            color: "#00ffff",
+            background: "rgba(0,10,20,0.85)",
+            backdropFilter: "blur(5px)",
+            padding: "15px",
+            borderRadius: "4px",
+            border: "1px solid #00aaff",
+            fontFamily: "monospace",
+            width: "300px",
+            boxShadow: "0 0 20px rgba(0,170,255,0.5)",
+            zIndex: 100,
+            animation: "fadeIn 0.3s",
+          }}
+        >
+          <div
+            style={{
+              borderBottom: "1px solid #00aaff",
+              paddingBottom: "10px",
+              marginBottom: "10px",
+              fontSize: "18px",
+              fontWeight: "bold",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+            }}
+          >
             <span>{objectData[hovered].name}</span>
-            <span style={{ 
-              background: "#00aaff", 
-              color: "#000", 
-              fontSize: "10px", 
-              padding: "2px 6px", 
-              borderRadius: "10px" 
-            }}>
+            <span
+              style={{
+                background: "#00aaff",
+                color: "#000",
+                fontSize: "10px",
+                padding: "2px 6px",
+                borderRadius: "10px",
+              }}
+            >
               SCANNING
             </span>
           </div>
-          
+
           {hovered === "spaceship" && (
-            <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
+            <div
+              style={{ display: "flex", flexDirection: "column", gap: "10px" }}
+            >
               {objectData[hovered].events.slice(0, 3).map((event, index) => (
-                <div key={index} style={{ 
-                  padding: "8px",
-                  borderLeft: `3px solid ${event.color}`,
-                  background: "rgba(0,50,80,0.3)"
-                }}>
-                  <div style={{ fontWeight: "bold", color: event.color }}>{event.name}</div>
+                <div
+                  key={index}
+                  style={{
+                    padding: "8px",
+                    borderLeft: `3px solid ${event.color}`,
+                    background: "rgba(0,50,80,0.3)",
+                  }}
+                >
+                  <div style={{ fontWeight: "bold", color: event.color }}>
+                    {event.name}
+                  </div>
                   <div style={{ fontSize: "12px" }}>⏱ {event.time}</div>
                 </div>
               ))}
             </div>
           )}
-          
+
           {(objectData[hovered]?.stats || []).map((stat, index) => (
-            <div key={index} style={{ 
-              display: "flex", 
-              justifyContent: "space-between",
-              alignItems: "center",
-              animation: `slideIn 0.5s ${index * 0.1}s both`
-            }}>
+            <div
+              key={index}
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+                animation: `slideIn 0.5s ${index * 0.1}s both`,
+              }}
+            >
               <span>{stat.label}:</span>
-              <span style={{ 
-                color: stat.color,
-                fontWeight: "bold",
-                display: "inline-block",
-                width: "100px", 
-                position: "relative",
-                textAlign: "right"
-              }}>
+              <span
+                style={{
+                  color: stat.color,
+                  fontWeight: "bold",
+                  display: "inline-block",
+                  width: "100px",
+                  position: "relative",
+                  textAlign: "right",
+                }}
+              >
                 {stat.value}
-                <span style={{ 
-                  position: "absolute",
-                  top: 0,
-                  left: 0,
-                  height: "100%",
-                  width: "100%",
-                  background: `linear-gradient(90deg, transparent 0%, ${stat.color}33 100%)`,
-                  animation: "scanLine 2s infinite"
-                }}></span>
+                <span
+                  style={{
+                    position: "absolute",
+                    top: 0,
+                    left: 0,
+                    height: "100%",
+                    width: "100%",
+                    background: `linear-gradient(90deg, transparent 0%, ${stat.color}33 100%)`,
+                    animation: "scanLine 2s infinite",
+                  }}
+                ></span>
               </span>
             </div>
           ))}
-          
-          <div style={{ 
-            marginTop: "15px", 
-            height: "4px", 
-            background: "#003344",
-            borderRadius: "2px",
-            overflow: "hidden"
-          }}>
-            <div style={{ 
-              height: "100%", 
-              background: "linear-gradient(90deg, #00aaff, #00ffaa)",
-              width: "70%",
-              animation: "progress 3s infinite"
-            }}></div>
+
+          <div
+            style={{
+              marginTop: "15px",
+              height: "4px",
+              background: "#003344",
+              borderRadius: "2px",
+              overflow: "hidden",
+            }}
+          >
+            <div
+              style={{
+                height: "100%",
+                background: "linear-gradient(90deg, #00aaff, #00ffaa)",
+                width: "70%",
+                animation: "progress 3s infinite",
+              }}
+            ></div>
           </div>
         </div>
       )}
-      
+
       {focusedObject && objectData[focusedObject] && (
         <>
           {focusedObject === "spaceship" && !selectedEvent && (
@@ -1254,7 +1571,7 @@ const Planets = () => {
                   cursor: "pointer",
                   fontFamily: "monospace",
                   backdropFilter: "blur(4px)",
-                  boxShadow: "0 0 10px rgba(0,170,255,0.5)"
+                  boxShadow: "0 0 10px rgba(0,170,255,0.5)",
                 }}
                 onClick={handleBackClick}
               >
@@ -1274,7 +1591,7 @@ const Planets = () => {
                   gap: "20px",
                   width: "70%",
                   height: "50%",
-                  zIndex: 999
+                  zIndex: 999,
                 }}
               >
                 {objectData.spaceship.events.map((event, index) => (
@@ -1293,7 +1610,7 @@ const Planets = () => {
                       color: "#ffffff",
                       fontFamily: "Orbitron",
                       fontSize: "18px",
-                      textAlign: "center"
+                      textAlign: "center",
                     }}
                     onClick={() => setSelectedEvent(event)}
                   >
@@ -1320,7 +1637,7 @@ const Planets = () => {
                   cursor: "pointer",
                   fontFamily: "monospace",
                   backdropFilter: "blur(4px)",
-                  boxShadow: "0 0 10px rgba(0,170,255,0.5)"
+                  boxShadow: "0 0 10px rgba(0,170,255,0.5)",
                 }}
                 onClick={() => setSelectedEvent(null)}
               >
@@ -1343,12 +1660,18 @@ const Planets = () => {
                   fontFamily: "Orbitron",
                   textAlign: "center",
                   boxShadow: `0 0 20px ${selectedEvent.color}`,
-                  zIndex: 1000
+                  zIndex: 1000,
                 }}
               >
-                <h2 style={{ color: selectedEvent.color, marginBottom: "20px" }}>{selectedEvent.name}</h2>
+                <h2
+                  style={{ color: selectedEvent.color, marginBottom: "20px" }}
+                >
+                  {selectedEvent.name}
+                </h2>
                 <p style={{ marginBottom: "10px" }}>⏱ {selectedEvent.time}</p>
-                <p style={{ marginBottom: "10px" }}>📍 {selectedEvent.location}</p>
+                <p style={{ marginBottom: "10px" }}>
+                  📍 {selectedEvent.location}
+                </p>
                 <p>{selectedEvent.description}</p>
               </div>
             </>
@@ -1372,7 +1695,7 @@ const Planets = () => {
               cursor: "pointer",
               fontFamily: "monospace",
               backdropFilter: "blur(4px)",
-              boxShadow: "0 0 10px rgba(0,170,255,0.5)"
+              boxShadow: "0 0 10px rgba(0,170,255,0.5)",
             }}
             onClick={handleBackClick}
           >
@@ -1380,40 +1703,49 @@ const Planets = () => {
           </div>
 
           {/* Overlay */}
-          <div style={{
-            position: "absolute",
-            top: 0,
-            left: 0,
-            width: "100%",
-            height: "100%",
-            background: "rgba(0,0,0,0.7)",
-            backdropFilter: "blur(5px)",
-            zIndex: 998
-          }}></div>
+          <div
+            style={{
+              position: "absolute",
+              top: 0,
+              left: 0,
+              width: "100%",
+              height: "100%",
+              background: "rgba(0,0,0,0.7)",
+              backdropFilter: "blur(5px)",
+              zIndex: 998,
+            }}
+          ></div>
 
           {/* Team Navigation */}
-          <div style={{
-            position: "absolute",
-            top: "20px",
-            left: "50%",
-            transform: "translateX(-50%)",
-            display: "flex",
-            gap: "10px",
-            zIndex: 1000
-          }}>
+          <div
+            style={{
+              position: "absolute",
+              top: "20px",
+              left: "50%",
+              transform: "translateX(-50%)",
+              display: "flex",
+              gap: "10px",
+              zIndex: 1000,
+            }}
+          >
             {objectData.blackhole.teams.map((team, index) => (
               <div
                 key={index}
                 style={{
                   padding: "10px 15px",
-                  background: selectedTeam === index ? "rgba(0,170,255,0.3)" : "rgba(0,50,80,0.3)",
-                  border: `1px solid ${selectedTeam === index ? "#00ffff" : "#00aaff"}`,
+                  background:
+                    selectedTeam === index
+                      ? "rgba(0,170,255,0.3)"
+                      : "rgba(0,50,80,0.3)",
+                  border: `1px solid ${
+                    selectedTeam === index ? "#00ffff" : "#00aaff"
+                  }`,
                   borderRadius: "4px",
                   cursor: "pointer",
                   color: selectedTeam === index ? "#00ffff" : "#ffffff",
                   fontFamily: "monospace",
                   transition: "all 0.3s",
-                  backdropFilter: "blur(4px)"
+                  backdropFilter: "blur(4px)",
                 }}
                 onClick={() => setSelectedTeam(index)}
               >
@@ -1423,103 +1755,135 @@ const Planets = () => {
           </div>
 
           {/* Team Display */}
-          <div style={{
-            position: "absolute",
-            top: "50%",
-            left: "56%", // Adjusted to shift slightly to the right
-            transform: "translate(-50%, -50%)",
-            width: "80%",
-            maxHeight: "70vh",
-            overflowY: "auto",
-            padding: "20px",
-            zIndex: 999,
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fill, minmax(250px, 1fr))",
-            gap: "20px"
-          }}>
+          <div
+            style={{
+              position: "absolute",
+              top: "50%",
+              left: "56%", // Adjusted to shift slightly to the right
+              transform: "translate(-50%, -50%)",
+              width: "80%",
+              maxHeight: "70vh",
+              overflowY: "auto",
+              padding: "20px",
+              zIndex: 999,
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fill, minmax(250px, 1fr))",
+              gap: "20px",
+            }}
+          >
             {selectedTeam !== null ? (
               <>
-                <h2 style={{
-                  gridColumn: "1 / -1",
-                  color: "#00ffff",
-                  textAlign: "center", // Center the heading
-                  marginBottom: "20px",
-                  fontFamily: "Orbitron",
-                  transform: "translateX(-10%)"
-                  
-                }}>
+                <h2
+                  style={{
+                    gridColumn: "1 / -1",
+                    color: "#00ffff",
+                    textAlign: "center", // Center the heading
+                    marginBottom: "20px",
+                    fontFamily: "Orbitron",
+                    transform: "translateX(-10%)",
+                  }}
+                >
                   {objectData.blackhole.teams[selectedTeam].name}
                 </h2>
 
-                {objectData.blackhole.teams[selectedTeam].members.map((member, index) => (
-                  <div key={index} style={{
-                    background: "rgba(0,20,40,0.7)",
-                    border: "1px solid #00aaff",
-                    borderRadius: "8px",
-                    padding: "15px",
-                    display: "flex",
-                    flexDirection: "column",
-                    alignItems: "center",
-                    gap: "10px",
-                    boxShadow: "0 0 10px rgba(0,170,255,0.3)"
-                  }}>
-                    <div style={{
-                      width: "100px",
-                      height: "100px",
-                      borderRadius: "50%",
-                      background: `url(${member.img}) center/cover`,
-                      border: "2px solid #00ffff",
-                      boxShadow: "0 0 20px rgba(0,255,255,0.5)"
-                    }}></div>
-
-                    <h3 style={{
-                      color: "#00ffff",
-                      margin: "5px 0",
-                      textAlign: "center",
-                      fontFamily: "Orbitron"
-                    }}>{member.name}</h3>
-
-                    <p style={{
-                      color: "#ffffff",
-                      margin: "5px 0",
-                      textAlign: "center",
-                      fontSize: "14px"
-                    }}>{member.role}</p>
-
-                    <div style={{
-                      display: "flex",
-                      gap: "15px",
-                      marginTop: "10px"
-                    }}>
-                      <a href={`https://linkedin.com/in/${member.linkedin}`} target="_blank" rel="noopener noreferrer" style={{
-                        color: "#00aaff",
-                        textDecoration: "none",
+                {objectData.blackhole.teams[selectedTeam].members.map(
+                  (member, index) => (
+                    <div
+                      key={index}
+                      style={{
+                        background: "rgba(0,20,40,0.7)",
+                        border: "1px solid #00aaff",
+                        borderRadius: "8px",
+                        padding: "15px",
                         display: "flex",
+                        flexDirection: "column",
                         alignItems: "center",
-                        gap: "5px"
-                      }}>
-                        <span style={{ fontSize: "20px" }}>🔗</span> LinkedIn
-                      </a>
-                      <a href={`https://github.com/${member.github}`} target="_blank" rel="noopener noreferrer" style={{
-                        color: "#ffffff",
-                        textDecoration: "none",
-                        display: "flex",
-                        alignItems: "center",
-                        gap: "5px"
-                      }}>
-                        <span style={{ fontSize: "20px" }}>🔗</span> GitHub
-                      </a>
+                        gap: "10px",
+                        boxShadow: "0 0 10px rgba(0,170,255,0.3)",
+                      }}
+                    >
+                      <div
+                        style={{
+                          width: "100px",
+                          height: "100px",
+                          borderRadius: "50%",
+                          background: `url(${member.img}) center/cover`,
+                          border: "2px solid #00ffff",
+                          boxShadow: "0 0 20px rgba(0,255,255,0.5)",
+                        }}
+                      ></div>
+
+                      <h3
+                        style={{
+                          color: "#00ffff",
+                          margin: "5px 0",
+                          textAlign: "center",
+                          fontFamily: "Orbitron",
+                        }}
+                      >
+                        {member.name}
+                      </h3>
+
+                      <p
+                        style={{
+                          color: "#ffffff",
+                          margin: "5px 0",
+                          textAlign: "center",
+                          fontSize: "14px",
+                        }}
+                      >
+                        {member.role}
+                      </p>
+
+                      <div
+                        style={{
+                          display: "flex",
+                          gap: "15px",
+                          marginTop: "10px",
+                        }}
+                      >
+                        <a
+                          href={`https://linkedin.com/in/${member.linkedin}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          style={{
+                            color: "#00aaff",
+                            textDecoration: "none",
+                            display: "flex",
+                            alignItems: "center",
+                            gap: "5px",
+                          }}
+                        >
+                          <span style={{ fontSize: "20px" }}>🔗</span> LinkedIn
+                        </a>
+                        <a
+                          href={`https://github.com/${member.github}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          style={{
+                            color: "#ffffff",
+                            textDecoration: "none",
+                            display: "flex",
+                            alignItems: "center",
+                            gap: "5px",
+                          }}
+                        >
+                          <span style={{ fontSize: "20px" }}>🔗</span> GitHub
+                        </a>
+                      </div>
                     </div>
-                  </div>
-                ))}
+                  )
+                )}
               </>
             ) : (
-              <div style={{
-                gridColumn: "1 / -1",
-                textAlign: "center",
-                color: "#00ffff",
-                fontFamily: "Orbitron"
-              }}>
+              <div
+                style={{
+                  gridColumn: "1 / -1",
+                  textAlign: "center",
+                  color: "#00ffff",
+                  fontFamily: "Orbitron",
+                }}
+              >
                 SELECT A TEAM TO VIEW MEMBERS
               </div>
             )}
@@ -1527,165 +1891,188 @@ const Planets = () => {
         </>
       )}
 
-      {focusedObject === "saturn" && objectData.saturn && objectData.saturn.sponsors && (
-        <>
-          <div
-            style={{
-              position: "absolute",
-              top: "20px",
-              left: "20px",
-              zIndex: 1000,
-              color: "#00ffff",
-              background: "rgba(0,10,20,0.7)",
-              border: "1px solid #00aaff",
-              padding: "10px 15px",
-              borderRadius: "4px",
-              cursor: "pointer",
-              fontFamily: "monospace",
-              backdropFilter: "blur(4px)",
-              boxShadow: "0 0 10px rgba(0,170,255,0.5)"
-            }}
-            onClick={handleBackClick}
-          >
-            ← BACK TO SYSTEM VIEW
-          </div>
+      {focusedObject === "saturn" &&
+        objectData.saturn &&
+        objectData.saturn.sponsors && (
+          <>
+            <div
+              style={{
+                position: "absolute",
+                top: "20px",
+                left: "20px",
+                zIndex: 1000,
+                color: "#00ffff",
+                background: "rgba(0,10,20,0.7)",
+                border: "1px solid #00aaff",
+                padding: "10px 15px",
+                borderRadius: "4px",
+                cursor: "pointer",
+                fontFamily: "monospace",
+                backdropFilter: "blur(4px)",
+                boxShadow: "0 0 10px rgba(0,170,255,0.5)",
+              }}
+              onClick={handleBackClick}
+            >
+              ← BACK TO SYSTEM VIEW
+            </div>
 
-          {/* Overlay */}
-          <div style={{
-            position: "absolute",
-            top: 0,
-            left: 0,
-            width: "100%",
-            height: "100%",
-            background: "rgba(0,0,0,0.7)",
-            backdropFilter: "blur(5px)",
-            zIndex: 998
-          }}></div>
+            {/* Overlay */}
+            <div
+              style={{
+                position: "absolute",
+                top: 0,
+                left: 0,
+                width: "100%",
+                height: "100%",
+                background: "rgba(0,0,0,0.7)",
+                backdropFilter: "blur(5px)",
+                zIndex: 998,
+              }}
+            ></div>
 
-          {/* Sponsors Title */}
-          <div style={{
-            position: "absolute",
-            top: "80px",
-            left: "50%",
-            transform: "translateX(-50%)",
-            color: "#00ffff",
-            fontFamily: "Orbitron",
-            fontSize: "2.5rem",
-            textAlign: "center",
-            zIndex: 1000,
-            textShadow: "0 0 15px rgba(0,255,255,0.5)",
-            letterSpacing: "2px"
-          }}>
-            OUR SPONSORS
-            <div style={{
-              width: "100px",
-              height: "3px",
-              background: "linear-gradient(90deg, #00aaff, #00ffaa)",
-              margin: "10px auto",
-              boxShadow: "0 0 10px #00ffff"
-            }}></div>
-          </div>
-
-          {/* Sponsors Grid */}
-          <div style={{
-            position: "absolute",
-            top: "50%",
-            left: "50%",
-            transform: "translate(-50%, -50%)",
-            width: "80%",
-            maxHeight: "70vh",
-            overflowY: "auto",
-            padding: "20px",
-            zIndex: 999,
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
-            gap: "30px"
-          }}>
-            {objectData.saturn.sponsors.map((sponsor, index) => (
-              <div key={index} style={{
-                background: "rgba(0,20,40,0.7)",
-                border: `2px solid ${sponsor.color}`,
-                borderRadius: "8px",
-                padding: "25px",
+            {/* Sponsors Title */}
+            <div
+              style={{
+                position: "absolute",
+                top: "80px",
+                left: "50%",
+                transform: "translateX(-50%)",
+                color: "#00ffff",
+                fontFamily: "Orbitron",
+                fontSize: "2.5rem",
                 textAlign: "center",
-                boxShadow: `0 0 20px ${sponsor.color}80`,
-                transition: "all 0.3s ease",
-                position: "relative",
-                overflow: "hidden"
-              }}>
-                {/* Sponsor Tier */}
-                <div style={{
-                  position: "absolute",
-                  top: "10px",
-                  right: "10px",
-                  background: sponsor.color,
-                  color: "#000",
-                  padding: "3px 8px",
-                  borderRadius: "4px",
-                  fontSize: "12px",
-                  fontWeight: "bold",
-                  fontFamily: "monospace"
-                }}>
-                  {sponsor.tier}
-                </div>
+                zIndex: 1000,
+                textShadow: "0 0 15px rgba(0,255,255,0.5)",
+                letterSpacing: "2px",
+              }}
+            >
+              OUR SPONSORS
+              <div
+                style={{
+                  width: "100px",
+                  height: "3px",
+                  background: "linear-gradient(90deg, #00aaff, #00ffaa)",
+                  margin: "10px auto",
+                  boxShadow: "0 0 10px #00ffff",
+                }}
+              ></div>
+            </div>
 
-                {/* Sponsor Logo */}
-                <div style={{
-                  height: "80px",
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  marginBottom: "20px"
-                }}>
-                  <img 
-                    src={sponsor.logo} 
-                    alt={sponsor.name}
+            {/* Sponsors Grid */}
+            <div
+              style={{
+                position: "absolute",
+                top: "50%",
+                left: "50%",
+                transform: "translate(-50%, -50%)",
+                width: "80%",
+                maxHeight: "70vh",
+                overflowY: "auto",
+                padding: "20px",
+                zIndex: 999,
+                display: "grid",
+                gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
+                gap: "30px",
+              }}
+            >
+              {objectData.saturn.sponsors.map((sponsor, index) => (
+                <div
+                  key={index}
+                  style={{
+                    background: "rgba(0,20,40,0.7)",
+                    border: `2px solid ${sponsor.color}`,
+                    borderRadius: "8px",
+                    padding: "25px",
+                    textAlign: "center",
+                    boxShadow: `0 0 20px ${sponsor.color}80`,
+                    transition: "all 0.3s ease",
+                    position: "relative",
+                    overflow: "hidden",
+                  }}
+                >
+                  {/* Sponsor Tier */}
+                  <div
                     style={{
-                      maxHeight: "100%",
-                      maxWidth: "100%",
-                      filter: "drop-shadow(0 0 10px rgba(255,255,255,0.3))"
+                      position: "absolute",
+                      top: "10px",
+                      right: "10px",
+                      background: sponsor.color,
+                      color: "#000",
+                      padding: "3px 8px",
+                      borderRadius: "4px",
+                      fontSize: "12px",
+                      fontWeight: "bold",
+                      fontFamily: "monospace",
                     }}
-                  />
+                  >
+                    {sponsor.tier}
+                  </div>
+
+                  {/* Sponsor Logo */}
+                  <div
+                    style={{
+                      height: "80px",
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      marginBottom: "20px",
+                    }}
+                  >
+                    <img
+                      src={sponsor.logo}
+                      alt={sponsor.name}
+                      style={{
+                        maxHeight: "100%",
+                        maxWidth: "100%",
+                        filter: "drop-shadow(0 0 10px rgba(255,255,255,0.3))",
+                      }}
+                    />
+                  </div>
+
+                  {/* Sponsor Name */}
+                  <h3
+                    style={{
+                      color: "#00ffff",
+                      margin: "10px 0",
+                      fontFamily: "Orbitron",
+                      fontSize: "1.5rem",
+                      textShadow: "0 0 10px rgba(0,255,255,0.5)",
+                    }}
+                  >
+                    {sponsor.name}
+                  </h3>
+
+                  {/* Sponsor Description */}
+                  <p
+                    style={{
+                      color: "#ffffff",
+                      fontSize: "14px",
+                      lineHeight: "1.5",
+                      opacity: 0.8,
+                      marginBottom: "0",
+                    }}
+                  >
+                    {sponsor.description}
+                  </p>
+
+                  {/* Glow effect on hover */}
+                  <div
+                    style={{
+                      position: "absolute",
+                      top: 0,
+                      left: 0,
+                      width: "100%",
+                      height: "100%",
+                      background: `linear-gradient(45deg, transparent, ${sponsor.color}20, transparent)`,
+                      opacity: 0,
+                      transition: "opacity 0.3s ease",
+                    }}
+                  ></div>
                 </div>
-
-                {/* Sponsor Name */}
-                <h3 style={{
-                  color: "#00ffff",
-                  margin: "10px 0",
-                  fontFamily: "Orbitron",
-                  fontSize: "1.5rem",
-                  textShadow: "0 0 10px rgba(0,255,255,0.5)"
-                }}>
-                  {sponsor.name}
-                </h3>
-
-                {/* Sponsor Description */}
-                <p style={{
-                  color: "#ffffff",
-                  fontSize: "14px",
-                  lineHeight: "1.5",
-                  opacity: 0.8,
-                  marginBottom: "0"
-                }}>
-                  {sponsor.description}
-                </p>
-
-                {/* Glow effect on hover */}
-                <div style={{
-                  position: "absolute",
-                  top: 0,
-                  left: 0,
-                  width: "100%",
-                  height: "100%",
-                  background: `linear-gradient(45deg, transparent, ${sponsor.color}20, transparent)`,
-                  opacity: 0,
-                  transition: "opacity 0.3s ease"
-                }}></div>
-              </div>
-            ))}
-          </div>
-        </>
-      )}
+              ))}
+            </div>
+          </>
+        )}
 
       {focusedObject === "moon" && (
         <>
@@ -1703,7 +2090,7 @@ const Planets = () => {
               cursor: "pointer",
               fontFamily: "monospace",
               backdropFilter: "blur(4px)",
-              boxShadow: "0 0 10px rgba(0,170,255,0.5)"
+              boxShadow: "0 0 10px rgba(0,170,255,0.5)",
             }}
             onClick={handleBackClick}
           >
@@ -1711,235 +2098,293 @@ const Planets = () => {
           </div>
 
           {/* Overlay */}
-          <div style={{
-            position: "absolute",
-            top: 0,
-            left: 0,
-            width: "100%",
-            height: "100%",
-            background: "rgba(0,0,0,0.7)",
-            backdropFilter: "blur(5px)",
-            zIndex: 998
-          }}></div>
+          <div
+            style={{
+              position: "absolute",
+              top: 0,
+              left: 0,
+              width: "100%",
+              height: "100%",
+              background: "rgba(0,0,0,0.7)",
+              backdropFilter: "blur(5px)",
+              zIndex: 998,
+            }}
+          ></div>
 
           {/* Contact Title */}
-          <div style={{
-            position: "absolute",
-            top: "80px",
-            left: "50%",
-            transform: "translateX(-50%)",
-            color: "#00ffff",
-            fontFamily: "Orbitron",
-            fontSize: "2.5rem",
-            textAlign: "center",
-            zIndex: 1000,
-            textShadow: "0 0 15px rgba(0,255,255,0.5)",
-            letterSpacing: "2px"
-          }}>
+          <div
+            style={{
+              position: "absolute",
+              top: "80px",
+              left: "50%",
+              transform: "translateX(-50%)",
+              color: "#00ffff",
+              fontFamily: "Orbitron",
+              fontSize: "2.5rem",
+              textAlign: "center",
+              zIndex: 1000,
+              textShadow: "0 0 15px rgba(0,255,255,0.5)",
+              letterSpacing: "2px",
+            }}
+          >
             CONTACT US
-            <div style={{
-              width: "100px",
-              height: "3px",
-              background: "linear-gradient(90deg, #00aaff, #00ffaa)",
-              margin: "10px auto",
-              boxShadow: "0 0 10px #00ffff"
-            }}></div>
+            <div
+              style={{
+                width: "100px",
+                height: "3px",
+                background: "linear-gradient(90deg, #00aaff, #00ffaa)",
+                margin: "10px auto",
+                boxShadow: "0 0 10px #00ffff",
+              }}
+            ></div>
           </div>
 
           {/* Contact Cards */}
-          <div style={{
-            position: "absolute",
-            top: "50%",
-            left: "50%",
-            transform: "translate(-50%, -50%)",
-            display: "flex",
-            justifyContent: "center",
-            gap: "40px",
-            zIndex: 999,
-            width: "80%",
-            maxWidth: "1000px"
-          }}>
-            {/* Aditya Rastogi Card */}
-            <div style={{
-              background: "rgba(0,20,40,0.7)",
-              border: "1px solid #00aaff",
-              borderRadius: "8px",
-              padding: "25px",
-              width: "300px",
-              boxShadow: "0 0 20px rgba(0,170,255,0.3)",
+          <div
+            style={{
+              position: "absolute",
+              top: "50%",
+              left: "50%",
+              transform: "translate(-50%, -50%)",
               display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              backdropFilter: "blur(5px)",
-              position: "relative",
-              overflow: "hidden"
-            }}>
-              <div style={{
-                width: "120px",
-                height: "120px",
-                borderRadius: "50%",
-                border: "2px solid #00ffff",
-                background: "url('/team/aditya.jpg') center/cover",
-                marginBottom: "20px",
-                boxShadow: "0 0 20px rgba(0,255,255,0.5)"
-              }}></div>
-              
-              <h3 style={{
-                color: "#00ffff",
-                margin: "0 0 10px 0",
-                fontFamily: "Orbitron",
-                fontSize: "1.5rem"
-              }}>Aditya Rastogi</h3>
-              
-              <div style={{
-                width: "100%",
-                margin: "15px 0",
-                borderTop: "1px solid #00aaff"
-              }}></div>
-              
-              <div style={{
-                width: "100%",
+              justifyContent: "center",
+              gap: "40px",
+              zIndex: 999,
+              width: "80%",
+              maxWidth: "1000px",
+            }}
+          >
+            {/* Aditya Rastogi Card */}
+            <div
+              style={{
+                background: "rgba(0,20,40,0.7)",
+                border: "1px solid #00aaff",
+                borderRadius: "8px",
+                padding: "25px",
+                width: "300px",
+                boxShadow: "0 0 20px rgba(0,170,255,0.3)",
                 display: "flex",
                 flexDirection: "column",
-                gap: "10px"
-              }}>
-                <div style={{
+                alignItems: "center",
+                backdropFilter: "blur(5px)",
+                position: "relative",
+                overflow: "hidden",
+              }}
+            >
+              <div
+                style={{
+                  width: "120px",
+                  height: "120px",
+                  borderRadius: "50%",
+                  border: "2px solid #00ffff",
+                  background: "url('/team/aditya.jpg') center/cover",
+                  marginBottom: "20px",
+                  boxShadow: "0 0 20px rgba(0,255,255,0.5)",
+                }}
+              ></div>
+
+              <h3
+                style={{
+                  color: "#00ffff",
+                  margin: "0 0 10px 0",
+                  fontFamily: "Orbitron",
+                  fontSize: "1.5rem",
+                }}
+              >
+                Aditya Rastogi
+              </h3>
+
+              <div
+                style={{
+                  width: "100%",
+                  margin: "15px 0",
+                  borderTop: "1px solid #00aaff",
+                }}
+              ></div>
+
+              <div
+                style={{
+                  width: "100%",
                   display: "flex",
-                  alignItems: "center",
-                  gap: "10px"
-                }}>
+                  flexDirection: "column",
+                  gap: "10px",
+                }}
+              >
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "10px",
+                  }}
+                >
                   <span style={{ color: "#00aaff", fontSize: "20px" }}>✉️</span>
                   <span style={{ color: "#ffffff" }}>aditya@techfest.com</span>
                 </div>
-                
-                <div style={{
-                  display: "flex",
-                  alignItems: "center",
-                  gap: "10px"
-                }}>
+
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "10px",
+                  }}
+                >
                   <span style={{ color: "#00aaff", fontSize: "20px" }}>📱</span>
                   <span style={{ color: "#ffffff" }}>+91 98765 43210</span>
                 </div>
               </div>
-              
+
               {/* Glow effect */}
-              <div style={{
-                position: "absolute",
-                top: 0,
-                left: 0,
-                width: "100%",
-                height: "100%",
-                background: "linear-gradient(45deg, transparent, rgba(0,170,255,0.1), transparent)",
-                pointerEvents: "none",
-                opacity: 0.5
-              }}></div>
+              <div
+                style={{
+                  position: "absolute",
+                  top: 0,
+                  left: 0,
+                  width: "100%",
+                  height: "100%",
+                  background:
+                    "linear-gradient(45deg, transparent, rgba(0,170,255,0.1), transparent)",
+                  pointerEvents: "none",
+                  opacity: 0.5,
+                }}
+              ></div>
             </div>
 
             {/* Shrey Jaiswal Card */}
-            <div style={{
-              background: "rgba(0,20,40,0.7)",
-              border: "1px solid #00aaff",
-              borderRadius: "8px",
-              padding: "25px",
-              width: "300px",
-              boxShadow: "0 0 20px rgba(0,170,255,0.3)",
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              backdropFilter: "blur(5px)",
-              position: "relative",
-              overflow: "hidden"
-            }}>
-              <div style={{
-                width: "120px",
-                height: "120px",
-                borderRadius: "50%",
-                border: "2px solid #00ffff",
-                background: "url('/team/shrey.jpg') center/cover",
-                marginBottom: "20px",
-                boxShadow: "0 0 20px rgba(0,255,255,0.5)"
-              }}></div>
-              
-              <h3 style={{
-                color: "#00ffff",
-                margin: "0 0 10px 0",
-                fontFamily: "Orbitron",
-                fontSize: "1.5rem"
-              }}>Shrey Jaiswal</h3>
-              
-              <div style={{
-                width: "100%",
-                margin: "15px 0",
-                borderTop: "1px solid #00aaff"
-              }}></div>
-              
-              <div style={{
-                width: "100%",
+            <div
+              style={{
+                background: "rgba(0,20,40,0.7)",
+                border: "1px solid #00aaff",
+                borderRadius: "8px",
+                padding: "25px",
+                width: "300px",
+                boxShadow: "0 0 20px rgba(0,170,255,0.3)",
                 display: "flex",
                 flexDirection: "column",
-                gap: "10px"
-              }}>
-                <div style={{
+                alignItems: "center",
+                backdropFilter: "blur(5px)",
+                position: "relative",
+                overflow: "hidden",
+              }}
+            >
+              <div
+                style={{
+                  width: "120px",
+                  height: "120px",
+                  borderRadius: "50%",
+                  border: "2px solid #00ffff",
+                  background: "url('/team/shrey.jpg') center/cover",
+                  marginBottom: "20px",
+                  boxShadow: "0 0 20px rgba(0,255,255,0.5)",
+                }}
+              ></div>
+
+              <h3
+                style={{
+                  color: "#00ffff",
+                  margin: "0 0 10px 0",
+                  fontFamily: "Orbitron",
+                  fontSize: "1.5rem",
+                }}
+              >
+                Shrey Jaiswal
+              </h3>
+
+              <div
+                style={{
+                  width: "100%",
+                  margin: "15px 0",
+                  borderTop: "1px solid #00aaff",
+                }}
+              ></div>
+
+              <div
+                style={{
+                  width: "100%",
                   display: "flex",
-                  alignItems: "center",
-                  gap: "10px"
-                }}>
+                  flexDirection: "column",
+                  gap: "10px",
+                }}
+              >
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "10px",
+                  }}
+                >
                   <span style={{ color: "#00aaff", fontSize: "20px" }}>✉️</span>
                   <span style={{ color: "#ffffff" }}>shrey@techfest.com</span>
                 </div>
-                
-                <div style={{
-                  display: "flex",
-                  alignItems: "center",
-                  gap: "10px"
-                }}>
+
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "10px",
+                  }}
+                >
                   <span style={{ color: "#00aaff", fontSize: "20px" }}>📱</span>
                   <span style={{ color: "#ffffff" }}>+91 98765 43211</span>
                 </div>
               </div>
-              
+
               {/* Glow effect */}
-              <div style={{
-                position: "absolute",
-                top: 0,
-                left: 0,
-                width: "100%",
-                height: "100%",
-                background: "linear-gradient(45deg, transparent, rgba(0,170,255,0.1), transparent)",
-                pointerEvents: "none",
-                opacity: 0.5
-              }}></div>
+              <div
+                style={{
+                  position: "absolute",
+                  top: 0,
+                  left: 0,
+                  width: "100%",
+                  height: "100%",
+                  background:
+                    "linear-gradient(45deg, transparent, rgba(0,170,255,0.1), transparent)",
+                  pointerEvents: "none",
+                  opacity: 0.5,
+                }}
+              ></div>
             </div>
           </div>
 
           {/* General Contact Info */}
-          <div style={{
-            position: "absolute",
-            bottom: "50px",
-            left: "50%",
-            transform: "translateX(-50%)",
-            color: "#ffffff",
-            background: "rgba(0,10,20,0.7)",
-            border: "1px solid #00aaff",
-            padding: "15px 25px",
-            borderRadius: "8px",
-            fontFamily: "monospace",
-            textAlign: "center",
-            zIndex: 999,
-            backdropFilter: "blur(5px)",
-            boxShadow: "0 0 15px rgba(0,170,255,0.3)"
-          }}>
-            <h4 style={{ 
-              color: "#00ffff",
-              margin: "0 0 10px 0",
-              fontFamily: "Orbitron"
-            }}>GENERAL INQUIRIES</h4>
-            <div style={{ display: "flex", gap: "20px", justifyContent: "center" }}>
-              <div style={{ display: "flex", alignItems: "center", gap: "5px" }}>
+          <div
+            style={{
+              position: "absolute",
+              bottom: "50px",
+              left: "50%",
+              transform: "translateX(-50%)",
+              color: "#ffffff",
+              background: "rgba(0,10,20,0.7)",
+              border: "1px solid #00aaff",
+              padding: "15px 25px",
+              borderRadius: "8px",
+              fontFamily: "monospace",
+              textAlign: "center",
+              zIndex: 999,
+              backdropFilter: "blur(5px)",
+              boxShadow: "0 0 15px rgba(0,170,255,0.3)",
+            }}
+          >
+            <h4
+              style={{
+                color: "#00ffff",
+                margin: "0 0 10px 0",
+                fontFamily: "Orbitron",
+              }}
+            >
+              GENERAL INQUIRIES
+            </h4>
+            <div
+              style={{ display: "flex", gap: "20px", justifyContent: "center" }}
+            >
+              <div
+                style={{ display: "flex", alignItems: "center", gap: "5px" }}
+              >
                 <span>✉️</span>
                 <span>contact@techfest.com</span>
               </div>
-              <div style={{ display: "flex", alignItems: "center", gap: "5px" }}>
+              <div
+                style={{ display: "flex", alignItems: "center", gap: "5px" }}
+              >
                 <span>📱</span>
                 <span>+1-555-0123</span>
               </div>
@@ -1947,31 +2392,33 @@ const Planets = () => {
           </div>
         </>
       )}
-     
+
       {!focusedObject && (
-        <div style={{
-          position: "absolute",
-          bottom: "40%",
-          left: "50%",
-          transform: "translate(-50%, 50%)",
-          color: "#ffffff",
-          background: "rgba(0,10,20,0.7)",
-          backdropFilter: "blur(5px)",
-          padding: "10px 20px",
-          borderRadius: "30px",
-          border: "1px solid #00aaff",
-          fontFamily: "monospace",
-          fontSize: "16px",
-          boxShadow: "0 0 20px rgba(0,170,255,0.5)",
-          zIndex: 5,
-          opacity: 0.8,
-          transition: "opacity 0.3s",
-          animation: "float 3s infinite ease-in-out"
-        }}>
+        <div
+          style={{
+            position: "absolute",
+            bottom: "40%",
+            left: "50%",
+            transform: "translate(-50%, 50%)",
+            color: "#ffffff",
+            background: "rgba(0,10,20,0.7)",
+            backdropFilter: "blur(5px)",
+            padding: "10px 20px",
+            borderRadius: "30px",
+            border: "1px solid #00aaff",
+            fontFamily: "monospace",
+            fontSize: "16px",
+            boxShadow: "0 0 20px rgba(0,170,255,0.5)",
+            zIndex: 5,
+            opacity: 0.8,
+            transition: "opacity 0.3s",
+            animation: "float 3s infinite ease-in-out",
+          }}
+        >
           CLICK ON OBJECTS TO EXAMINE THEM
         </div>
       )}
-      
+
       {focusedObject === "mars" && (
         <>
           <div
@@ -1988,7 +2435,7 @@ const Planets = () => {
               cursor: "pointer",
               fontFamily: "monospace",
               backdropFilter: "blur(4px)",
-              boxShadow: "0 0 10px rgba(0,170,255,0.5)"
+              boxShadow: "0 0 10px rgba(0,170,255,0.5)",
             }}
             onClick={handleBackClick}
           >
@@ -1996,272 +2443,454 @@ const Planets = () => {
           </div>
 
           {/* Overlay */}
-          <div style={{
-            position: "absolute",
-            top: 0,
-            left: 0,
-            width: "100%",
-            height: "100%",
-            background: "rgba(0,0,0,0.7)",
-            backdropFilter: "blur(5px)",
-            zIndex: 998
-          }}></div>
+          <div
+            style={{
+              position: "absolute",
+              top: 0,
+              left: 0,
+              width: "100%",
+              height: "100%",
+              background: "rgba(0,0,0,0.7)",
+              backdropFilter: "blur(5px)",
+              zIndex: 998,
+            }}
+          ></div>
 
           {/* About Title */}
-          <div style={{
-            position: "absolute",
-            top: "80px",
-            left: "50%",
-            transform: "translateX(-50%)",
-            color: "#00ffff",
-            fontFamily: "Orbitron",
-            fontSize: "2.5rem",
-            textAlign: "center",
-            zIndex: 1000,
-            textShadow: "0 0 15px rgba(0,255,255,0.5)",
-            letterSpacing: "2px"
-          }}>
+          <div
+            style={{
+              position: "absolute",
+              top: "80px",
+              left: "50%",
+              transform: "translateX(-50%)",
+              color: "#00ffff",
+              fontFamily: "Orbitron",
+              fontSize: "2.5rem",
+              textAlign: "center",
+              zIndex: 1000,
+              textShadow: "0 0 15px rgba(0,255,255,0.5)",
+              letterSpacing: "2px",
+            }}
+          >
             ABOUT GLITCH
-            <div style={{
-              width: "100px",
-              height: "3px",
-              background: "linear-gradient(90deg, #00aaff, #00ffff)",
-              margin: "10px auto",
-              boxShadow: "0 0 10px #00ffff"
-            }}></div>
+            <div
+              style={{
+                width: "100px",
+                height: "3px",
+                background: "linear-gradient(90deg, #00aaff, #00ffff)",
+                margin: "10px auto",
+                boxShadow: "0 0 10px #00ffff",
+              }}
+            ></div>
           </div>
 
           {/* About Content */}
-          <div style={{
-            position: "absolute",
-            top: "50%",
-            left: "50%",
-            transform: "translate(-50%, -50%)",
-            width: "70%",
-            maxWidth: "800px",
-            background: "rgba(0,20,40,0.7)",
-            border: "1px solid #00aaff",
-            borderRadius: "8px",
-            padding: "30px",
-            color: "#ffffff",
-            fontFamily: "monospace",
-            zIndex: 999,
-            backdropFilter: "blur(5px)",
-            boxShadow: "0 0 20px rgba(0,170,255,0.3)",
-            maxHeight: "70vh",
-            overflowY: "auto"
-          }}>
-            <div style={{
-              textAlign: "center",
-              marginBottom: "30px"
-            }}>
-              <h2 style={{
-                color: "#00ffff",
-                fontFamily: "Orbitron",
-                fontSize: "1.8rem",
-                marginBottom: "15px",
-                textShadow: "0 0 10px rgba(0,255,255,0.5)"
-              }}>
-                <span style={{ color: "#00aaff" }}>GLITCH 2025</span> is an annual technical celebration
+          <div
+            style={{
+              position: "absolute",
+              top: "50%",
+              left: "50%",
+              transform: "translate(-50%, -50%)",
+              width: "70%",
+              maxWidth: "800px",
+              background: "rgba(0,20,40,0.7)",
+              border: "1px solid #00aaff",
+              borderRadius: "8px",
+              padding: "30px",
+              color: "#ffffff",
+              fontFamily: "monospace",
+              zIndex: 999,
+              backdropFilter: "blur(5px)",
+              boxShadow: "0 0 20px rgba(0,170,255,0.3)",
+              maxHeight: "70vh",
+              overflowY: "auto",
+            }}
+          >
+            <div
+              style={{
+                textAlign: "center",
+                marginBottom: "30px",
+              }}
+            >
+              <h2
+                style={{
+                  color: "#00ffff",
+                  fontFamily: "Orbitron",
+                  fontSize: "1.8rem",
+                  marginBottom: "15px",
+                  textShadow: "0 0 10px rgba(0,255,255,0.5)",
+                }}
+              >
+                <span style={{ color: "#00aaff" }}>GLITCH 2025</span> is an
+                annual technical celebration
               </h2>
-              <p style={{
-                fontSize: "1.1rem",
-                lineHeight: "1.6",
-                marginBottom: "20px"
-              }}>
-                Organized by the BML Munjal University ACM Student Chapter in collaboration with regional ACM student chapters across India.
+              <p
+                style={{
+                  fontSize: "1.1rem",
+                  lineHeight: "1.6",
+                  marginBottom: "20px",
+                }}
+              >
+                Organized by the BML Munjal University ACM Student Chapter in
+                collaboration with regional ACM student chapters across India.
               </p>
             </div>
 
-            <div style={{
-              borderTop: "1px solid #00aaff",
-              borderBottom: "1px solid #00aaff",
-              padding: "20px 0",
-              margin: "20px 0"
-            }}>
-              <p style={{
-                fontSize: "1rem",
-                lineHeight: "1.6",
-                marginBottom: "20px"
-              }}>
-                Join us for three days of cutting-edge technology, thrilling competitions, hands-on workshops, and immersive entertainment as we bring together tech enthusiasts, coders, innovators, and creators from across the nation.
+            <div
+              style={{
+                borderTop: "1px solid #00aaff",
+                borderBottom: "1px solid #00aaff",
+                padding: "20px 0",
+                margin: "20px 0",
+              }}
+            >
+              <p
+                style={{
+                  fontSize: "1rem",
+                  lineHeight: "1.6",
+                  marginBottom: "20px",
+                }}
+              >
+                Join us for three days of cutting-edge technology, thrilling
+                competitions, hands-on workshops, and immersive entertainment as
+                we bring together tech enthusiasts, coders, innovators, and
+                creators from across the nation.
               </p>
             </div>
 
-            <div style={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              gap: "15px",
-              marginBottom: "20px",
-              color: "#00ffff"
-            }}>
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                gap: "15px",
+                marginBottom: "20px",
+                color: "#00ffff",
+              }}
+            >
               <div style={{ fontSize: "24px" }}>🗓️</div>
               <div style={{ fontSize: "1.2rem" }}>April 18-20, 2025</div>
             </div>
 
-            <div style={{
-              display: "flex",
-              justifyContent: "center",
-              marginTop: "30px"
-            }}>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                marginTop: "30px",
+              }}
+            >
               <a
                 href="https://unstop.com/college-fests/glitch-by-acm-bmu-student-chapter-bml-munjal-university-bmu-gurgaon-355060"
                 target="_blank"
                 rel="noopener noreferrer"
                 style={{
-                  textDecoration: "none"
+                  textDecoration: "none",
                 }}
               >
-                <div style={{
-                  padding: "12px 30px",
-                  background: "linear-gradient(90deg, #00aaff, #00ffff)",
-                  color: "#000",
-                  borderRadius: "4px",
-                  fontFamily: "Orbitron",
-                  fontWeight: "bold",
-                  fontSize: "1rem",
-                  cursor: "pointer",
-                  transition: "all 0.3s",
-                  boxShadow: "0 0 15px rgba(0,170,255,0.5)",
-                  position: "relative",
-                  overflow: "hidden"
-                }}>
+                <div
+                  style={{
+                    padding: "12px 30px",
+                    background: "linear-gradient(90deg, #00aaff, #00ffff)",
+                    color: "#000",
+                    borderRadius: "4px",
+                    fontFamily: "Orbitron",
+                    fontWeight: "bold",
+                    fontSize: "1rem",
+                    cursor: "pointer",
+                    transition: "all 0.3s",
+                    boxShadow: "0 0 15px rgba(0,170,255,0.5)",
+                    position: "relative",
+                    overflow: "hidden",
+                  }}
+                >
                   REGISTER NOW
-                  <div style={{
-                    position: "absolute",
-                    top: 0,
-                    left: 0,
-                    width: "100%",
-                    height: "100%",
-                    background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent)",
-                    transform: "translateX(-100%)",
-                    transition: "transform 0.3s"
-                  }}></div>
+                  <div
+                    style={{
+                      position: "absolute",
+                      top: 0,
+                      left: 0,
+                      width: "100%",
+                      height: "100%",
+                      background:
+                        "linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent)",
+                      transform: "translateX(-100%)",
+                      transition: "transform 0.3s",
+                    }}
+                  ></div>
                 </div>
               </a>
             </div>
 
             {/* Stats Section */}
-            <div style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(2, 1fr)",
-              gap: "20px",
-              marginTop: "40px"
-            }}>
-              <div style={{
-                background: "rgba(0,50,80,0.5)",
-                border: "1px solid #00aaff",
-                borderRadius: "8px",
-                padding: "15px",
-                textAlign: "center"
-              }}>
-                <div style={{ fontSize: "2rem", color: "#00ffff", marginBottom: "10px" }}>50+</div>
+            <div
+              style={{
+                display: "grid",
+                gridTemplateColumns: "repeat(2, 1fr)",
+                gap: "20px",
+                marginTop: "40px",
+              }}
+            >
+              <div
+                style={{
+                  background: "rgba(0,50,80,0.5)",
+                  border: "1px solid #00aaff",
+                  borderRadius: "8px",
+                  padding: "15px",
+                  textAlign: "center",
+                }}
+              >
+                <div
+                  style={{
+                    fontSize: "2rem",
+                    color: "#00ffff",
+                    marginBottom: "10px",
+                  }}
+                >
+                  50+
+                </div>
                 <div style={{ fontSize: "0.9rem" }}>EVENTS & WORKSHOPS</div>
               </div>
-              <div style={{
-                background: "rgba(0,50,80,0.5)",
-                border: "1px solid #00aaff",
-                borderRadius: "8px",
-                padding: "15px",
-                textAlign: "center"
-              }}>
-                <div style={{ fontSize: "2rem", color: "#00ffff", marginBottom: "10px" }}>1000+</div>
+              <div
+                style={{
+                  background: "rgba(0,50,80,0.5)",
+                  border: "1px solid #00aaff",
+                  borderRadius: "8px",
+                  padding: "15px",
+                  textAlign: "center",
+                }}
+              >
+                <div
+                  style={{
+                    fontSize: "2rem",
+                    color: "#00ffff",
+                    marginBottom: "10px",
+                  }}
+                >
+                  1000+
+                </div>
                 <div style={{ fontSize: "0.9rem" }}>PARTICIPANTS</div>
               </div>
-              <div style={{
-                background: "rgba(0,50,80,0.5)",
-                border: "1px solid #00aaff",
-                borderRadius: "8px",
-                padding: "15px",
-                textAlign: "center"
-              }}>
-                <div style={{ fontSize: "2rem", color: "#00ffff", marginBottom: "10px" }}>20+</div>
+              <div
+                style={{
+                  background: "rgba(0,50,80,0.5)",
+                  border: "1px solid #00aaff",
+                  borderRadius: "8px",
+                  padding: "15px",
+                  textAlign: "center",
+                }}
+              >
+                <div
+                  style={{
+                    fontSize: "2rem",
+                    color: "#00ffff",
+                    marginBottom: "10px",
+                  }}
+                >
+                  20+
+                </div>
                 <div style={{ fontSize: "0.9rem" }}>SPEAKERS</div>
               </div>
-              <div style={{
-                background: "rgba(0,50,80,0.5)",
-                border: "1px solid #00aaff",
-                borderRadius: "8px",
-                padding: "15px",
-                textAlign: "center"
-              }}>
-                <div style={{ fontSize: "2rem", color: "#00ffff", marginBottom: "10px" }}>3</div>
+              <div
+                style={{
+                  background: "rgba(0,50,80,0.5)",
+                  border: "1px solid #00aaff",
+                  borderRadius: "8px",
+                  padding: "15px",
+                  textAlign: "center",
+                }}
+              >
+                <div
+                  style={{
+                    fontSize: "2rem",
+                    color: "#00ffff",
+                    marginBottom: "10px",
+                  }}
+                >
+                  3
+                </div>
                 <div style={{ fontSize: "0.9rem" }}>DAYS OF INNOVATION</div>
               </div>
             </div>
           </div>
         </>
       )}
-      
+
+      {showOrientationPrompt && (
+        <div
+          style={{
+            position: "fixed",
+            top: 0,
+            left: 0,
+            width: "100%",
+            height: "100%",
+            backgroundColor: "rgba(0,0,0,0.9)",
+            zIndex: 9999,
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+            color: "#00ffff",
+            textAlign: "center",
+            padding: "20px",
+          }}
+        >
+          <div style={{ fontSize: "24px", marginBottom: "20px" }}>
+            🔄 Please rotate your device to landscape mode
+          </div>
+          <div style={{ fontSize: "16px", marginBottom: "30px" }}>
+            For the best experience, we recommend viewing this site in landscape
+            orientation.
+          </div>
+          <div
+            style={{
+              width: "80px",
+              height: "80px",
+              border: "4px solid #00ffff",
+              borderRadius: "10px",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              animation: "rotatePrompt 2s infinite",
+            }}
+          >
+            <div style={{ fontSize: "40px" }}>↷</div>
+          </div>
+        </div>
+      )}
+
       <style jsx>{`
         @keyframes fadeIn {
-          from { opacity: 0; transform: translateY(-50%) translateX(20px); }
-          to { opacity: 1; transform: translateY(-50%) translateX(0); }
+          from {
+            opacity: 0;
+            transform: translateY(-50%) translateX(20px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(-50%) translateX(0);
+          }
         }
 
         @keyframes slideIn {
-          from { opacity: 0; transform: translateX(20px); }
-          to { opacity: 1; transform: translateX(0); }
+          from {
+            opacity: 0;
+            transform: translateX(20px);
+          }
+          to {
+            opacity: 1;
+            transform: translateX(0);
+          }
         }
 
         @keyframes scanLine {
-          0% { left: -100%; }
-          100% { left: 100%; }
+          0% {
+            left: -100%;
+          }
+          100% {
+            left: 100%;
+          }
         }
 
         @keyframes progress {
-          0% { width: 0%; }
-          50% { width: 70%; }
-          75% { width: 85%; }
-          90% { width: 95%; }
-          100% { width: 100%; }
+          0% {
+            width: 0%;
+          }
+          50% {
+            width: 70%;
+          }
+          75% {
+            width: 85%;
+          }
+          90% {
+            width: 95%;
+          }
+          100% {
+            width: 100%;
+          }
         }
 
         @keyframes float {
-          0%, 100% { transform: translate(-50%, 50%); }
-          50% { transform: translate(-50%, calc(50% - 5px)); }
+          0%,
+          100% {
+            transform: translate(-50%, 50%);
+          }
+          50% {
+            transform: translate(-50%, calc(50% - 5px));
+          }
         }
 
         @keyframes ping {
-          0% { transform: scale(0.1); opacity: 1; }
-          100% { transform: scale(1); opacity: 0; }
+          0% {
+            transform: scale(0.1);
+            opacity: 1;
+          }
+          100% {
+            transform: scale(1);
+            opacity: 0;
+          }
         }
 
         @keyframes pulse {
-          0%, 100% { opacity: 1; transform: scale(1); }
-          50% { opacity: 0.9; transform: scale(1.05); }
+          0%,
+          100% {
+            opacity: 1;
+            transform: scale(1);
+          }
+          50% {
+            opacity: 0.9;
+            transform: scale(1.05);
+          }
         }
 
         @keyframes pulseGlow {
-          0% { 
-            box-shadow: 0 0 20px rgba(0,170,255,0.7);
+          0% {
+            box-shadow: 0 0 20px rgba(0, 170, 255, 0.7);
             transform: translateX(-50%) translateY(0) scale(1);
           }
-          100% { 
-            box-shadow: 0 0 40px rgba(0,255,255,0.9);
+          100% {
+            box-shadow: 0 0 40px rgba(0, 255, 255, 0.9);
             transform: translateX(-50%) translateY(-5px) scale(1.02);
           }
         }
-        
+
         @keyframes hologramScan {
-          0% { transform: translateY(-100%); }
-          100% { transform: translateY(100%); }
+          0% {
+            transform: translateY(-100%);
+          }
+          100% {
+            transform: translateY(100%);
+          }
         }
-        
+
         @keyframes hologramLine {
-          0% { transform: translateY(-100%); }
-          100% { transform: translateY(100%); }
+          0% {
+            transform: translateY(-100%);
+          }
+          100% {
+            transform: translateY(100%);
+          }
         }
-        
+
         @keyframes beamPulse {
-          0%, 100% { opacity: 0.5; height: 40px; }
-          50% { opacity: 1; height: 50px; }
+          0%,
+          100% {
+            opacity: 0.5;
+            height: 40px;
+          }
+          50% {
+            opacity: 1;
+            height: 50px;
+          }
         }
 
         @keyframes blink {
-          0%, 49% { opacity: 1; }
-          50%, 100% { opacity: 0.5; }
+          0%,
+          49% {
+            opacity: 1;
+          }
+          50%,
+          100% {
+            opacity: 0.5;
+          }
         }
 
         ::-webkit-scrollbar {
@@ -2270,16 +2899,35 @@ const Planets = () => {
 
         ::-webkit-scrollbar-track {
           background: rgba(0, 20, 40, 0.5);
-          borderRadius: 4px;
+          borderradius: 4px;
         }
 
         ::-webkit-scrollbar-thumb {
           background: #00aaff;
-          borderRadius: 4px;
+          borderradius: 4px;
         }
 
         ::-webkit-scrollbar-thumb:hover {
           background: #00ffff;
+        }
+        @keyframes rotatePrompt {
+          0% {
+            transform: rotate(0deg);
+          }
+          100% {
+            transform: rotate(90deg);
+          }
+        }
+
+        @keyframes blink {
+          0%,
+          49% {
+            opacity: 1;
+          }
+          50%,
+          100% {
+            opacity: 0.5;
+          }
         }
       `}</style>
     </div>
@@ -2288,54 +2936,66 @@ const Planets = () => {
 
 const Clock = () => {
   const [time, setTime] = useState(new Date());
-  
+
   useEffect(() => {
     const timer = setInterval(() => {
       setTime(new Date());
     }, 1000);
-    
+
     return () => {
       clearInterval(timer);
     };
   }, []);
-  
-  const hours = time.getHours().toString().padStart(2, '0');
-  const minutes = time.getMinutes().toString().padStart(2, '0');
-  const seconds = time.getSeconds().toString().padStart(2, '0');
-  
+
+  const hours = time.getHours().toString().padStart(2, "0");
+  const minutes = time.getMinutes().toString().padStart(2, "0");
+  const seconds = time.getSeconds().toString().padStart(2, "0");
+
   return (
     <div style={{ display: "flex", gap: "5px", alignItems: "center" }}>
-      <div style={{ 
-        background: "rgba(0,50,80,0.5)", 
-        padding: "5px", 
-        borderRadius: "3px",
-        border: "1px solid #00aaff"
-      }}>
+      <div
+        style={{
+          background: "rgba(0,50,80,0.5)",
+          padding: "5px",
+          borderRadius: "3px",
+          border: "1px solid #00aaff",
+        }}
+      >
         {hours}
       </div>
       <div style={{ animation: "blink 1s infinite" }}>:</div>
-      <div style={{ 
-        background: "rgba(0,50,80,0.5)", 
-        padding: "5px", 
-        borderRadius: "3px",
-        border: "1px solid #00aaff"
-      }}>
+      <div
+        style={{
+          background: "rgba(0,50,80,0.5)",
+          padding: "5px",
+          borderRadius: "3px",
+          border: "1px solid #00aaff",
+        }}
+      >
         {minutes}
       </div>
       <div style={{ animation: "blink 1s infinite" }}>:</div>
-      <div style={{ 
-        background: "rgba(0,50,80,0.5)", 
-        padding: "5px", 
-        borderRadius: "3px",
-        border: "1px solid #00aaff"
-      }}>
+      <div
+        style={{
+          background: "rgba(0,50,80,0.5)",
+          padding: "5px",
+          borderRadius: "3px",
+          border: "1px solid #00aaff",
+        }}
+      >
         {seconds}
       </div>
-      
+
       <style jsx>{`
         @keyframes blink {
-          0%, 49% { opacity: 1; }
-          50%, 100% { opacity: 0.5; }
+          0%,
+          49% {
+            opacity: 1;
+          }
+          50%,
+          100% {
+            opacity: 0.5;
+          }
         }
       `}</style>
     </div>
@@ -2350,4 +3010,3 @@ export default function App() {
     </ErrorBoundary>
   );
 }
-
