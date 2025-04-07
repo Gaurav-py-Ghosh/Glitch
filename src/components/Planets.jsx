@@ -59,279 +59,171 @@ const Planets = () => {
   const [isTraveling, setIsTraveling] = useState(false);
   const [objectData, setObjectData] = useState({
     spaceship: {
-      "name": "Events",
-      "events": [
+      name: "Events",
+      events: [
         {
-          "name": "HackBMU 7.0",
-          "date": "2025-04-19 to 2025-04-20",
-          "time": "10:00 AM - 6:00 PM",
-          "location": "",
-          "color": "#00ff44",
-          "description": "The flagship hackathon event to solve real-world problems."
+          name: "HackBMU 7.0",
+          date: "2025-04-19 to 2025-04-20",
+          time: "10:00 AM - 6:00 PM",
+          location: "",
+          color: "#00ff44",
+          description: "The flagship hackathon event to solve real-world problems.",
         },
         {
-          "name": "Emoji Explorer",
-          "date": "2025-04-19",
-          "time": "4:30 PM - 6:30 PM",
-          "location": "ROOM A & B",
-          "color": "#00aaff",
-          "description": "Explore creative coding through emoji-based challenges."
+          name: "Emoji Explorer",
+          date: "2025-04-19",
+          time: "4:30 PM - 6:30 PM",
+          location: "ROOM A & B",
+          color: "#00aaff",
+          description: "Explore creative coding through emoji-based challenges.",
         },
         {
-          "name": "Duality Extended",
-          "date": "2025-04-18",
-          "time": "11:00 AM - 1:00 PM",
-          "location": "AUDITORIUM",
-          "color": "#ffaa00",
-          "description": "A unique event exploring dual perspectives in tech."
+          name: "Duality Extended",
+          date: "2025-04-18",
+          time: "11:00 AM - 1:00 PM",
+          location: "AUDITORIUM",
+          color: "#ffaa00",
+          description: "A unique event exploring dual perspectives in tech.",
         },
         {
-          "name": "Bit-by-Bit",
-          "date": "2025-04-19",
-          "time": "7:00 PM - 9:00 PM",
-          "location": "EXHIBITION HALL",
-          "color": "#ff00aa",
-          "description": "Showcasing innovative projects in digital art."
+          name: "Bit-by-Bit",
+          date: "2025-04-19",
+          time: "7:00 PM - 9:00 PM",
+          location: "EXHIBITION HALL",
+          color: "#ff00aa",
+          description: "Showcasing innovative projects in digital art.",
         },
         {
-          "name": "Dev Dash",
-          "date": "2025-04-18",
-          "time": "3:30 PM - 6:30 PM",
-          "location": "MAIN STAGE",
-          "color": "#aa00ff",
-          "description": "Fast-paced development competition finale."
+          name: "Dev Dash",
+          date: "2025-04-18",
+          time: "3:30 PM - 6:30 PM",
+          location: "MAIN STAGE",
+          color: "#aa00ff",
+          description: "Fast-paced development competition finale.",
         },
         {
-          "name": "Paint Off",
-          "date": "2025-04-18",
-          "time": "1:00 PM - 3:00 PM",
-          "location": "QUIZ ROOM",
-          "color": "#ff8800",
-          "description": "Creative digital art battle with tech tools."
+          name: "Paint Off",
+          date: "2025-04-18",
+          time: "1:00 PM - 3:00 PM",
+          location: "QUIZ ROOM",
+          color: "#ff8800",
+          description: "Creative digital art battle with tech tools.",
         },
         {
-          "name": "Capture the Flag",
-          "date": "2025-04-20",
-          "time": "10:30 AM - 12:00 PM",
-          "location": "LAB 3",
-          "color": "#00ffaa",
-          "description": "Cybersecurity challenge event."
+          name: "Capture the Flag",
+          date: "2025-04-20",
+          time: "10:30 AM - 12:00 PM",
+          location: "LAB 3",
+          color: "#00ffaa",
+          description: "Cybersecurity challenge event.",
         },
         {
-          "name": "CodeSprint",
-          "date": "2025-04-20",
-          "time": "2:00 AM - 4:00 AM",
-          "location": "AI LAB",
-          "color": "#ff4444",
-          "description": "Rapid coding competition against the clock."
+          name: "CodeSprint",
+          date: "2025-04-20",
+          time: "2:00 AM - 4:00 AM",
+          location: "AI LAB",
+          color: "#ff4444",
+          description: "Rapid coding competition against the clock.",
         },
         {
-          "name": "TechTrap",
-          "date": "2025-04-19",
-          "time": "10:00 PM - 12:30 AM",
-          "location": "ROOM C",
-          "color": "#4444ff",
-          "description": "Puzzle-solving event with technical twists."
+          name: "TechTrap",
+          date: "2025-04-19",
+          time: "10:00 PM - 12:30 AM",
+          location: "ROOM C",
+          color: "#4444ff",
+          description: "Puzzle-solving event with technical twists.",
         },
         {
-          "name": "Horizon Talks",
-          "date": "2025-04-19",
-          "time": "3:00 PM - 4:00 PM",
-          "location": "LOUNGE",
-          "color": "#88ff88",
-          "description": "Visionary talks about future technologies."
-        }
+          name: "Horizon Talks",
+          date: "2025-04-19",
+          time: "3:00 PM - 4:00 PM",
+          location: "LOUNGE",
+          color: "#88ff88",
+          description: "Visionary talks about future technologies.",
+        },
       ],
-      "description": "Central control hub for all Tech Fest activities and events."
-    }
-    ,
+      description: "Central control hub for all Tech Fest activities and events.",
+    },
     blackhole: {
       name: "MEET THE TEAM",
       teams: [
         {
           name: "CORE TEAM",
           members: [
-            {
-              name: "Aditya Rastogi",
-              role: "Convenor",
-              img: "/team/aditya.jpg"
-            },
-            {
-              name: "Shrey Jaiswal",
-              role: "Co-Convenor",
-              img: "/team/shreyj.jpg"
-            },
-            {
-              name: "Prakhar Srivastava",
-              role: "Core",
-              img: "/team/prakhar.jpg"
-            },
-            {
-              name: "Divyansh Verma",
-              role: "Core",
-              img: "/team/divyansh.jpg"
-            },
-            {
-              name: "Guneet Chawal",
-              role: "Core",
-              img: "/team/guneet.jpg"
-            },
-            {
-              name: "Ananya Aggarwal",
-              role: "Core",
-              img: "/team/ananya.jpg"
-            }
-          ]
+            { name: "Aditya Rastogi", role: "Convenor", img: "/team/aditya.jpg" },
+            { name: "Shrey Jaiswal", role: "Co-Convenor", img: "/team/shreyj.jpg" },
+            { name: "Prakhar Srivastava", role: "Core", img: "/team/prakhar.jpg" },
+            { name: "Divyansh Verma", role: "Core", img: "/team/divyansh.jpg" },
+            { name: "Guneet Chawal", role: "Core", img: "/team/guneet.jpg" },
+            { name: "Ananya Aggarwal", role: "Core", img: "/team/ananya.jpg" },
+          ],
         },
         {
           name: "SPONSORSHIP TEAM",
           members: [
-            {
-              name: "Purvanshu",
-              role: "Lead",
-              img: "/team/purvanshu.jpg"
-            },
-            {
-              name: "Shrey",
-              role: "Lead",
-              img: "/team/shrey.jpg"
-            }
-          ]
+            { name: "Purvanshu", role: "Lead", img: "/team/purvanshu.jpg" },
+            { name: "Shrey", role: "Lead", img: "/team/shrey.jpg" },
+          ],
         },
         {
           name: "OPERATIONS TEAM",
           members: [
-            {
-              name: "Vanshita",
-              role: "Lead",
-              img: "/team/vanshita.jpg"
-            },
-            {
-              name: "Tanmay",
-              role: "Lead",
-              img: "/team/tanmay.jpg"
-            }
-          ]
+            { name: "Vanshita", role: "Lead", img: "/team/vanshita.jpg" },
+            { name: "Tanmay", role: "Lead", img: "/team/tanmay.jpg" },
+          ],
         },
         {
           name: "SOCIAL MEDIA TEAM",
           members: [
-            {
-              name: "Shreya",
-              role: "Lead",
-              img: "/team/shreya.jpg"
-            },
-            {
-              name: "Vanshika",
-              role: "Lead",
-              img: "/team/vanshika.jpg"
-            }
-          ]
+            { name: "Shreya", role: "Lead", img: "/team/shreya.jpg" },
+            { name: "Vanshika", role: "Lead", img: "/team/vanshika.jpg" },
+          ],
         },
         {
           name: "ENTRY MANAGEMENT TEAM",
           members: [
-            {
-              name: "Akriti",
-              role: "Lead",
-              img: "/team/akriti.jpg"
-            },
-            {
-              name: "Kavya",
-              role: "Lead",
-              img: "/team/kavya.jpg"
-            }
-          ]
+            { name: "Akriti", role: "Lead", img: "/team/akriti.jpg" },
+            { name: "Kavya", role: "Lead", img: "/team/kavya.jpg" },
+          ],
         },
         {
           name: "DECOR TEAM",
           members: [
-            {
-              name: "Vanshita",
-              role: "Lead",
-              img: "/team/vanshita.jpg"
-            },
-            {
-              name: "Tanmay",
-              role: "Lead",
-              img: "/team/tanmay.jpg"
-            },
-            {
-              name: "Sejal",
-              role: "Lead",
-              img: "/team/sejal.jpg"
-            },
-            {
-              name: "Gaurav",
-              role: "Lead",
-              img: "/team/gaurav.jpg"
-            },
-            {
-              name: "Purvanshu",
-              role: "Lead",
-              img: "/team/purvanshu.jpg"
-            }
-          ]
+            { name: "Vanshita", role: "Lead", img: "/team/vanshita.jpg" },
+            { name: "Tanmay", role: "Lead", img: "/team/tanmay.jpg" },
+            { name: "Sejal", role: "Lead", img: "/team/sejal.jpg" },
+            { name: "Gaurav", role: "Lead", img: "/team/gaurav.jpg" },
+            { name: "Purvanshu", role: "Lead", img: "/team/purvanshu.jpg" },
+          ],
         },
         {
           name: "TECHNICAL TEAM",
           members: [
-            {
-              name: "Sejal",
-              role: "Lead",
-              img: "/team/sejal.jpg"
-            },
-            {
-              name: "Gaurav",
-              role: "Lead",
-              img: "/team/gaurav.jpg"
-            }
-          ]
+            { name: "Sejal", role: "Lead", img: "/team/sejal.jpg" },
+            { name: "Gaurav", role: "Lead", img: "/team/gaurav.jpg" },
+          ],
         },
         {
           name: "DESIGN TEAM",
-          members: [
-            {
-              name: "Suvansh",
-              role: "Lead",
-              img: "/team/suvansh.jpg"
-            }
-          ]
+          members: [{ name: "Suvansh", role: "Lead", img: "/team/suvansh.jpg" }],
         },
         {
           name: "OFFLINE MARKETING TEAM",
           members: [
-            {
-              name: "Molly",
-              role: "Lead",
-              img: "/team/molly.jpg"
-            },
-            {
-              name: "Yash",
-              role: "Lead",
-              img: "/team/yash.jpg"
-            }
-          ]
+            { name: "Molly", role: "Lead", img: "/team/molly.jpg" },
+            { name: "Yash", role: "Lead", img: "/team/yash.jpg" },
+          ],
         },
         {
           name: "CONTENT TEAM",
-          members: [
-            {
-              name: "Kavya",
-              role: "Lead",
-              img: "/team/kavya.jpg"
-            }
-          ]
-        }
+          members: [{ name: "Kavya", role: "Lead", img: "/team/kavya.jpg" }],
+        },
       ],
-      description: "Our talented team behind the event, working together to make it a success."
+      description: "Our talented team behind the event, working together to make it a success.",
     },
     moon: {
       name: "CONTACT US",
-      contacts: [
-        { type: "Email", value: "acm@bmu.edu.in", color: "#00aaff" },
-       
-      ],
+      contacts: [{ type: "Email", value: "acm@bmu.edu.in", color: "#00aaff" }],
       description: "Reach out to us for any inquiries or support.",
     },
     saturn: {
@@ -347,24 +239,21 @@ const Planets = () => {
         {
           name: "Balsamiq",
           logo: "/sponsors/balsamiq.png",
-          description:
-            "Wireframing tool that helps teams plan user interfaces quickly.",
+          description: "Wireframing tool that helps teams plan user interfaces quickly.",
           tier: "GOLD",
           color: "#ffaa00",
         },
         {
           name: "1Password",
           logo: "/sponsors/1password.png",
-          description:
-            "A secure password manager to protect your online accounts.",
+          description: "A secure password manager to protect your online accounts.",
           tier: "GOLD",
           color: "#ffaa00",
         },
         {
           name: "MLH",
           logo: "/sponsors/mlh.png",
-          description:
-            "Official student hackathon league supporting innovation and learning.",
+          description: "Official student hackathon league supporting innovation and learning.",
           tier: "SILVER",
           color: "#cccccc",
         },
@@ -1507,8 +1396,7 @@ const Planets = () => {
                   <div style={{ fontWeight: "bold", color: event.color }}>
                     {event.name}
                   </div>
-                  <div style={{ fontSize: "12px" }}>⏱ {event.time}</div><br />
-                  <div style={{ fontSize: "12px" }}>{event.date}</div>
+                  <div style={{ fontSize: "12px" }}>⏱ {event.time}</div>
                 </div>
               ))}
             </div>
@@ -1688,7 +1576,6 @@ const Planets = () => {
                   {selectedEvent.name}
                 </h2>
                 <p style={{ marginBottom: "10px" }}>⏱ {selectedEvent.time}</p>
-                <p style={{ marginBottom: "10px" }}> {selectedEvent.date}</p>
                 <p style={{ marginBottom: "10px" }}>
                   📍 {selectedEvent.location}
                 </p>
@@ -1855,7 +1742,42 @@ const Planets = () => {
                         {member.role}
                       </p>
 
-                      
+                      <div
+                        style={{
+                          display: "flex",
+                          gap: "15px",
+                          marginTop: "10px",
+                        }}
+                      >
+                        <a
+                          href={`https://linkedin.com/in/${member.linkedin}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          style={{
+                            color: "#00aaff",
+                            textDecoration: "none",
+                            display: "flex",
+                            alignItems: "center",
+                            gap: "5px",
+                          }}
+                        >
+                          <span style={{ fontSize: "20px" }}>🔗</span> LinkedIn
+                        </a>
+                        <a
+                          href={`https://github.com/${member.github}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          style={{
+                            color: "#ffffff",
+                            textDecoration: "none",
+                            display: "flex",
+                            alignItems: "center",
+                            gap: "5px",
+                          }}
+                        >
+                          <span style={{ fontSize: "20px" }}>🔗</span> GitHub
+                        </a>
+                      </div>
                     </div>
                   )
                 )}
@@ -2214,7 +2136,7 @@ const Planets = () => {
                   }}
                 >
                   <span style={{ color: "#00aaff", fontSize: "20px" }}>📱</span>
-                  <span style={{ color: "#ffffff" }}>+91 8826427240 </span>
+                  <span style={{ color: "#ffffff" }}>+91 88264 27240</span>
                 </div>
               </div>
 
@@ -2365,14 +2287,13 @@ const Planets = () => {
                 style={{ display: "flex", alignItems: "center", gap: "5px" }}
               >
                 <span>✉️</span>
-                <span>acm@bmu.edu.in</span>
+                <span >acm@bmu.edu.in</span>
               </div>
-              {/* <div
+              <div
                 style={{ display: "flex", alignItems: "center", gap: "5px" }}
               >
-                <span>📱</span>
-                <span>+1-555-0123</span>
-              </div> */}
+               
+              </div>
             </div>
           </div>
         </>
@@ -2631,7 +2552,7 @@ const Planets = () => {
                     marginBottom: "10px",
                   }}
                 >
-                  15+
+                  50+
                 </div>
                 <div style={{ fontSize: "0.9rem" }}>EVENTS & WORKSHOPS</div>
               </div>
@@ -2651,7 +2572,7 @@ const Planets = () => {
                     marginBottom: "10px",
                   }}
                 >
-                  600+
+                  1000+
                 </div>
                 <div style={{ fontSize: "0.9rem" }}>PARTICIPANTS</div>
               </div>
@@ -2671,7 +2592,7 @@ const Planets = () => {
                     marginBottom: "10px",
                   }}
                 >
-                  10+
+                  20+
                 </div>
                 <div style={{ fontSize: "0.9rem" }}>SPEAKERS</div>
               </div>
