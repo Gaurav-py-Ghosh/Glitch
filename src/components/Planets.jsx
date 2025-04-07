@@ -62,258 +62,168 @@ const Planets = () => {
       name: "Events",
       events: [
         {
-          name: "HACKATHON",
-          time: "10:00 - 18:00",
-          location: "MAIN HALL",
+          name: "HackBMU 7.0",
+          date: "2025-04-19 to 2025-04-20",
+          time: "10:00 AM - 6:00 PM",
+          location: "",
           color: "#00ff44",
-          description: "A coding marathon to solve real-world problems.",
+          description: "The flagship hackathon event to solve real-world problems.",
         },
         {
-          name: "WORKSHOPS",
-          time: "11:00 - 15:00",
+          name: "Emoji Explorer",
+          date: "2025-04-19",
+          time: "4:30 PM - 6:30 PM",
           location: "ROOM A & B",
           color: "#00aaff",
-          description: "Interactive sessions to learn new skills.",
+          description: "Explore creative coding through emoji-based challenges.",
         },
         {
-          name: "GUEST TALK",
-          time: "14:00 - 15:30",
+          name: "Duality Extended",
+          date: "2025-04-18",
+          time: "11:00 AM - 1:00 PM",
           location: "AUDITORIUM",
           color: "#ffaa00",
-          description: "Insights from industry leaders.",
+          description: "A unique event exploring dual perspectives in tech.",
         },
         {
-          name: "EXHIBITION",
-          time: "09:00 - 17:00",
+          name: "Bit-by-Bit",
+          date: "2025-04-19",
+          time: "7:00 PM - 9:00 PM",
           location: "EXHIBITION HALL",
           color: "#ff00aa",
-          description: "Showcasing innovative projects.",
+          description: "Showcasing innovative projects in digital art.",
         },
         {
-          name: "PRIZE CEREMONY",
-          time: "18:30 - 19:30",
+          name: "Dev Dash",
+          date: "2025-04-18",
+          time: "3:30 PM - 6:30 PM",
           location: "MAIN STAGE",
           color: "#aa00ff",
-          description: "Celebrating the winners.",
+          description: "Fast-paced development competition finale.",
         },
         {
-          name: "TECH QUIZ",
-          time: "12:00 - 13:00",
+          name: "Paint Off",
+          date: "2025-04-18",
+          time: "1:00 PM - 3:00 PM",
           location: "QUIZ ROOM",
           color: "#ff8800",
-          description: "Test your tech knowledge.",
+          description: "Creative digital art battle with tech tools.",
         },
         {
-          name: "ROBOTICS",
-          time: "16:00 - 17:00",
+          name: "Capture the Flag",
+          date: "2025-04-20",
+          time: "10:30 AM - 12:00 PM",
           location: "LAB 3",
           color: "#00ffaa",
-          description: "Robotics showcase and competition.",
+          description: "Cybersecurity challenge event.",
         },
         {
-          name: "AI DEMO",
-          time: "15:00 - 16:00",
+          name: "CodeSprint",
+          date: "2025-04-20",
+          time: "2:00 AM - 4:00 AM",
           location: "AI LAB",
           color: "#ff4444",
-          description: "Demonstration of AI capabilities.",
+          description: "Rapid coding competition against the clock.",
         },
         {
-          name: "CYBERSECURITY",
-          time: "13:00 - 14:00",
+          name: "TechTrap",
+          date: "2025-04-19",
+          time: "10:00 PM - 12:30 AM",
           location: "ROOM C",
           color: "#4444ff",
-          description: "Learn about cybersecurity trends.",
+          description: "Puzzle-solving event with technical twists.",
         },
         {
-          name: "NETWORKING",
-          time: "17:00 - 18:00",
+          name: "Horizon Talks",
+          date: "2025-04-19",
+          time: "3:00 PM - 4:00 PM",
           location: "LOUNGE",
           color: "#88ff88",
-          description: "Connect with peers and experts.",
+          description: "Visionary talks about future technologies.",
         },
       ],
-      description:
-        "Central control hub for all Tech Fest activities and events.",
+      description: "Central control hub for all Tech Fest activities and events.",
     },
     blackhole: {
       name: "MEET THE TEAM",
       teams: [
         {
-          name: "ORGANIZING TEAM",
+          name: "CORE TEAM",
           members: [
-            {
-              name: "John Doe",
-              role: "Lead Developer",
-              linkedin: "johndoe",
-              github: "johndoe",
-              img: "/team/john.jpg",
-            },
-            {
-              name: "Jane Smith",
-              role: "UI/UX Designer",
-              linkedin: "janesmith",
-              github: "janesmith",
-              img: "/team/jane.jpg",
-            },
-            {
-              name: "Mike Wilson",
-              role: "Project Manager",
-              linkedin: "mikewilson",
-              github: "mikewilson",
-              img: "/team/mike.jpg",
-            },
-            {
-              name: "Sarah Johnson",
-              role: "Event Coordinator",
-              linkedin: "sarahj",
-              github: "sarahj",
-              img: "/team/sarah.jpg",
-            },
+            { name: "Aditya Rastogi", role: "Convenor", img: "/team/aditya.jpg" },
+            { name: "Shrey Jaiswal", role: "Co-Convenor", img: "/team/shreyj.jpg" },
+            { name: "Prakhar Srivastava", role: "Core", img: "/team/prakhar.jpg" },
+            { name: "Divyansh Verma", role: "Core", img: "/team/divyansh.jpg" },
+            { name: "Guneet Chawal", role: "Core", img: "/team/guneet.jpg" },
+            { name: "Ananya Aggarwal", role: "Core", img: "/team/ananya.jpg" },
           ],
         },
         {
-          name: "TECH TEAM",
+          name: "SPONSORSHIP TEAM",
           members: [
-            {
-              name: "Alex Chen",
-              role: "Frontend Lead",
-              linkedin: "alexchen",
-              github: "alexchen",
-              img: "/team/alex.jpg",
-            },
-            {
-              name: "David Kim",
-              role: "Backend Lead",
-              linkedin: "davidkim",
-              github: "davidkim",
-              img: "/team/david.jpg",
-            },
-            {
-              name: "Emma Wilson",
-              role: "3D Artist",
-              linkedin: "emmaw",
-              github: "emmaw",
-              img: "/team/emma.jpg",
-            },
-            {
-              name: "Ryan Park",
-              role: "DevOps",
-              linkedin: "ryanp",
-              github: "ryanp",
-              img: "/team/ryan.jpg",
-            },
+            { name: "Purvanshu", role: "Lead", img: "/team/purvanshu.jpg" },
+            { name: "Shrey", role: "Lead", img: "/team/shrey.jpg" },
+          ],
+        },
+        {
+          name: "OPERATIONS TEAM",
+          members: [
+            { name: "Vanshita", role: "Lead", img: "/team/vanshita.jpg" },
+            { name: "Tanmay", role: "Lead", img: "/team/tanmay.jpg" },
+          ],
+        },
+        {
+          name: "SOCIAL MEDIA TEAM",
+          members: [
+            { name: "Shreya", role: "Lead", img: "/team/shreya.jpg" },
+            { name: "Vanshika", role: "Lead", img: "/team/vanshika.jpg" },
+          ],
+        },
+        {
+          name: "ENTRY MANAGEMENT TEAM",
+          members: [
+            { name: "Akriti", role: "Lead", img: "/team/akriti.jpg" },
+            { name: "Kavya", role: "Lead", img: "/team/kavya.jpg" },
+          ],
+        },
+        {
+          name: "DECOR TEAM",
+          members: [
+            { name: "Vanshita", role: "Lead", img: "/team/vanshita.jpg" },
+            { name: "Tanmay", role: "Lead", img: "/team/tanmay.jpg" },
+            { name: "Sejal", role: "Lead", img: "/team/sejal.jpg" },
+            { name: "Gaurav", role: "Lead", img: "/team/gaurav.jpg" },
+            { name: "Purvanshu", role: "Lead", img: "/team/purvanshu.jpg" },
+          ],
+        },
+        {
+          name: "TECHNICAL TEAM",
+          members: [
+            { name: "Sejal", role: "Lead", img: "/team/sejal.jpg" },
+            { name: "Gaurav", role: "Lead", img: "/team/gaurav.jpg" },
           ],
         },
         {
           name: "DESIGN TEAM",
+          members: [{ name: "Suvansh", role: "Lead", img: "/team/suvansh.jpg" }],
+        },
+        {
+          name: "OFFLINE MARKETING TEAM",
           members: [
-            {
-              name: "Lisa Wong",
-              role: "Creative Director",
-              linkedin: "lisaw",
-              github: "lisaw",
-              img: "/team/lisa.jpg",
-            },
-            {
-              name: "Tom Lee",
-              role: "UI Designer",
-              linkedin: "tomlee",
-              github: "tomlee",
-              img: "/team/tom.jpg",
-            },
-            {
-              name: "Olivia Brown",
-              role: "Graphic Designer",
-              linkedin: "oliviab",
-              github: "oliviab",
-              img: "/team/olivia.jpg",
-            },
-            {
-              name: "James Wilson",
-              role: "UX Researcher",
-              linkedin: "jamesw",
-              github: "jamesw",
-              img: "/team/james.jpg",
-            },
+            { name: "Molly", role: "Lead", img: "/team/molly.jpg" },
+            { name: "Yash", role: "Lead", img: "/team/yash.jpg" },
           ],
         },
         {
-          name: "MARKETING TEAM",
-          members: [
-            {
-              name: "Sophia Garcia",
-              role: "Marketing Head",
-              linkedin: "sophiag",
-              github: "sophiag",
-              img: "/team/sophia.jpg",
-            },
-            {
-              name: "Daniel Martinez",
-              role: "Social Media",
-              linkedin: "danielm",
-              github: "danielm",
-              img: "/team/daniel.jpg",
-            },
-            {
-              name: "Ava Robinson",
-              role: "Content Writer",
-              linkedin: "avar",
-              github: "avar",
-              img: "/team/ava.jpg",
-            },
-            {
-              name: "Noah Clark",
-              role: "PR Manager",
-              linkedin: "noahc",
-              github: "noahc",
-              img: "/team/noah.jpg",
-            },
-          ],
-        },
-        {
-          name: "LOGISTICS TEAM",
-          members: [
-            {
-              name: "Mia Hernandez",
-              role: "Operations Head",
-              linkedin: "miah",
-              github: "miah",
-              img: "/team/mia.jpg",
-            },
-            {
-              name: "Lucas White",
-              role: "Venue Coordinator",
-              linkedin: "lucasw",
-              github: "lucasw",
-              img: "/team/lucas.jpg",
-            },
-            {
-              name: "Isabella Young",
-              role: "Volunteer Manager",
-              linkedin: "isabellay",
-              github: "isabellay",
-              img: "/team/isabella.jpg",
-            },
-            {
-              name: "Ethan King",
-              role: "Equipment Manager",
-              linkedin: "ethank",
-              github: "ethank",
-              img: "/team/ethan.jpg",
-            },
-          ],
+          name: "CONTENT TEAM",
+          members: [{ name: "Kavya", role: "Lead", img: "/team/kavya.jpg" }],
         },
       ],
-      description:
-        "Our talented team behind the tech fest, bringing innovation to life.",
+      description: "Our talented team behind the event, working together to make it a success.",
     },
     moon: {
       name: "CONTACT US",
-      contacts: [
-        { type: "Email", value: "contact@techfest.com", color: "#00aaff" },
-        { type: "Phone", value: "+1-555-0123", color: "#00ff44" },
-        { type: "Address", value: "123 Tech Street", color: "#ffaa00" },
-      ],
+      contacts: [{ type: "Email", value: "acm@bmu.edu.in", color: "#00aaff" }],
       description: "Reach out to us for any inquiries or support.",
     },
     saturn: {
@@ -329,24 +239,21 @@ const Planets = () => {
         {
           name: "Balsamiq",
           logo: "/sponsors/balsamiq.png",
-          description:
-            "Wireframing tool that helps teams plan user interfaces quickly.",
+          description: "Wireframing tool that helps teams plan user interfaces quickly.",
           tier: "GOLD",
           color: "#ffaa00",
         },
         {
           name: "1Password",
           logo: "/sponsors/1password.png",
-          description:
-            "A secure password manager to protect your online accounts.",
+          description: "A secure password manager to protect your online accounts.",
           tier: "GOLD",
           color: "#ffaa00",
         },
         {
           name: "MLH",
           logo: "/sponsors/mlh.png",
-          description:
-            "Official student hackathon league supporting innovation and learning.",
+          description: "Official student hackathon league supporting innovation and learning.",
           tier: "SILVER",
           color: "#cccccc",
         },
@@ -390,8 +297,18 @@ const Planets = () => {
   const [selectedTeam, setSelectedTeam] = useState(0); // Default to the first team
   const [selectedEvent, setSelectedEvent] = useState(null);
   const [showOrientationPrompt, setShowOrientationPrompt] = useState(false);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768 || window.innerHeight <= 500);
 
-  const isMobile = window.innerWidth <= 768; // Adjust the width threshold as needed
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768 || window.innerHeight <= 500);
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   const handleObjectClick = (objectKey) => {
     if (isTraveling || focusedObject) return;
@@ -2218,7 +2135,7 @@ const Planets = () => {
                   }}
                 >
                   <span style={{ color: "#00aaff", fontSize: "20px" }}>✉️</span>
-                  <span style={{ color: "#ffffff" }}>aditya@techfest.com</span>
+                  <span style={{ color: "#ffffff" }}>aditya.rastogi.22cse@bmu.edu.in</span>
                 </div>
 
                 <div
@@ -2229,7 +2146,7 @@ const Planets = () => {
                   }}
                 >
                   <span style={{ color: "#00aaff", fontSize: "20px" }}>📱</span>
-                  <span style={{ color: "#ffffff" }}>+91 98765 43210</span>
+                  <span style={{ color: "#ffffff" }}>+91 88264 27240</span>
                 </div>
               </div>
 
@@ -2313,7 +2230,7 @@ const Planets = () => {
                   }}
                 >
                   <span style={{ color: "#00aaff", fontSize: "20px" }}>✉️</span>
-                  <span style={{ color: "#ffffff" }}>shrey@techfest.com</span>
+                  <span style={{ color: "#ffffff" }}>shrey.jaiswal.23cse@bmu.edu.in</span>
                 </div>
 
                 <div
@@ -2324,7 +2241,7 @@ const Planets = () => {
                   }}
                 >
                   <span style={{ color: "#00aaff", fontSize: "20px" }}>📱</span>
-                  <span style={{ color: "#ffffff" }}>+91 98765 43211</span>
+                  <span style={{ color: "#ffffff" }}>+91 88823 45939</span>
                 </div>
               </div>
 
@@ -2380,13 +2297,12 @@ const Planets = () => {
                 style={{ display: "flex", alignItems: "center", gap: "5px" }}
               >
                 <span>✉️</span>
-                <span>contact@techfest.com</span>
+                <span >acm@bmu.edu.in</span>
               </div>
               <div
                 style={{ display: "flex", alignItems: "center", gap: "5px" }}
               >
-                <span>📱</span>
-                <span>+1-555-0123</span>
+               
               </div>
             </div>
           </div>
@@ -2934,7 +2850,7 @@ const Planets = () => {
   );
 };
 
-const Clock = () => {
+const Clock = ({ isMobile }) => {
   const [time, setTime] = useState(new Date());
 
   useEffect(() => {
@@ -2952,11 +2868,12 @@ const Clock = () => {
   const seconds = time.getSeconds().toString().padStart(2, "0");
 
   return (
-    <div style={{ display: "flex", gap: "5px", alignItems: "center" }}>
+    <div style={{ display: "flex", gap: isMobile ? "3px" : "5px", alignItems: "center" }}>
       <div
         style={{
           background: "rgba(0,50,80,0.5)",
-          padding: "5px",
+          padding: isMobile ? "3px" : "5px",
+          fontSize: isMobile ? "12px" : "14px",
           borderRadius: "3px",
           border: "1px solid #00aaff",
         }}
@@ -2967,7 +2884,8 @@ const Clock = () => {
       <div
         style={{
           background: "rgba(0,50,80,0.5)",
-          padding: "5px",
+          padding: isMobile ? "3px" : "5px",
+          fontSize: isMobile ? "12px" : "14px",
           borderRadius: "3px",
           border: "1px solid #00aaff",
         }}
@@ -2978,26 +2896,14 @@ const Clock = () => {
       <div
         style={{
           background: "rgba(0,50,80,0.5)",
-          padding: "5px",
+          padding: isMobile ? "3px" : "5px",
+          fontSize: isMobile ? "12px" : "14px",
           borderRadius: "3px",
           border: "1px solid #00aaff",
         }}
       >
         {seconds}
       </div>
-
-      <style jsx>{`
-        @keyframes blink {
-          0%,
-          49% {
-            opacity: 1;
-          }
-          50%,
-          100% {
-            opacity: 0.5;
-          }
-        }
-      `}</style>
     </div>
   );
 };
