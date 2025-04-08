@@ -7,8 +7,7 @@ import { RenderPass } from "three/examples/jsm/postprocessing/RenderPass.js";
 import { OutlinePass } from "three/examples/jsm/postprocessing/OutlinePass.js";
 import { UnrealBloomPass } from "three/examples/jsm/postprocessing/UnrealBloomPass.js";
 import getStarfield from "./Starfield";
-import Navbar from "./Navbar";
-import BlackHoleOverlay from "./BlackHoleOverlay";
+import Navbar from "./Navbar";// import BlackHoleOverlay from "./BlackHoleOverlay";
 
 // ErrorBoundary Component
 class ErrorBoundary extends React.Component {
