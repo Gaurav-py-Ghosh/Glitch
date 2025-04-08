@@ -149,73 +149,73 @@ const Planets = () => {
         {
           name: "CORE TEAM",
           members: [
-            { name: "Aditya Rastogi", role: "Convenor", img: "public/images/adityarast.webp" },
-            { name: "Shrey Jaiswal", role: "Co-Convenor", img: "public/images/shrey.webp" },
-            { name: "Prakhar Srivastava", role: "Core", img: "public/images/prakhar.webp" },
-            { name: "Divyansh Verma", role: "Core", img: "public/images/divyansh.webp" },
-            { name: "Guneet Chawal", role: "Core", img: "public/images/guneet.webp" },
-            { name: "Ananya Aggarwal", role: "Core", img: "public/images/ananya.webp" },
+            { name: "Aditya Rastogi", role: "Convenor", img: "/images/adityarast.webp" },
+            { name: "Shrey Jaiswal", role: "Co-Convenor", img: "/images/shrey.webp" },
+            { name: "Prakhar Srivastava", role: "Core", img: "/images/prakhar.webp" },
+            { name: "Divyansh Verma", role: "Core", img: "/images/divyansh.webp" },
+            { name: "Guneet Chawal", role: "Core", img: "/images/Guneet.webp" },
+            { name: "Ananya Aggarwal", role: "Core", img: "/images/Ananya.webp" },
           ],
         },
         {
           name: "SPONSORSHIP TEAM",
           members: [
-            { name: "Purvanshu", role: "Lead", img: "public/images/purvanshu.webp" },
-            { name: "Shrey", role: "Lead", img: "public/images/shrey.webp" },
+            { name: "Purvanshu", role: "Lead", img: "/images/purvanshu.webp" },
+            { name: "Shrey", role: "Lead", img: "/images/shrey.webp" },
           ],
         },
         {
           name: "OPERATIONS TEAM",
           members: [
-            { name: "Vanshita", role: "Lead", img: "public/images/vanshita.webp" },
-            { name: "Tanmay", role: "Lead", img: "public/images/tanmay.webp" },
+            { name: "Vanshita", role: "Lead", img: "/images/vanshita.webp" },
+            { name: "Tanmay", role: "Lead", img: "/images/tanmay.webp" },
           ],
         },
         {
           name: "SOCIAL MEDIA TEAM",
           members: [
-            { name: "Shreya", role: "Lead", img: "public/images/shreya.webp" },
-            { name: "Vanshika", role: "Lead", img: "public/images/vanshika.webp" },
+            { name: "Shreya", role: "Lead", img: "/images/shreya.webp" },
+            { name: "Vanshika", role: "Lead", img: "/images/vanshika.webp" },
           ],
         },
         {
           name: "ENTRY MANAGEMENT TEAM",
           members: [
-            { name: "Akriti", role: "Lead", img: "public/images/akriti.webp" },
-            { name: "Kavya", role: "Lead", img: "public/images/kavya.webp" },
+            { name: "Akriti", role: "Lead", img: "/images/akriti.webp" },
+            { name: "Kavya", role: "Lead", img: "/images/kavya.webp" },
           ],
         },
         {
           name: "DECOR TEAM",
           members: [
-            { name: "Vanshita", role: "Lead", img: "public/images/vanshita.webp" },
-            { name: "Tanmay", role: "Lead", img: "public/images/tanmay.webp" },
-            { name: "Sejal", role: "Lead", img: "public/images/sejal.webp" },
-            { name: "Gaurav", role: "Lead", img: "public/images/gaurav.webp" },
-            { name: "Purvanshu", role: "Lead", img: "public/images/purvanshu.webp" },
+            { name: "Vanshita", role: "Lead", img: "/images/vanshita.webp" },
+            { name: "Tanmay", role: "Lead", img: "/images/tanmay.webp" },
+            { name: "Sejal", role: "Lead", img: "/images/sejal.webp" },
+            { name: "Gaurav", role: "Lead", img: "/images/gaurav.webp" },
+            { name: "Purvanshu", role: "Lead", img: "/images/purvanshu.webp" },
           ],
         },
         {
           name: "TECHNICAL TEAM",
           members: [
-            { name: "Sejal", role: "Lead", img: "public/images/sejal.webp" },
-            { name: "Gaurav", role: "Lead", img: "public/images/gaurav.webp" },
+            { name: "Sejal", role: "Lead", img: "/images/sejal.webp" },
+            { name: "Gaurav", role: "Lead", img: "/images/gaurav.webp" },
           ],
         },
         {
           name: "DESIGN TEAM",
-          members: [{ name: "Suvansh", role: "Lead", img: "public/images/suvansh.webp" }],
+          members: [{ name: "Suvansh", role: "Lead", img: "/images/suvansh.webp" }],
         },
         {
           name: "OFFLINE MARKETING TEAM",
           members: [
-            { name: "Molly", role: "Lead", img: "public/images/molly.webp" },
-            { name: "Yash", role: "Lead", img: "public/images/yash.webp" },
+            { name: "Molly", role: "Lead", img: "/images/molly.webp" },
+            { name: "Yash", role: "Lead", img: "/images/yash.webp" },
           ],
         },
         {
           name: "CONTENT TEAM",
-          members: [{ name: "Kavya", role: "Lead", img: "public/images/kavya.webp" }],
+          members: [{ name: "Kavya", role: "Lead", img: "/images/kavya.webp" }],
         },
       ],
       description: "Our talented team behind the event, working together to make it a success.",
@@ -2093,7 +2093,7 @@ const Planets = () => {
                   height: "120px",
                   borderRadius: "50%",
                   border: "2px solid #00ffff",
-                  background: "url('/team/aditya.jpg') center/cover",
+                  background: "url('/images/adityarast.webp') center/cover",
                   marginBottom: "20px",
                   boxShadow: "0 0 20px rgba(0,255,255,0.5)",
                 }}
@@ -2188,7 +2188,7 @@ const Planets = () => {
                   height: "120px",
                   borderRadius: "50%",
                   border: "2px solid #00ffff",
-                  background: "url('public/images/shrey.webp') center/cover",
+                  background: "url('/images/shrey.webp') center/cover",
                   marginBottom: "20px",
                   boxShadow: "0 0 20px rgba(0,255,255,0.5)",
                 }}
