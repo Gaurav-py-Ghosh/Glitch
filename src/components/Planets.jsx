@@ -8,7 +8,6 @@ import { OutlinePass } from "three/examples/jsm/postprocessing/OutlinePass.js";
 import { UnrealBloomPass } from "three/examples/jsm/postprocessing/UnrealBloomPass.js";
 import getStarfield from "./Starfield";
 import Navbar from "./Navbar";// import BlackHoleOverlay from "./BlackHoleOverlay";
-import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader';
 
 // ErrorBoundary Component
 class ErrorBoundary extends React.Component {
@@ -538,12 +537,7 @@ const Planets = () => {
     objects.current.earth = bigPlanet;
 
     const gltfLoader = new GLTFLoader();
-    const dracoLoader = new DRACOLoader();
-
-    dracoLoader.setDecoderPath('https://www.gstatic.com/draco/v1/decoders/'); 
-gltfLoader.setDRACOLoader(dracoLoader);
-    
-    gltfLoader.load("/models/spaceship-compressed.glb", (gltf) => {
+    gltfLoader.load("/models/spaceship.glb", (gltf) => {
       const spaceship = gltf.scene;
       spaceship.scale.set(0.05, 0.05, 0.05);
       spaceship.position.set(-80, 30, -58);
@@ -576,7 +570,7 @@ gltfLoader.setDRACOLoader(dracoLoader);
       objects.current.spaceship = spaceship;
     });
 
-    gltfLoader.load("/models/blackhole1-compressed.glb", (gltf) => {
+    gltfLoader.load("/models/blackhole1.glb", (gltf) => {
       const blackhole = gltf.scene;
       blackhole.scale.set(10, 10, 10);
       blackhole.position.set(160, 110, -58);
@@ -627,7 +621,7 @@ gltfLoader.setDRACOLoader(dracoLoader);
       objects.current.blackhole = blackhole;
     });
 
-    gltfLoader.load("/models/moon-compressed.glb", (gltf) => {
+    gltfLoader.load("/models/moon.glb", (gltf) => {
       const moon = gltf.scene;
       moon.scale.set(5, 5, 5);
       moon.position.set(-160, 100, -35);
@@ -648,7 +642,7 @@ gltfLoader.setDRACOLoader(dracoLoader);
       objects.current.moon = moon;
     });
 
-    gltfLoader.load("/models/saturn-compressed.glb", (gltf) => {
+    gltfLoader.load("/models/saturn.glb", (gltf) => {
       const saturn = gltf.scene;
       saturn.scale.set(0.1, 0.1, 0.1);
       saturn.position.set(50, 50, -60);
@@ -677,7 +671,7 @@ gltfLoader.setDRACOLoader(dracoLoader);
       objects.current.saturn = saturn;
     });
 
-    gltfLoader.load("/models/mars-compressed.glb", (gltf) => {
+    gltfLoader.load("/models/mars.glb", (gltf) => {
       const mars = gltf.scene;
       mars.scale.set(0.1, 0.1, 0.1);
       mars.position.set(160, 35, -65);
@@ -913,48 +907,45 @@ gltfLoader.setDRACOLoader(dracoLoader);
     <div
       ref={mountRef}
       style={{ width: "100vw", height: "100vh", position: "relative" }}
-    >
-      {!focusedObject && (
+    >{!focusedObject && (
+      <div
+        style={{
+          position: "absolute",
+          top: isMobile ? "100px" : "200px", // Changed from fixed 200px to 100px for mobile
+          left: "50%",
+          transform: "translateX(-50%)",
+          zIndex: 10,
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          width: "100%",
+        }}
+      >
+        <img
+          src="/images/logo.png"
+          alt="Mission Logo"
+          style={{
+            height: isMobile ? "80px" : "120px", // Reduced from 120px to 80px for mobile
+            objectFit: "contain",
+            marginBottom: "10px",
+          }}
+        />
         <div
           style={{
-            position: "absolute",
-            top: "200px",
-            left: "50%",
-            transform: "translateX(-50%)",
-            zIndex: 10,
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            width: "100%",
+            color: "#ffffff",
+            fontFamily: "Orbitron",
+            padding: "5px 10px",
+            textAlign: "center",
+            fontSize: isMobile ? "36px" : "48px", // Reduced from 48px to 36px for mobile
+            backdropFilter: "blur(4px)",
+            fontWeight: "bold",
+            opacity: 0.8,
           }}
         >
-          <img
-            src="/images/logo.png"
-            alt="Mission Logo"
-            style={{
-              height: "120px", // Increased from "80px" to "120px"
-              objectFit: "contain",
-              marginBottom: "10px",
-            }}
-          />
-          <div
-            style={{
-              color: "#ffffff",
-              fontFamily: "Orbitron",
-              padding: "5px 10px",
-              textAlign: "center",
-              fontSize: "48px",
-              backdropFilter: "blur(4px)",
-              fontWeight: "bold",
-              // boxShadow: "0 0 10px rgb(255, 255, 255)",
-              opacity: 0.8, // Reduced opacity
-            }}
-          >
-            GLITCH
-          </div>
+          GLITCH
         </div>
-      )}
-
+      </div>
+    )}
       {!focusedObject && (
         <>
           {Object.entries(objects.current).map(([key, obj]) => {
@@ -1235,117 +1226,115 @@ gltfLoader.setDRACOLoader(dracoLoader);
           </div>
 
           <a
-            href="https://unstop.com/college-fests/glitch-by-acm-bmu-student-chapter-bml-munjal-university-bmu-gurgaon-355060"
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{
-              position: "absolute",
-              bottom: isMobile ? "50px" : "100px",
-              left: isMobile ? "50%" : "50%",
-              transform: isMobile ? "translateX(-50%)" : "none",
-              zIndex: 10,
-              textDecoration: "none",
-            }}
-          >
-            <div
-              style={{
-                color: "#00ffff",
-                background: "rgba(0,20,40,0.7)",
-                border: "2px solid #00aaff",
-                padding: isMobile ? "10px 20px" : "15px 30px",
-                borderRadius: "8px",
-                fontFamily: "monospace",
-                fontSize: isMobile ? "16px" : "18px",
-                boxShadow: "0 0 30px rgba(0,170,255,0.7)",
-                cursor: "pointer",
-                textAlign: "center",
-                width: isMobile ? "240px" : "280px",
-                backdropFilter: "blur(5px)",
-                position: "relative",
-                overflow: "hidden",
-                animation: "pulseGlow 2s infinite alternate",
-                transformStyle: "preserve-3d",
-                perspective: "1000px",
-              }}
-            >
-              <div
-                style={{
-                  position: "absolute",
-                  top: 0,
-                  left: 0,
-                  right: 0,
-                  height: "100%",
-                  background:
-                    "linear-gradient(135deg, rgba(0,255,255,0.1) 0%, rgba(0,170,255,0.3) 50%, rgba(0,255,255,0.1) 100%)",
-                  animation: "hologramScan 4s linear infinite",
-                }}
-              ></div>
-              <div
-                style={{
-                  position: "absolute",
-                  top: 0,
-                  left: 0,
-                  right: 0,
-                  height: "2px",
-                  background:
-                    "linear-gradient(90deg, transparent, #00ffff, transparent)",
-                  animation: "hologramLine 3s linear infinite",
-                  boxShadow: "0 0 10px #00ffff",
-                }}
-              ></div>
+  href="https://unstop.com/college-fests/glitch-by-acm-bmu-student-chapter-bml-munjal-university-bmu-gurgaon-355060"
+  target="_blank"
+  rel="noopener noreferrer"
+  style={{
+    position: "absolute",
+    bottom: isMobile ? "50px" : "100px",
+    left: isMobile ? "60%" : "50%", // Shifted to 55% for desktop
+    transform: isMobile ? "translateX(-50%)" : "none",
+    zIndex: 10,
+    textDecoration: "none",
+  }}
+>
+  <div
+    style={{
+      color: "#00ffff",
+      background: "rgba(0,20,40,0.7)",
+      border: "2px solid #00aaff",
+      padding: isMobile ? "8px 16px" : "10px 20px", // Reduced padding
+      borderRadius: "8px",
+      fontFamily: "monospace",
+      fontSize: isMobile ? "14px" : "16px", // Reduced font size
+      boxShadow: "0 0 20px rgba(0,170,255,0.7)",
+      cursor: "pointer",
+      textAlign: "center",
+      width: isMobile ? "200px" : "220px", // Reduced width
+      backdropFilter: "blur(5px)",
+      position: "relative",
+      overflow: "hidden",
+      animation: "pulseGlow 2s infinite alternate",
+    }}
+  >
+    <div
+      style={{
+        position: "absolute",
+        top: 0,
+        left: 0,
+        right: 0,
+        height: "100%",
+        background:
+          "linear-gradient(135deg, rgba(0,255,255,0.1) 0%, rgba(0,170,255,0.3) 50%, rgba(0,255,255,0.1) 100%)",
+        animation: "hologramScan 4s linear infinite",
+      }}
+    ></div>
+    <div
+      style={{
+        position: "absolute",
+        top: 0,
+        left: 0,
+        right: 0,
+        height: "2px",
+        background:
+          "linear-gradient(90deg, transparent, #00ffff, transparent)",
+        animation: "hologramLine 3s linear infinite",
+        boxShadow: "0 0 10px #00ffff",
+      }}
+    ></div>
 
-              <div
-                style={{
-                  position: "relative",
-                  zIndex: 2,
-                  textShadow: "0 0 10px #00aaff",
-                }}
-              >
-                <div
-                  style={{
-                    fontWeight: "bold",
-                    color: "#00ffaa",
-                    fontSize: isMobile ? "20px" : "22px",
-                    marginBottom: "5px",
-                    letterSpacing: "1px",
-                  }}
-                >
-                  REGISTER NOW
-                </div>
-                <div
-                  style={{
-                    fontSize: isMobile ? "12px" : "14px",
-                    marginTop: "5px",
-                    color: "#ffffff",
-                  }}
-                >
-                  GLITCH 2025 · APRIL 18-20
-                </div>
-                <div
-                  style={{
-                    fontSize: isMobile ? "10px" : "12px",
-                    marginTop: "8px",
-                    color: "#00ffff",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    gap: "5px",
-                  }}
-                >
-                  <span style={{ animation: "blink 1.5s infinite" }}>▼</span>
-                  CLICK TO BEGIN JOURNEY
-                  <span
-                    style={{
-                      animation: "blink 1.5s infinite",
-                      animationDelay: "0.5s",
-                    }}
-                  >
-                    ▼
-                  </span>
-                </div>
-              </div>
-            </div>
-          </a>
+    <div
+      style={{
+        position: "relative",
+        zIndex: 2,
+        textShadow: "0 0 10px #00aaff",
+      }}
+    >
+      <div
+        style={{
+          fontWeight: "bold",
+          color: "#00ffaa",
+          fontSize: isMobile ? "16px" : "18px", // Reduced font size
+          marginBottom: "5px",
+          letterSpacing: "1px",
+        }}
+      >
+        REGISTER NOW
+      </div>
+      <div
+        style={{
+          fontSize: isMobile ? "10px" : "12px", // Reduced font size
+          marginTop: "5px",
+          color: "#ffffff",
+        }}
+      >
+        GLITCH 2025 · APRIL 18-20
+      </div>
+      <div
+        style={{
+          fontSize: isMobile ? "8px" : "10px", // Reduced font size
+          marginTop: "5px",
+          color: "#00ffff",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          gap: "3px",
+        }}
+      >
+        <span style={{ animation: "blink 1.5s infinite" }}>▼</span>
+        CLICK TO BEGIN
+        <span
+          style={{
+            animation: "blink 1.5s infinite",
+            animationDelay: "0.5s",
+          }}
+        >
+          ▼
+        </span>
+      </div>
+    </div>
+  </div>
+</a>
         </>
       )}
 
@@ -1601,218 +1590,290 @@ gltfLoader.setDRACOLoader(dracoLoader);
         </>
       )}
 
-      {focusedObject === "blackhole" && (
-        <>
+{focusedObject === "blackhole" && (
+  <>
+    <div
+      style={{
+        position: "absolute",
+        top: "20px",
+        left: "20px",
+        zIndex: 1000,
+        color: "#00ffff",
+        background: "rgba(0,10,20,0.7)",
+        border: "1px solid #00aaff",
+        padding: "10px 15px",
+        borderRadius: "4px",
+        cursor: "pointer",
+        fontFamily: "monospace",
+        backdropFilter: "blur(4px)",
+        boxShadow: "0 0 10px rgba(0,170,255,0.5)",
+      }}
+      onClick={handleBackClick}
+    >
+      ← BACK TO SYSTEM VIEW
+    </div>
+
+    {/* Overlay */}
+    <div
+      style={{
+        position: "absolute",
+        top: 0,
+        left: 0,
+        width: "100%",
+        height: "100%",
+        background: "rgba(0,0,0,0.7)",
+        backdropFilter: "blur(5px)",
+        zIndex: 998,
+      }}
+    ></div>
+
+    {/* Team Selection */}
+    {isMobile ? (
+      <div
+        style={{
+          position: "absolute",
+          top: "20px",
+          left: "50%",
+          transform: "translateX(-50%)",
+          zIndex: 1000,
+          width: "80%",
+          maxWidth: "300px",
+        }}
+      >
+        <div
+          style={{
+            position: "relative",
+            width: "100%",
+          }}
+        >
+          <select
+            value={selectedTeam !== null ? selectedTeam : ""}
+            onChange={(e) => setSelectedTeam(parseInt(e.target.value))}
+            style={{
+              width: "100%",
+              padding: "12px",
+              background: "rgba(0,20,40,0.7)",
+              border: "2px solid #00aaff",
+              borderRadius: "6px",
+              color: "#00ffff",
+              fontFamily: "monospace",
+              fontSize: "16px",
+              backdropFilter: "blur(4px)",
+              appearance: "none",
+              textAlign: "center",
+              cursor: "pointer",
+              boxShadow: "0 0 10px rgba(0,170,255,0.3)",
+            }}
+          >
+            <option value="" disabled>
+              ▼ SELECT TEAM ▼
+            </option>
+            {objectData.blackhole.teams.map((team, index) => (
+              <option key={index} value={index}>
+                {team.name}
+              </option>
+            ))}
+          </select>
           <div
             style={{
               position: "absolute",
-              top: "20px",
-              left: "20px",
-              zIndex: 1000,
+              right: "15px",
+              top: "50%",
+              transform: "translateY(-50%)",
+              pointerEvents: "none",
               color: "#00ffff",
-              background: "rgba(0,10,20,0.7)",
-              border: "1px solid #00aaff",
+            }}
+          >
+            ▼
+          </div>
+        </div>
+      </div>
+    ) : (
+      // Desktop Team Navigation
+      <div
+        style={{
+          position: "absolute",
+          top: "20px",
+          left: "50%",
+          transform: "translateX(-50%)",
+          zIndex: 1000,
+          maxWidth: "90vw",
+          display: "flex",
+          flexWrap: "wrap",
+          justifyContent: "center",
+          gap: "10px",
+          padding: "10px",
+        }}
+      >
+        {objectData.blackhole.teams.map((team, index) => (
+          <div
+            key={index}
+            style={{
               padding: "10px 15px",
+              background:
+                selectedTeam === index
+                  ? "rgba(0,170,255,0.3)"
+                  : "rgba(0,50,80,0.3)",
+              border: `1px solid ${
+                selectedTeam === index ? "#00ffff" : "#00aaff"
+              }`,
               borderRadius: "4px",
               cursor: "pointer",
+              color: selectedTeam === index ? "#00ffff" : "#ffffff",
               fontFamily: "monospace",
+              transition: "all 0.3s",
               backdropFilter: "blur(4px)",
-              boxShadow: "0 0 10px rgba(0,170,255,0.5)",
+              flexShrink: 0,
             }}
-            onClick={handleBackClick}
+            onClick={() => setSelectedTeam(index)}
           >
-            ← BACK TO SYSTEM VIEW
+            {team.name}
           </div>
+        ))}
+      </div>
+    )}
 
-          {/* Overlay */}
-          <div
-            style={{
-              position: "absolute",
-              top: 0,
-              left: 0,
-              width: "100%",
-              height: "100%",
-              background: "rgba(0,0,0,0.7)",
-              backdropFilter: "blur(5px)",
-              zIndex: 998,
-            }}
-          ></div>
+    {/* Team Display */}
+    <div
+      style={{
+        position: "absolute",
+        top: isMobile ? "80px" : "50%",
+        left: "50%",
+        transform: isMobile ? "translateX(-50%)" : "translate(-50%, -50%)",
+        width: isMobile ? "90%" : "80%",
+        maxHeight: isMobile ? "calc(100vh - 120px)" : "70vh",
+        overflowY: "auto",
+        padding: "20px",
+        zIndex: 999,
+        display: "grid",
+        gridTemplateColumns: isMobile ? "1fr" : "repeat(auto-fill, minmax(250px, 1fr))",
+        gap: "20px",
+      }}
+    >
+      {selectedTeam !== null ? (
+        <>
+          {!isMobile && (
+            <h2
+              style={{
+                gridColumn: "1 / -1",
+                color: "#00ffff",
+                textAlign: "center",
+                marginBottom: "20px",
+                fontFamily: "Orbitron",
+              }}
+            >
+              {objectData.blackhole.teams[selectedTeam].name}
+            </h2>
+          )}
 
-          {/* Team Navigation */}
-          <div
-            style={{
-              position: "absolute",
-              top: "20px",
-              left: "50%",
-              transform: "translateX(-50%)",
-              display: "flex",
-              gap: "10px",
-              zIndex: 1000,
-            }}
-          >
-            {objectData.blackhole.teams.map((team, index) => (
+          {objectData.blackhole.teams[selectedTeam].members.map(
+            (member, index) => (
               <div
                 key={index}
                 style={{
-                  padding: "10px 15px",
-                  background:
-                    selectedTeam === index
-                      ? "rgba(0,170,255,0.3)"
-                      : "rgba(0,50,80,0.3)",
-                  border: `1px solid ${
-                    selectedTeam === index ? "#00ffff" : "#00aaff"
-                  }`,
-                  borderRadius: "4px",
-                  cursor: "pointer",
-                  color: selectedTeam === index ? "#00ffff" : "#ffffff",
-                  fontFamily: "monospace",
-                  transition: "all 0.3s",
-                  backdropFilter: "blur(4px)",
+                  background: "rgba(0,20,40,0.7)",
+                  border: "1px solid #00aaff",
+                  borderRadius: "8px",
+                  padding: "15px",
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  gap: "10px",
+                  boxShadow: "0 0 10px rgba(0,170,255,0.3)",
                 }}
-                onClick={() => setSelectedTeam(index)}
               >
-                {team.name}
-              </div>
-            ))}
-          </div>
-
-          {/* Team Display */}
-          <div
-            style={{
-              position: "absolute",
-              top: "50%",
-              left: "56%", // Adjusted to shift slightly to the right
-              transform: "translate(-50%, -50%)",
-              width: "80%",
-              maxHeight: "70vh",
-              overflowY: "auto",
-              padding: "20px",
-              zIndex: 999,
-              display: "grid",
-              gridTemplateColumns: "repeat(auto-fill, minmax(250px, 1fr))",
-              gap: "20px",
-            }}
-          >
-            {selectedTeam !== null ? (
-              <>
-                <h2
+                <div
                   style={{
-                    gridColumn: "1 / -1",
+                    width: "100px",
+                    height: "100px",
+                    borderRadius: "50%",
+                    background: `url(${member.img}) center/cover`,
+                    border: "2px solid #00ffff",
+                    boxShadow: "0 0 20px rgba(0,255,255,0.5)",
+                  }}
+                ></div>
+
+                <h3
+                  style={{
                     color: "#00ffff",
-                    textAlign: "center", // Center the heading
-                    marginBottom: "20px",
+                    margin: "5px 0",
+                    textAlign: "center",
                     fontFamily: "Orbitron",
-                    transform: "translateX(-10%)",
                   }}
                 >
-                  {objectData.blackhole.teams[selectedTeam].name}
-                </h2>
+                  {member.name}
+                </h3>
 
-                {objectData.blackhole.teams[selectedTeam].members.map(
-                  (member, index) => (
-                    <div
-                      key={index}
+                <p
+                  style={{
+                    color: "#ffffff",
+                    margin: "5px 0",
+                    textAlign: "center",
+                    fontSize: "14px",
+                  }}
+                >
+                  {member.role}
+                </p>
+
+                <div
+                  style={{
+                    display: "flex",
+                    gap: "15px",
+                    marginTop: "10px",
+                  }}
+                >
+                  {member.linkedin && (
+                    <a
+                      href={`https://linkedin.com/in/${member.linkedin}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
                       style={{
-                        background: "rgba(0,20,40,0.7)",
-                        border: "1px solid #00aaff",
-                        borderRadius: "8px",
-                        padding: "15px",
+                        color: "#00aaff",
+                        textDecoration: "none",
                         display: "flex",
-                        flexDirection: "column",
                         alignItems: "center",
-                        gap: "10px",
-                        boxShadow: "0 0 10px rgba(0,170,255,0.3)",
+                        gap: "5px",
                       }}
                     >
-                      <div
-                        style={{
-                          width: "100px",
-                          height: "100px",
-                          borderRadius: "50%",
-                          background: `url(${member.img}) center/cover`,
-                          border: "2px solid #00ffff",
-                          boxShadow: "0 0 20px rgba(0,255,255,0.5)",
-                        }}
-                      ></div>
-
-                      <h3
-                        style={{
-                          color: "#00ffff",
-                          margin: "5px 0",
-                          textAlign: "center",
-                          fontFamily: "Orbitron",
-                        }}
-                      >
-                        {member.name}
-                      </h3>
-
-                      <p
-                        style={{
-                          color: "#ffffff",
-                          margin: "5px 0",
-                          textAlign: "center",
-                          fontSize: "14px",
-                        }}
-                      >
-                        {member.role}
-                      </p>
-
-                      <div
-                        style={{
-                          display: "flex",
-                          gap: "15px",
-                          marginTop: "10px",
-                        }}
-                      >
-                        <a
-                          href={`https://linkedin.com/in/${member.linkedin}`}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          style={{
-                            color: "#00aaff",
-                            textDecoration: "none",
-                            display: "flex",
-                            alignItems: "center",
-                            gap: "5px",
-                          }}
-                        >
-                          <span style={{ fontSize: "20px" }}>🔗</span> LinkedIn
-                        </a>
-                        <a
-                          href={`https://github.com/${member.github}`}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          style={{
-                            color: "#ffffff",
-                            textDecoration: "none",
-                            display: "flex",
-                            alignItems: "center",
-                            gap: "5px",
-                          }}
-                        >
-                          <span style={{ fontSize: "20px" }}>🔗</span> GitHub
-                        </a>
-                      </div>
-                    </div>
-                  )
-                )}
-              </>
-            ) : (
-              <div
-                style={{
-                  gridColumn: "1 / -1",
-                  textAlign: "center",
-                  color: "#00ffff",
-                  fontFamily: "Orbitron",
-                }}
-              >
-                SELECT A TEAM TO VIEW MEMBERS
+                      <span style={{ fontSize: "20px" }}>🔗</span> LinkedIn
+                    </a>
+                  )}
+                  {member.github && (
+                    <a
+                      href={`https://github.com/${member.github}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      style={{
+                        color: "#ffffff",
+                        textDecoration: "none",
+                        display: "flex",
+                        alignItems: "center",
+                        gap: "5px",
+                      }}
+                    >
+                      <span style={{ fontSize: "20px" }}>🔗</span> GitHub
+                    </a>
+                  )}
+                </div>
               </div>
-            )}
-          </div>
+            )
+          )}
         </>
+      ) : (
+        <div
+          style={{
+            gridColumn: "1 / -1",
+            textAlign: "center",
+            color: "#00ffff",
+            fontFamily: "Orbitron",
+          }}
+        >
+          {isMobile ? "SELECT A TEAM FROM THE DROPDOWN" : "SELECT A TEAM TO VIEW MEMBERS"}
+        </div>
       )}
-
+    </div>
+  </>
+)}
       {focusedObject === "saturn" &&
         objectData.saturn &&
         objectData.saturn.sponsors && (
@@ -2911,7 +2972,7 @@ const Clock = ({ isMobile }) => {
       </div>
     </div>
   );
-};  
+};
 
 // Wrap Planets with ErrorBoundary
 export default function App() {
