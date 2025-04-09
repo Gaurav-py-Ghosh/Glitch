@@ -8,6 +8,7 @@ import { OutlinePass } from "three/examples/jsm/postprocessing/OutlinePass.js";
 import { UnrealBloomPass } from "three/examples/jsm/postprocessing/UnrealBloomPass.js";
 import getStarfield from "./Starfield";
 import Navbar from "./Navbar";// import BlackHoleOverlay from "./BlackHoleOverlay";
+import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader';
 
 // ErrorBoundary Component
 class ErrorBoundary extends React.Component {
@@ -537,7 +538,12 @@ const Planets = () => {
     objects.current.earth = bigPlanet;
 
     const gltfLoader = new GLTFLoader();
-    gltfLoader.load("/models/spaceship.glb", (gltf) => {
+    const dracoLoader = new DRACOLoader();
+
+    dracoLoader.setDecoderPath('https://www.gstatic.com/draco/v1/decoders/'); 
+gltfLoader.setDRACOLoader(dracoLoader);
+    
+    gltfLoader.load("/models/spaceship-compressed.glb", (gltf) => {
       const spaceship = gltf.scene;
       spaceship.scale.set(0.05, 0.05, 0.05);
       spaceship.position.set(-80, 30, -58);
@@ -570,7 +576,7 @@ const Planets = () => {
       objects.current.spaceship = spaceship;
     });
 
-    gltfLoader.load("/models/blackhole1.glb", (gltf) => {
+    gltfLoader.load("/models/blackhole1-compressed.glb", (gltf) => {
       const blackhole = gltf.scene;
       blackhole.scale.set(10, 10, 10);
       blackhole.position.set(160, 110, -58);
@@ -621,7 +627,7 @@ const Planets = () => {
       objects.current.blackhole = blackhole;
     });
 
-    gltfLoader.load("/models/moon.glb", (gltf) => {
+    gltfLoader.load("/models/moon-compressed.glb", (gltf) => {
       const moon = gltf.scene;
       moon.scale.set(5, 5, 5);
       moon.position.set(-160, 100, -35);
@@ -642,7 +648,7 @@ const Planets = () => {
       objects.current.moon = moon;
     });
 
-    gltfLoader.load("/models/saturn.glb", (gltf) => {
+    gltfLoader.load("/models/saturn-compressed.glb", (gltf) => {
       const saturn = gltf.scene;
       saturn.scale.set(0.1, 0.1, 0.1);
       saturn.position.set(50, 50, -60);
@@ -671,7 +677,7 @@ const Planets = () => {
       objects.current.saturn = saturn;
     });
 
-    gltfLoader.load("/models/mars.glb", (gltf) => {
+    gltfLoader.load("/models/mars-compressed.glb", (gltf) => {
       const mars = gltf.scene;
       mars.scale.set(0.1, 0.1, 0.1);
       mars.position.set(160, 35, -65);
@@ -2905,7 +2911,7 @@ const Clock = ({ isMobile }) => {
       </div>
     </div>
   );
-};
+};  
 
 // Wrap Planets with ErrorBoundary
 export default function App() {
