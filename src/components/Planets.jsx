@@ -922,7 +922,7 @@ const Planets = () => {
         }}
       >
         <img
-          src="/images/logo.png"
+          src="/images/logo.webp"
           alt="Mission Logo"
           style={{
             height: isMobile ? "80px" : "120px", // Reduced from 120px to 80px for mobile
